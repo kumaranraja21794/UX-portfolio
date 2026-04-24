@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { 
-  ArrowLeft, CheckCircle, AlertCircle, Zap, TrendingUp, Search, 
-  Layers, Command, BarChart3, Users, Layout, Target, Eye, 
-  Maximize2, Activity, Shield, Globe, MousePointer2, Smartphone,
-  Info, Sparkles, ChevronRight, Scale
+  ArrowLeft, CheckCircle, AlertCircle, TrendingUp,
+  BarChart3, Users, Layout, Target,
+  Maximize2, Activity, Shield,
+  Info, Sparkles, Scale
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -70,6 +70,149 @@ const CaseStudyAlpha = () => {
     }
   };
 
+  const snapshotCards = [
+    {
+      title: 'Challenge',
+      body: 'The platform surfaced rich trading data, but users had to read too much before they could understand who was winning and why.',
+    },
+    {
+      title: 'Goal',
+      body: 'Create an insight-first experience that improves scanability, speeds up comparison, and reduces cognitive load.',
+    },
+    {
+      title: 'Outcome',
+      body: 'The redesign improved interpretation speed, accelerated model selection, and made core signals much easier to act on.',
+    },
+  ];
+
+  const challengeSolutionCards = [
+    {
+      icon: Activity,
+      color: '#8b5cf6',
+      title: 'Live Trading Screen',
+      challenges: [
+        'Overlapping trend lines created noise.',
+        'Trade logs were dense and hard to scan.',
+      ],
+      solutions: [
+        'Highlighted top-performing models first.',
+        'Reduced chart noise and prioritized P&L visibility.',
+      ],
+    },
+    {
+      icon: BarChart3,
+      color: '#10b981',
+      title: 'Model Detail Screen',
+      challenges: [
+        'Large empty areas weakened information hierarchy.',
+        'Key metrics lacked emphasis.',
+      ],
+      solutions: [
+        'Restructured data into vertically scannable sections.',
+        'Added summary cards for the most critical financial signals.',
+      ],
+    },
+    {
+      icon: Users,
+      color: '#f59e0b',
+      title: 'Leaderboard Screen',
+      challenges: [
+        'Metric-heavy tables caused scanning fatigue.',
+        'Important KPIs were buried in raw numbers.',
+      ],
+      solutions: [
+        'Spotlighted core metrics such as Return % and Total P&L.',
+        'Improved spacing, grouping, and number alignment.',
+      ],
+    },
+  ];
+
+  const processSteps = [
+    {
+      number: '01',
+      title: 'Audit',
+      body: 'Reviewed the existing dashboard to pinpoint where users were forced to read instead of scan.',
+    },
+    {
+      number: '02',
+      title: 'Prioritize',
+      body: 'Defined a hierarchy-first system so the most important signals surfaced immediately.',
+    },
+    {
+      number: '03',
+      title: 'Refine',
+      body: 'Used grouped cards, semantic color, and clearer layouts to reduce friction across key screens.',
+    },
+  ];
+
+  const validationTasks = [
+    {
+      icon: Target,
+      color: '#8b5cf6',
+      task: 'Identify Best Performing Model',
+      result: 'Users relied on visual hierarchy and badges instead of scanning raw rows.',
+    },
+    {
+      icon: Maximize2,
+      color: '#f59e0b',
+      task: 'Analyze Recent Trades',
+      result: 'The redesigned log format made vertical scanning noticeably faster and easier.',
+    },
+    {
+      icon: TrendingUp,
+      color: '#10b981',
+      task: 'Understand Account Growth',
+      result: 'Semantic color and cleaner chart structure improved interpretation speed.',
+    },
+  ];
+
+  const impactMetrics = [
+    {
+      value: '60%',
+      title: 'Faster UI Interpretation',
+      body: 'Reduced the time needed to read complex performance views.',
+    },
+    {
+      value: '65%',
+      title: 'Faster Model Selection',
+      body: 'Helped users identify top-performing trading models much quicker.',
+    },
+    {
+      value: 'High',
+      title: 'Confidence Factor',
+      body: 'Lowered the mental effort required to decode financial snapshots.',
+    },
+  ];
+
+  const improvementRows = [
+    ['Data Readability', 'Low', 'High'],
+    ['Chart Clarity', 'Confusing', 'Clear'],
+    ['Trade Analysis', 'Slow', 'Quick'],
+    ['Navigation Effort', 'High', 'Reduced'],
+    ['Decision Speed', 'Slow', 'Fast'],
+  ];
+
+  const learningCards = [
+    {
+      icon: Info,
+      color: '#8b5cf6',
+      title: 'Clarity Over Features',
+      body: 'In data-heavy products, removing noise creates more value than adding more surface area.',
+    },
+    {
+      icon: Shield,
+      color: '#10b981',
+      title: 'Cognitive Offloading',
+      body: 'Strong hierarchy lets the interface do more of the processing work for the user.',
+    },
+    {
+      icon: Layout,
+      color: '#f59e0b',
+      title: 'Synthesis First',
+      body: 'Users need grouped meaning, not scattered raw metrics.',
+    },
+  ];
+
   return (
     <div className="case-study-page">
       <div className="cs-watermark">ARENA</div>
@@ -111,19 +254,40 @@ const CaseStudyAlpha = () => {
               <p className="cs-lead">
                 Alpha Arena is an AI trading competition platform where multiple models execute trades and compete based on performance. I led the UX transformation to turn dense financial data into an insight-first dashboard.
               </p>
-              
-              <div className="cs-meta-bar">
-                <div className="meta-item">
+
+              <div className="cs-meta-strip">
+                <div className="cs-meta-strip-item">
                   <label>Role</label>
                   <span>UX Designer</span>
                 </div>
-                <div className="meta-item">
+                <div className="cs-meta-strip-divider" />
+                <div className="cs-meta-strip-item">
                   <label>Focus</label>
                   <span>Data Visualization</span>
                 </div>
-                <div className="meta-item">
+                <div className="cs-meta-strip-divider" />
+                <div className="cs-meta-strip-item">
                   <label>Outcome</label>
                   <span>+65% Comp. Speed</span>
+                </div>
+                <div className="cs-meta-strip-divider" />
+                <div className="cs-meta-strip-item cs-meta-strip-cta">
+                  <a
+                    href="https://www.figma.com/proto/7N19TYywTBVaZj4IA4jhmx/Sakthi-Kumaran-s-team-library?page-id=418%3A2&node-id=1004-1163&p=f&viewport=233%2C-2344%2C0.32&t=RpaANh85uJ9l3jx9-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1004%3A1163&show-proto-sidebar=1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cs-figma-btn"
+                  >
+                    <svg width="15" height="15" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
+                      <path d="M19 28.5C19 25.9804 20.0009 23.5641 21.7825 21.7825C23.5641 20.0009 25.9804 19 28.5 19C31.0196 19 33.4359 20.0009 35.2175 21.7825C36.9991 23.5641 38 25.9804 38 28.5C38 31.0196 36.9991 33.4359 35.2175 35.2175C33.4359 36.9991 31.0196 38 28.5 38C25.9804 38 23.5641 36.9991 21.7825 35.2175C20.0009 33.4359 19 31.0196 19 28.5Z" fill="#1ABCFE"/>
+                      <path d="M0 47.5C0 44.9804 1.00089 42.5641 2.78249 40.7825C4.56408 39.0009 6.98044 38 9.5 38H19V47.5C19 50.0196 17.9991 52.4359 16.2175 54.2175C14.4359 55.9991 12.0196 57 9.5 57C6.98044 57 4.56408 55.9991 2.78249 54.2175C1.00089 52.4359 0 50.0196 0 47.5Z" fill="#0ACF83"/>
+                      <path d="M19 0V19H28.5C31.0196 19 33.4359 17.9991 35.2175 16.2175C36.9991 14.4359 38 12.0196 38 9.5C38 6.98044 36.9991 4.56408 35.2175 2.78249C33.4359 1.00089 31.0196 0 28.5 0H19Z" fill="#FF7262"/>
+                      <path d="M0 9.5C0 12.0196 1.00089 14.4359 2.78249 16.2175C4.56408 17.9991 6.98044 19 9.5 19H19V0H9.5C6.98044 0 4.56408 1.00089 2.78249 2.78249C1.00089 4.56408 0 6.98044 0 9.5Z" fill="#F24E1E"/>
+                      <path d="M0 28.5C0 31.0196 1.00089 33.4359 2.78249 35.2175C4.56408 36.9991 6.98044 38 9.5 38H19V19H9.5C6.98044 19 4.56408 20.0009 2.78249 21.7825C1.00089 23.5641 0 25.9804 0 28.5Z" fill="#A259FF"/>
+                    </svg>
+                    View Prototype
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                  </a>
                 </div>
               </div>
             </motion.div>
@@ -131,12 +295,29 @@ const CaseStudyAlpha = () => {
         </div>
       </header>
 
-      {/* Overview Section */}
-      <section className="cs-section">
+      {/* Snapshot Section */}
+      <section className="cs-section cs-section-tight">
         <div className="container cs-grid">
-          <div className="cs-label">Overview</div>
+          <div className="cs-label">Snapshot</div>
           <div className="cs-content">
-            <p className="large-p">Alpha Arena provides rich datasets including account value trends, trade logs, model comparisons, and performance metrics. However, the existing UI made it difficult to extract meaningful insights quickly, overwhelming users with dense data.</p>
+            <h2>From dense trading data to faster decisions.</h2>
+            <p className="large-p">Alpha Arena provides account value trends, trade logs, model comparisons, and performance metrics. The redesign focused on reducing cognitive load so users could interpret the platform faster and act with more confidence.</p>
+
+            <div className="cs-compact-grid" style={{ marginTop: '2.5rem' }}>
+              {snapshotCards.map((card, index) => (
+                <motion.div
+                  key={card.title}
+                  className="cs-compact-card"
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08 }}
+                >
+                  <span className="cs-compact-eyebrow">{card.title}</span>
+                  <p>{card.body}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -215,275 +396,152 @@ const CaseStudyAlpha = () => {
         </div>
       </section>
 
-      {/* Detailed Problem Section */}
+      {/* Challenge + Solution */}
       <section className="cs-section bg-light">
         <div className="container cs-grid">
-          <div className="cs-label text-accent">The Problem</div>
+          <div className="cs-label text-accent">Challenge + Solution</div>
           <div className="cs-content">
-            <h2>Challenges Observed.</h2>
-            <p>Users were overwhelmed by dense financial data due to lack of hierarchy, poor visual grouping, and inefficient data presentation—making quick decision-making difficult.</p>
-            
-            <div className="bento-grid" style={{ marginTop: '4rem' }}>
-              <motion.div 
-                className="problem-card-v2" 
-                style={{ gridColumn: 'span 12' }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
-                <div className="problem-header">
-                  <Activity size={24} color="#ef4444" />
-                  <h4>Live Trading Screen</h4>
-                  <span className="problem-badge">Critical Friction</span>
-                </div>
-                <div className="problem-body">
-                  <div className="problem-point">
-                    <AlertCircle size={20} color="#ef4444" style={{ flexShrink: 0, marginTop: '2px' }} />
-                    <p>Multiple overlapping lines with no clear focus.</p>
-                  </div>
-                  <div className="problem-point">
-                    <AlertCircle size={20} color="#ef4444" style={{ flexShrink: 0, marginTop: '2px' }} />
-                    <p>Colors lacked meaning, making models hard to distinguish.</p>
-                  </div>
-                  <div className="problem-point">
-                    <AlertCircle size={20} color="#ef4444" style={{ flexShrink: 0, marginTop: '2px' }} />
-                    <p>Trade logs were dense, visually noisy, and hard to scan.</p>
-                  </div>
-                </div>
-              </motion.div>
+            <h2>Challenge the noise. Surface the signal.</h2>
+            <p>Instead of splitting the story across separate problem and goal sections, the redesign now reads as a direct before-to-after narrative across the three core product surfaces.</p>
 
-              <motion.div 
-                className="problem-card-v2" 
-                style={{ gridColumn: 'span 6' }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-              >
-                <div className="problem-header">
-                  <BarChart3 size={24} color="#f59e0b" />
-                  <h4>Model Detail Screen</h4>
-                </div>
-                <div className="problem-body">
-                  <div className="problem-point">
-                    <AlertCircle size={20} color="#f59e0b" style={{ flexShrink: 0, marginTop: '2px' }} />
-                    <p>Large empty sections with poor information distribution.</p>
+            <div className="cs-compact-grid cs-solution-grid" style={{ marginTop: '2.5rem' }}>
+              {challengeSolutionCards.map(({ icon: Icon, color, title, challenges, solutions }, index) => (
+                <motion.article
+                  key={title}
+                  className="cs-solution-card"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08 }}
+                >
+                  <div className="cs-solution-head">
+                    <span className="cs-solution-icon" style={{ color }}>
+                      <Icon size={22} />
+                    </span>
+                    <h3>{title}</h3>
                   </div>
-                  <div className="problem-point">
-                    <AlertCircle size={20} color="#f59e0b" style={{ flexShrink: 0, marginTop: '2px' }} />
-                    <p>Metrics like P&L, leverage, and confidence lacked visual emphasis.</p>
-                  </div>
-                </div>
-              </motion.div>
 
-              <motion.div 
-                className="problem-card-v2" 
-                style={{ gridColumn: 'span 6' }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-              >
-                <div className="problem-header">
-                  <Users size={24} color="#f59e0b" />
-                  <h4>Leaderboard Screen</h4>
-                </div>
-                <div className="problem-body">
-                  <div className="problem-point">
-                    <AlertCircle size={20} color="#f59e0b" style={{ flexShrink: 0, marginTop: '2px' }} />
-                    <p>Table overloaded with numbers, causing scanning fatigue.</p>
+                  <div className="cs-solution-columns">
+                    <div>
+                      <span className="cs-compact-eyebrow">Challenges</span>
+                      <ul className="cs-mini-list">
+                        {challenges.map((item) => (
+                          <li key={item}>
+                            <AlertCircle size={16} color={color} />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      <span className="cs-compact-eyebrow">Redesign Moves</span>
+                      <ul className="cs-mini-list">
+                        {solutions.map((item) => (
+                          <li key={item}>
+                            <CheckCircle size={16} color={color} />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                  <div className="problem-point">
-                    <AlertCircle size={20} color="#f59e0b" style={{ flexShrink: 0, marginTop: '2px' }} />
-                    <p>No visual prioritization of key metrics (Return %, P&L).</p>
-                  </div>
-                </div>
-              </motion.div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Approach + Validation */}
+      <section className="cs-section bg-dark text-white cs-section-compact-dark">
+        <div className="container cs-grid">
+          <div className="cs-label" style={{ color: 'rgba(255,255,255,0.5)' }}>Methodology</div>
+          <div className="cs-content">
+            <h2 style={{ fontSize: '3rem', marginBottom: '2.5rem', letterSpacing: '-0.02em', color: '#fff' }}>Compact process, faster story.</h2>
+
+            <div className="cs-compact-grid cs-process-grid">
+              {processSteps.map((step, index) => (
+                <motion.article
+                  key={step.number}
+                  className="cs-process-card"
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08 }}
+                >
+                  <span className="cs-process-number">{step.number}</span>
+                  <h4>{step.title}</h4>
+                  <p>{step.body}</p>
+                </motion.article>
+              ))}
             </div>
 
-            <div className="core-problem-box" style={{ marginTop: '3rem' }}>
-              <AlertCircle size={24} color="#ef4444" />
+            <div className="cs-validation-inline">
               <div>
-                <strong>Core Problem Statement:</strong>
-                <p style={{ margin: 0, fontSize: '1.1rem' }}>Users were overwhelmed by dense financial data due to lack of hierarchy and poor visual grouping—making quick decision-making difficult.</p>
+                <span className="cs-compact-eyebrow">Validation</span>
+                <h3>Tested against real user tasks.</h3>
+                <p>Rather than giving validation its own long section, the task outcomes now sit directly under the process so the story moves faster.</p>
+              </div>
+
+              <div className="cs-validation-list">
+                {validationTasks.map(({ icon: Icon, color, task, result }, index) => (
+                  <motion.article
+                    key={task}
+                    className="cs-validation-row"
+                    initial={{ opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.08 }}
+                  >
+                    <div className="cs-validation-icon-col">
+                      <span className="cs-solution-icon" style={{ color }}>
+                        <Icon size={20} />
+                      </span>
+                    </div>
+
+                    <div className="cs-validation-copy">
+                      <span className="cs-compact-eyebrow">Task 0{index + 1}</span>
+                      <h4>{task}</h4>
+                      <p>{result}</p>
+                    </div>
+                  </motion.article>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Design Goal */}
-      <section className="cs-section">
-        <div className="container cs-grid">
-          <div className="cs-label">Design Goal</div>
-          <div className="cs-content">
-            <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: '2rem' }}>An Insight-First Experience.</h2>
-            <p style={{ fontSize: '1.35rem', color: '#666', lineHeight: 1.6 }}>The mandate was clear: transform Alpha Arena into a hyper-structured dashboard where complex financial datasets dissolve into instantaneous operational insights.</p>
-            
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '4rem' }}>
-              <motion.div style={{ padding: '2.5rem 2rem', background: '#fdfdfc', borderRadius: '24px', border: '1px solid rgba(0,0,0,0.06)', boxShadow: '0 4px 12px rgba(0,0,0,0.01)' }} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true }}>
-                <CheckCircle size={28} color="#8b5cf6" style={{ marginBottom: '1.5rem' }} />
-                <h4 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', letterSpacing: '-0.02em' }}>Instant Scannability</h4>
-                <p style={{ fontSize: '1rem', color: '#666', margin: 0, lineHeight: 1.5 }}>Understand multi-model performance at a glance without reading tables.</p>
-              </motion.div>
-              <motion.div style={{ padding: '2.5rem 2rem', background: '#fdfdfc', borderRadius: '24px', border: '1px solid rgba(0,0,0,0.06)', boxShadow: '0 4px 12px rgba(0,0,0,0.01)' }} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true }} transition={{ delay: 0.1 }}>
-                <CheckCircle size={28} color="#10b981" style={{ marginBottom: '1.5rem' }} />
-                <h4 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', letterSpacing: '-0.02em' }}>Rapid Comparisons</h4>
-                <p style={{ fontSize: '1rem', color: '#666', margin: 0, lineHeight: 1.5 }}>Effortlessly compare leading algorithms without context switching.</p>
-              </motion.div>
-              <motion.div style={{ padding: '2.5rem 2rem', background: '#fdfdfc', borderRadius: '24px', border: '1px solid rgba(0,0,0,0.06)', boxShadow: '0 4px 12px rgba(0,0,0,0.01)' }} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true }} transition={{ delay: 0.2 }}>
-                <CheckCircle size={28} color="#f59e0b" style={{ marginBottom: '1.5rem' }} />
-                <h4 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', letterSpacing: '-0.02em' }}>Faster Decisions</h4>
-                <p style={{ fontSize: '1rem', color: '#666', margin: 0, lineHeight: 1.5 }}>Elevate operational speed by eliminating navigational and visual friction.</p>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Design Process */}
-      <section className="cs-section bg-dark text-white" style={{ padding: '8rem 0' }}>
-        <div className="container cs-grid">
-          <div className="cs-label" style={{ color: 'rgba(255,255,255,0.5)' }}>Methodology</div>
-          <div className="cs-content">
-            <h2 style={{ fontSize: '3rem', marginBottom: '4rem', letterSpacing: '-0.02em', color: '#fff' }}>The Process.</h2>
-            
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '3rem' }}>
-              <motion.div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', padding: '3.5rem 2.5rem', borderRadius: '32px' }} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
-                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '5rem', color: 'rgba(255,255,255,0.1)', lineHeight: 0.8, marginBottom: '2rem' }}>01</div>
-                <h4 style={{ fontSize: '1.5rem', color: '#fff', marginBottom: '1rem' }}>Empathize</h4>
-                <p style={{ color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, margin: 0 }}>Analyzed interactions with existing dashboards. Extracted the key mandate: "Don't make me read everything to know if we are winning or losing."</p>
-              </motion.div>
-
-              <motion.div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', padding: '3.5rem 2.5rem', borderRadius: '32px' }} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '5rem', color: 'rgba(255,255,255,0.1)', lineHeight: 0.8, marginBottom: '2rem' }}>02</div>
-                <h4 style={{ fontSize: '1.5rem', color: '#fff', marginBottom: '1rem' }}>Define</h4>
-                <p style={{ color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, margin: 0 }}>Identified extreme cognitive overload. The interface lacked structured hierarchy, leading to abysmal scanability and weak data groupings.</p>
-              </motion.div>
-
-              <motion.div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', padding: '3.5rem 2.5rem', borderRadius: '32px' }} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '5rem', color: 'rgba(255,255,255,0.1)', lineHeight: 0.8, marginBottom: '2rem' }}>03</div>
-                <h4 style={{ fontSize: '1.5rem', color: '#fff', marginBottom: '1rem' }}>Ideation</h4>
-                <p style={{ color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, margin: 0 }}>Pivoted to a relentless hierarchy-first approach: heavy card-based data grouping, progressive disclosure flows, and strict semantic color logic.</p>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Solutions Section */}
-      <section className="cs-section bg-light" style={{ padding: '8rem 0' }}>
-        <div className="container cs-grid">
-          <div className="cs-label">Solutions</div>
-          <div className="cs-content">
-            <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', letterSpacing: '-0.02em', marginBottom: '4rem' }}>Architecting Clarity.</h2>
-            
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '5rem' }}>
-              
-              {/* Solution 1 */}
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true }}>
-                <h3 style={{ fontSize: '2rem', borderBottom: '2px solid #000', paddingBottom: '1rem', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <Activity size={32} color="#8b5cf6" /> Live Trading Screen
-                </h3>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem' }}>
-                  <div style={{ background: '#fff', padding: '2rem', borderRadius: '20px', border: '1px solid rgba(0,0,0,0.05)' }}>
-                    <h5 style={{ fontSize: '1.15rem', marginBottom: '0.75rem', color: '#111' }}>Algorithmic Emphasis</h5>
-                    <p style={{ color: '#666', fontSize: '1rem', margin: 0, lineHeight: 1.5 }}>Highlighted prime performing models instantly instead of applying equal visual emphasis to all data streams.</p>
-                  </div>
-                  <div style={{ background: '#fff', padding: '2rem', borderRadius: '20px', border: '1px solid rgba(0,0,0,0.05)' }}>
-                    <h5 style={{ fontSize: '1.15rem', marginBottom: '0.75rem', color: '#111' }}>Chart Distillation</h5>
-                    <p style={{ color: '#666', fontSize: '1rem', margin: 0, lineHeight: 1.5 }}>Simplified readability with extreme line differentiation and visual noise reduction.</p>
-                  </div>
-                  <div style={{ background: '#fff', padding: '2rem', borderRadius: '20px', border: '1px solid rgba(0,0,0,0.05)' }}>
-                    <h5 style={{ fontSize: '1.15rem', marginBottom: '0.75rem', color: '#111' }}>P&L Visibility</h5>
-                    <p style={{ color: '#666', fontSize: '1rem', margin: 0, lineHeight: 1.5 }}>Reworked the trade panel with aggressive spacing to make absolute profit/loss the centerpiece.</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Solution 2 */}
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true }}>
-                <h3 style={{ fontSize: '2rem', borderBottom: '2px solid #000', paddingBottom: '1rem', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <BarChart3 size={32} color="#10b981" /> Model Detail Screen
-                </h3>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem' }}>
-                  <div style={{ background: '#fff', padding: '2rem', borderRadius: '20px', border: '1px solid rgba(0,0,0,0.05)' }}>
-                    <h5 style={{ fontSize: '1.15rem', marginBottom: '0.75rem', color: '#111' }}>Structured Segmentation</h5>
-                    <p style={{ color: '#666', fontSize: '1rem', margin: 0, lineHeight: 1.5 }}>Converted scattered, disconnected data sets into highly structured, vertically scannable sections.</p>
-                  </div>
-                  <div style={{ background: '#fff', padding: '2rem', borderRadius: '20px', border: '1px solid rgba(0,0,0,0.05)' }}>
-                    <h5 style={{ fontSize: '1.15rem', marginBottom: '0.75rem', color: '#111' }}>Summary Synthetics</h5>
-                    <p style={{ color: '#666', fontSize: '1rem', margin: 0, lineHeight: 1.5 }}>Introduced high-level summary cards for Total P&L, Fees, and Net Realized assets.</p>
-                  </div>
-                  <div style={{ background: '#fff', padding: '2rem', borderRadius: '20px', border: '1px solid rgba(0,0,0,0.05)' }}>
-                    <h5 style={{ fontSize: '1.15rem', marginBottom: '0.75rem', color: '#111' }}>Purposeful Empty States</h5>
-                    <p style={{ color: '#666', fontSize: '1rem', margin: 0, lineHeight: 1.5 }}>Redesigned dead-end empty states to be highly informative and instructional to the user.</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Solution 3 */}
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true }}>
-                <h3 style={{ fontSize: '2rem', borderBottom: '2px solid #000', paddingBottom: '1rem', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <Users size={32} color="#f59e0b" /> Leaderboard Engine
-                </h3>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem' }}>
-                  <div style={{ background: '#fff', padding: '2rem', borderRadius: '20px', border: '1px solid rgba(0,0,0,0.05)' }}>
-                    <h5 style={{ fontSize: '1.15rem', marginBottom: '0.75rem', color: '#111' }}>Metric Spotlighting</h5>
-                    <p style={{ color: '#666', fontSize: '1rem', margin: 0, lineHeight: 1.5 }}>Aggressively highlighted pivotal columns like absolute Return % and Total P&L.</p>
-                  </div>
-                  <div style={{ background: '#fff', padding: '2rem', borderRadius: '20px', border: '1px solid rgba(0,0,0,0.05)' }}>
-                    <h5 style={{ fontSize: '1.15rem', marginBottom: '0.75rem', color: '#111' }}>Typographic Space</h5>
-                    <p style={{ color: '#666', fontSize: '1rem', margin: 0, lineHeight: 1.5 }}>Improved severe table readability issues through expanded row spacing and strict decimal alignment.</p>
-                  </div>
-                  <div style={{ background: '#fff', padding: '2rem', borderRadius: '20px', border: '1px solid rgba(0,0,0,0.05)' }}>
-                    <h5 style={{ fontSize: '1.15rem', marginBottom: '0.75rem', color: '#111' }}>Logical Grouping</h5>
-                    <p style={{ color: '#666', fontSize: '1rem', margin: 0, lineHeight: 1.5 }}>Drastically reduced cognitive load by structuring raw datasets logically and hierarchically.</p>
-                  </div>
-                </div>
-              </motion.div>
-
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Impact & Validation */}
-      <section className="cs-section bg-light" style={{ padding: '8rem 0' }}>
+      {/* Impact */}
+      <section className="cs-section bg-light cs-section-tight">
         <div className="container">
           <div className="impact-editorial-grid">
             <div className="impact-editorial-left">
               <div className="cs-label text-success" style={{ marginBottom: '2rem' }}>The Impact</div>
               <h2>Designing for the Speed of Thought.</h2>
               <p style={{ fontSize: '1.2rem', color: '#666', lineHeight: 1.6 }}>By stripping away the noise and establishing a relentless visual hierarchy, we dramatically reduced the cognitive friction required to operate the platform.</p>
+              <div className="outcome-traits" style={{ marginTop: '2rem' }}>
+                <div className="trait"><div className="trait-dot"></div><span>Scannable</span></div>
+                <div className="trait"><div className="trait-dot"></div><span>Structured</span></div>
+                <div className="trait"><div className="trait-dot"></div><span>Actionable</span></div>
+              </div>
             </div>
             
             <div className="impact-editorial-right">
-              <div className="impact-metric-row">
-                <div className="impact-metric-number">60<span style={{ fontSize: '2.5rem', marginLeft: '0.2rem' }}>%</span></div>
-                <div className="impact-metric-content">
-                  <h4>Faster UI Interpretation</h4>
-                  <p>Calculated decrease in time taken for users to interpret complex performance trends.</p>
-                </div>
+              <div className="cs-impact-cards">
+                {impactMetrics.map((metric) => (
+                  <div key={metric.title} className="cs-impact-card">
+                    <div className="impact-metric-number">{metric.value}</div>
+                    <div className="impact-metric-content">
+                      <h4>{metric.title}</h4>
+                      <p>{metric.body}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
 
-              <div className="impact-metric-row">
-                <div className="impact-metric-number">65<span style={{ fontSize: '2.5rem', marginLeft: '0.2rem' }}>%</span></div>
-                <div className="impact-metric-content">
-                  <h4>Model Selection Speed</h4>
-                  <p>Users were able to identify and act on top-performing trading models significantly faster.</p>
-                </div>
-              </div>
-
-              <div className="impact-metric-row">
-                <div className="impact-metric-number" style={{ fontSize: '3rem', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center' }}>High</div>
-                <div className="impact-metric-content">
-                  <h4>Confidence Factor</h4>
-                  <p>Reduction in mental effort required to decode and operate on financial snapshots.</p>
-                </div>
-              </div>
-
-              <div className="table-wrap" style={{ marginTop: '5rem' }}>
+              <div className="table-wrap" style={{ marginTop: '3rem' }}>
                 <h3 style={{ marginBottom: '2rem', fontSize: '1.25rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#aaa' }}>Usability Improvements</h3>
                 <table className="comparison-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
                   <thead>
@@ -494,11 +552,13 @@ const CaseStudyAlpha = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr style={{ borderBottom: '1px solid #eaeaea' }}><td style={{ padding: '1.5rem 0', fontWeight: '600' }}>Data Readability</td><td style={{ color: '#ef4444' }}>Low</td><td style={{ color: '#10b981', fontWeight: 'bold' }}>High</td></tr>
-                    <tr style={{ borderBottom: '1px solid #eaeaea' }}><td style={{ padding: '1.5rem 0', fontWeight: '600' }}>Chart Clarity</td><td style={{ color: '#ef4444' }}>Confusing</td><td style={{ color: '#10b981', fontWeight: 'bold' }}>Clear</td></tr>
-                    <tr style={{ borderBottom: '1px solid #eaeaea' }}><td style={{ padding: '1.5rem 0', fontWeight: '600' }}>Trade Analysis</td><td style={{ color: '#ef4444' }}>Slow</td><td style={{ color: '#10b981', fontWeight: 'bold' }}>Quick</td></tr>
-                    <tr style={{ borderBottom: '1px solid #eaeaea' }}><td style={{ padding: '1.5rem 0', fontWeight: '600' }}>Navigation Effort</td><td style={{ color: '#ef4444' }}>High</td><td style={{ color: '#10b981', fontWeight: 'bold' }}>Reduced</td></tr>
-                    <tr style={{ borderBottom: '1px solid #eaeaea' }}><td style={{ padding: '1.5rem 0', fontWeight: '600' }}>Decision Speed</td><td style={{ color: '#ef4444' }}>Slow</td><td style={{ color: '#10b981', fontWeight: 'bold' }}>Fast</td></tr>
+                    {improvementRows.map(([aspect, before, after]) => (
+                      <tr key={aspect} style={{ borderBottom: '1px solid #eaeaea' }}>
+                        <td style={{ padding: '1.1rem 0', fontWeight: '600' }}>{aspect}</td>
+                        <td style={{ color: '#ef4444' }}>{before}</td>
+                        <td style={{ color: '#10b981', fontWeight: 'bold' }}>{after}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
@@ -508,168 +568,34 @@ const CaseStudyAlpha = () => {
         </div>
       </section>
 
-      {/* Usability Validation (Conceptual) */}
-      <section className="cs-section">
-        <div className="container cs-grid">
-          <div className="cs-label">Validation</div>
-          <div className="cs-content">
-            <h2 style={{ marginBottom: '1rem' }}>Testing Protocol.</h2>
-            <p style={{ fontSize: '1.2rem', color: '#666', marginBottom: '4rem' }}>We executed targeted conceptual usability tests focusing exclusively on task completion speed and cognitive ease.</p>
-            
-            <div className="validation-protocol">
-              
-              <motion.div 
-                className="protocol-row" 
-                style={{ display: 'flex', gap: '2rem', padding: '2.5rem 0', borderTop: '1px solid rgba(0,0,0,0.1)' }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
-                <div style={{ width: '64px', height: '64px', background: 'rgba(139, 92, 246, 0.05)', border: '1px solid rgba(139, 92, 246, 0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <Target size={28} color="#8b5cf6" />
-                </div>
-                <div style={{ flex: 1 }}>
-                  <span style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#8b5cf6' }}>Task 01</span>
-                  <h4 style={{ fontSize: '1.5rem', marginTop: '0.5rem', marginBottom: '1.5rem', letterSpacing: '-0.02em' }}>Identify Best Performing Model</h4>
-                  <div style={{ background: '#fdfdfc', border: '1px solid rgba(0,0,0,0.06)', padding: '1.5rem', borderRadius: '16px', display: 'flex', gap: '1rem', alignItems: 'flex-start', boxShadow: '0 4px 12px rgba(0,0,0,0.02)' }}>
-                    <CheckCircle size={20} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
-                    <p style={{ margin: 0, fontSize: '1rem', color: '#444' }}><strong style={{ color: '#111' }}>The Result /</strong> Accelerated task completion. Users relied entirely on the new visual hierarchy and semantic badges rather than scanning raw data rows.</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                className="protocol-row" 
-                style={{ display: 'flex', gap: '2rem', padding: '2.5rem 0', borderTop: '1px solid rgba(0,0,0,0.1)' }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-              >
-                <div style={{ width: '64px', height: '64px', background: 'rgba(245, 158, 11, 0.05)', border: '1px solid rgba(245, 158, 11, 0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <Maximize2 size={28} color="#f59e0b" />
-                </div>
-                <div style={{ flex: 1 }}>
-                  <span style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#f59e0b' }}>Task 02</span>
-                  <h4 style={{ fontSize: '1.5rem', marginTop: '0.5rem', marginBottom: '1.5rem', letterSpacing: '-0.02em' }}>Analyze Recent Trades</h4>
-                  <div style={{ background: '#fdfdfc', border: '1px solid rgba(0,0,0,0.06)', padding: '1.5rem', borderRadius: '16px', display: 'flex', gap: '1rem', alignItems: 'flex-start', boxShadow: '0 4px 12px rgba(0,0,0,0.02)' }}>
-                    <CheckCircle size={20} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
-                    <p style={{ margin: 0, fontSize: '1rem', color: '#444' }}><strong style={{ color: '#111' }}>The Result /</strong> Significantly reduced structural confusion. The redesigned transaction log format allowed for rapid, vertical visual scanning.</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                className="protocol-row" 
-                style={{ display: 'flex', gap: '2rem', padding: '2.5rem 0', borderTop: '1px solid rgba(0,0,0,0.1)', borderBottom: '1px solid rgba(0,0,0,0.1)' }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-              >
-                <div style={{ width: '64px', height: '64px', background: 'rgba(16, 185, 129, 0.05)', border: '1px solid rgba(16, 185, 129, 0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <TrendingUp size={28} color="#10b981" />
-                </div>
-                <div style={{ flex: 1 }}>
-                  <span style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.15em', color: '#10b981' }}>Task 03</span>
-                  <h4 style={{ fontSize: '1.5rem', marginTop: '0.5rem', marginBottom: '1.5rem', letterSpacing: '-0.02em' }}>Understand Account Growth</h4>
-                  <div style={{ background: '#fdfdfc', border: '1px solid rgba(0,0,0,0.06)', padding: '1.5rem', borderRadius: '16px', display: 'flex', gap: '1rem', alignItems: 'flex-start', boxShadow: '0 4px 12px rgba(0,0,0,0.02)' }}>
-                    <CheckCircle size={20} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
-                    <p style={{ margin: 0, fontSize: '1rem', color: '#444' }}><strong style={{ color: '#111' }}>The Result /</strong> Smooth visual interpretations. Semantic color coding dictated the pacing of P&L comprehension immediately.</p>
-                  </div>
-                </div>
-              </motion.div>
-
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Outcome Section */}
-      <section className="cs-section bg-dark text-white">
-        <div className="container">
-          <div className="outcome-box">
-            <span className="cs-tag" style={{ background: 'rgba(139, 92, 246, 0.1)', color: '#8b5cf6', border: 'none' }}>Final Outcome</span>
-            <h2 style={{ fontSize: '3.5rem', marginTop: '2rem' }}>Decision-First Experience.</h2>
-            <p style={{ fontSize: '1.5rem', color: '#888', margin: '2rem 0' }}>The redesign transforms Alpha Arena into a platform where users can focus on insights, not interpretation.</p>
-            <div className="outcome-traits">
-              <div className="trait"><div className="trait-dot"></div><span>Scannable</span></div>
-              <div className="trait"><div className="trait-dot"></div><span>Structured</span></div>
-              <div className="trait"><div className="trait-dot"></div><span>Actionable</span></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Key Learnings */}
-      <section className="cs-section bg-dark text-white" style={{ padding: '10rem 0', overflow: 'hidden', position: 'relative' }}>
+      <section className="cs-section bg-dark text-white" style={{ padding: '6.5rem 0', overflow: 'hidden', position: 'relative' }}>
         {/* Ambient Glow Orbs */}
         <div style={{ position: 'absolute', top: '10%', left: '20%', width: '40vw', height: '40vw', background: 'radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 60%)', filter: 'blur(80px)', zIndex: 0, pointerEvents: 'none' }}></div>
         <div style={{ position: 'absolute', bottom: '10%', right: '10%', width: '30vw', height: '30vw', background: 'radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 60%)', filter: 'blur(80px)', zIndex: 0, pointerEvents: 'none' }}></div>
 
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <span className="cs-tag" style={{ background: 'rgba(255,255,255,0.05)', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' }}>The Takeaways</span>
             <h2 style={{ fontSize: 'clamp(3rem, 5vw, 4.5rem)', letterSpacing: '-0.03em', marginTop: '1.5rem', color: '#fff' }}>Post-Flight Learnings.</h2>
           </div>
             
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-            
-            {/* Card 01 */}
-            <motion.div 
-              style={{ background: 'rgba(255,255,255,0.02)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.05)', padding: '3.5rem', borderRadius: '32px', position: 'relative', overflow: 'hidden' }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, #8b5cf6, transparent)' }}></div>
-              <Info size={32} color="#8b5cf6" style={{ marginBottom: '2rem' }} />
-              <h4 style={{ fontSize: '1.5rem', color: '#fff', marginBottom: '1rem', letterSpacing: '-0.02em' }}>Clarity Over Features</h4>
-              <p style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, margin: 0 }}>In data-heavy products, clarity completely trumps features. The deliberate omission of noise is far more critical than the sheer volume of data.</p>
-            </motion.div>
-
-            {/* Card 02 */}
-            <motion.div 
-              style={{ background: 'rgba(255,255,255,0.02)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.05)', padding: '3.5rem', borderRadius: '32px', position: 'relative', overflow: 'hidden' }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
-              <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, #10b981, transparent)' }}></div>
-              <Shield size={32} color="#10b981" style={{ marginBottom: '2rem' }} />
-              <h4 style={{ fontSize: '1.5rem', color: '#fff', marginBottom: '1rem', letterSpacing: '-0.02em' }}>Cognitive Offloading</h4>
-              <p style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, margin: 0 }}>Strong visual hierarchy transfers the burden of processing from the user to the UI, drastically improving decision-making speeds.</p>
-            </motion.div>
-
-            {/* Card 03 */}
-            <motion.div 
-              style={{ background: 'rgba(255,255,255,0.02)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.05)', padding: '3.5rem', borderRadius: '32px', position: 'relative', overflow: 'hidden' }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, #f59e0b, transparent)' }}></div>
-              <Layout size={32} color="#f59e0b" style={{ marginBottom: '2rem' }} />
-              <h4 style={{ fontSize: '1.5rem', color: '#fff', marginBottom: '1rem', letterSpacing: '-0.02em' }}>Synthesis First</h4>
-              <p style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, margin: 0 }}>Users don't want more raw data. Grouping related metrics logically allows instantaneous conclusions without rigorous cross-referencing.</p>
-            </motion.div>
-
-            {/* Card 04 */}
-            <motion.div 
-              style={{ background: 'rgba(255,255,255,0.02)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.05)', padding: '3.5rem', borderRadius: '32px', position: 'relative', overflow: 'hidden' }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-            >
-              <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, #ec4899, transparent)' }}></div>
-              <Sparkles size={32} color="#ec4899" style={{ marginBottom: '2rem' }} />
-              <h4 style={{ fontSize: '1.5rem', color: '#fff', marginBottom: '1rem', letterSpacing: '-0.02em' }}>Aesthetics = Function</h4>
-              <p style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, margin: 0 }}>Visual design directly impacts cognitive friction. Aesthetic precision translates directly to functional efficiency in high-stakes environments.</p>
-            </motion.div>
-
+          <div className="cs-compact-grid">
+            {learningCards.map(({ icon: Icon, color, title, body }, index) => (
+              <motion.article
+                key={title}
+                className="cs-learning-card"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.08 }}
+              >
+                <div className="cs-learning-stripe" style={{ background: `linear-gradient(90deg, ${color}, transparent)` }} />
+                <Icon size={28} color={color} style={{ marginBottom: '1.25rem' }} />
+                <h4>{title}</h4>
+                <p>{body}</p>
+              </motion.article>
+            ))}
           </div>
         </div>
       </section>
@@ -680,7 +606,24 @@ const CaseStudyAlpha = () => {
           <div className="closing-content">
             <h2>Ready for the next evolution?</h2>
             <p>This project proved that in finance, design isn't just about looks—it's about the speed of thought.</p>
-            <Link to="/" className="btn">Back to All Works</Link>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', alignItems: 'center' }}>
+              <Link to="/" className="btn">Back to All Works</Link>
+              <a
+                href="https://www.figma.com/proto/7N19TYywTBVaZj4IA4jhmx/Sakthi-Kumaran-s-team-library?page-id=418%3A2&node-id=1004-1163&p=f&viewport=233%2C-2344%2C0.32&t=RpaANh85uJ9l3jx9-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1004%3A1163&show-proto-sidebar=1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-figma"
+              >
+                <svg width="16" height="16" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19 28.5C19 25.9804 20.0009 23.5641 21.7825 21.7825C23.5641 20.0009 25.9804 19 28.5 19C31.0196 19 33.4359 20.0009 35.2175 21.7825C36.9991 23.5641 38 25.9804 38 28.5C38 31.0196 36.9991 33.4359 35.2175 35.2175C33.4359 36.9991 31.0196 38 28.5 38C25.9804 38 23.5641 36.9991 21.7825 35.2175C20.0009 33.4359 19 31.0196 19 28.5Z" fill="#1ABCFE"/>
+                  <path d="M0 47.5C0 44.9804 1.00089 42.5641 2.78249 40.7825C4.56408 39.0009 6.98044 38 9.5 38H19V47.5C19 50.0196 17.9991 52.4359 16.2175 54.2175C14.4359 55.9991 12.0196 57 9.5 57C6.98044 57 4.56408 55.9991 2.78249 54.2175C1.00089 52.4359 0 50.0196 0 47.5Z" fill="#0ACF83"/>
+                  <path d="M19 0V19H28.5C31.0196 19 33.4359 17.9991 35.2175 16.2175C36.9991 14.4359 38 12.0196 38 9.5C38 6.98044 36.9991 4.56408 35.2175 2.78249C33.4359 1.00089 31.0196 0 28.5 0H19Z" fill="#FF7262"/>
+                  <path d="M0 9.5C0 12.0196 1.00089 14.4359 2.78249 16.2175C4.56408 17.9991 6.98044 19 9.5 19H19V0H9.5C6.98044 0 4.56408 1.00089 2.78249 2.78249C1.00089 4.56408 0 6.98044 0 9.5Z" fill="#F24E1E"/>
+                  <path d="M0 28.5C0 31.0196 1.00089 33.4359 2.78249 35.2175C4.56408 36.9991 6.98044 38 9.5 38H19V19H9.5C6.98044 19 4.56408 20.0009 2.78249 21.7825C1.00089 23.5641 0 25.9804 0 28.5Z" fill="#A259FF"/>
+                </svg>
+                View in Figma
+              </a>
+            </div>
           </div>
         </div>
       </section>

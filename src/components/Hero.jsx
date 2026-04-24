@@ -1,5 +1,33 @@
 import React, { useRef } from 'react';
 import { motion, useTransform, useSpring, useMotionValue } from 'framer-motion';
+import { ArrowUpRight, Mail, Phone } from 'lucide-react';
+
+const profileLinks = [
+  {
+    label: 'Phone',
+    value: '+91 97908 86675',
+    href: 'tel:+919790886675',
+    icon: Phone,
+  },
+  {
+    label: 'Email',
+    value: 'kumaranraja21794@yahoo.com',
+    href: 'mailto:kumaranraja21794@yahoo.com',
+    icon: Mail,
+  },
+  {
+    label: 'Behance',
+    value: 'behance.net/sakthikumaran3',
+    href: 'https://www.behance.net/sakthikumaran3',
+    icon: ArrowUpRight,
+  },
+  {
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/sakthi-kumaran-62645372',
+    href: 'https://www.linkedin.com/in/sakthi-kumaran-62645372',
+    icon: ArrowUpRight,
+  },
+];
 
 const Hero = () => {
   const containerRef = useRef(null);
@@ -19,8 +47,6 @@ const Hero = () => {
   const portraitX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-20, 20]), springConfig);
   const portraitY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-20, 20]), springConfig);
 
-  const words = ["Independent", "Product", "Designer"];
-
   return (
     <section 
       id="hero" 
@@ -38,29 +64,42 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Digital Artisan & UX Strategist
+            UI/UX Designer | Design-to-Code Specialist
           </motion.div>
 
           <div className="hero-heading">
             <motion.h1>
-              {words.map((word, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 + i * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ display: 'inline-block', marginRight: '0.2em' }}
-                >
-                  {word}
-                </motion.span>
-              ))}
+              <motion.span
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                style={{ display: 'inline-block', marginRight: '0.2em' }}
+              >
+                Sakthi
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                style={{ display: 'inline-block', marginRight: '0.2em' }}
+              >
+                Kumaran
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                style={{ display: 'inline-block', marginRight: '0.2em' }}
+              >
+                V
+              </motion.span>
               <motion.span 
                 className="serif"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 1 }}
               >
-                & Design Partner
+                UI/UX Designer for enterprise products
               </motion.span>
             </motion.h1>
           </div>
@@ -71,33 +110,43 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 1 }}
           >
-            I help early-stage startups and global brands build Scalable Design Systems and High-Fidelity Interactive Prototypes.
+            UI/UX Designer with 5+ years building enterprise SaaS interfaces and a strong design-to-code workflow. I pair design craft with HTML, CSS, Angular, and AI-assisted tooling to ship faster, reduce handoff friction, and keep systems consistent at scale.
           </motion.p>
 
           <div className="hero-actions">
             <motion.div
-              style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}
+              className="hero-profile-block"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 }}
             >
-              <motion.a 
-                href="#contact" 
-                className="cta-ref"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span>Let's Talk</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </motion.a>
-
-              <div className="social-proof-ref" style={{ position: 'relative', bottom: 'auto', left: 'auto' }}>
-                <div className="avatar-group">
-                  <img src="https://i.pravatar.cc/100?u=4" alt="Social" />
-                  <img src="https://i.pravatar.cc/100?u=5" alt="Social" />
-                  <img src="https://i.pravatar.cc/100?u=6" alt="Social" />
+              <div className="hero-stat-row">
+                <div>
+                  <strong>5+ years</strong>
+                  <span>Enterprise SaaS design</span>
                 </div>
-                <p>Loved by <b>50+ founders</b> from YC & Techstars groups.</p>
+                <div>
+                  <strong>20+ screens</strong>
+                  <span>Delivered per quarter</span>
+                </div>
+                <div>
+                  <strong>50% faster</strong>
+                  <span>Concept to prototype cycles</span>
+                </div>
+              </div>
+
+              <div className="hero-link-list">
+                {profileLinks.map(({ label, value, href, icon: Icon }) => (
+                  <a key={label} href={href} target="_blank" rel="noreferrer">
+                    <span className="hero-link-icon">
+                      <Icon size={16} strokeWidth={1.8} />
+                    </span>
+                    <span>
+                      <small>{label}</small>
+                      <strong>{value}</strong>
+                    </span>
+                  </a>
+                ))}
               </div>
             </motion.div>
           </div>
@@ -113,7 +162,7 @@ const Hero = () => {
           >
             <img 
               src="/designer_hero.png" 
-              alt="EsKay Portrait" 
+              alt="Sakthi Kumaran portrait" 
               className="hero-portrait"
             />
             <div className="hero-portrait-overlay" />
@@ -127,7 +176,7 @@ const Hero = () => {
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
             <span className="meta-dot"></span>
-            Available for Q3 '24
+            Enterprise SaaS UI/UX
           </motion.div>
 
           <motion.div 
@@ -137,7 +186,7 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 1.2 }}
           >
-            Currently obsessing over spatial interactions & minimal typography.
+            Designing intuitive enterprise products with a focus on usability, collaboration, and seamless execution.
           </motion.div>
         </div>
       </div>
@@ -146,4 +195,3 @@ const Hero = () => {
 };
 
 export default Hero;
-

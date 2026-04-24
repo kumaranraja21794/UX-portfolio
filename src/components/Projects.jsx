@@ -22,9 +22,9 @@ const ProjectItem = ({ title, img, desc, tags, index, role, outcome, link }) => 
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <span className="project-num">Case Study — 0{index + 1}</span>
+          <span className="project-num">Project 0{index + 1}</span>
           <h3>{title}</h3>
-          
+
           <div className="project-meta-grid">
             <div className="meta-box">
               <label>Role</label>
@@ -60,8 +60,8 @@ const Projects = () => {
   const projects = [
     {
       title: "Alpha Arena Platform",
-      img: "alpha_after.png",
-      role: "Lead UX Designer",
+      img: "new-dash.png",
+      role: "UX Designer",
       outcome: "65% Faster Comparison",
       desc: "An AI-driven trading competition dashboard. Transformed complex financial datasets into actionable insights through strategic information hierarchy and intuitive data visualization.",
       tags: ["Fintech", "UX Research", "Dashboard"],
@@ -93,7 +93,7 @@ const Projects = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          Selected Works
+          Projects & Case Studies
         </motion.h2>
         <div className="project-list-ref">
           {projects.map((p, i) => (

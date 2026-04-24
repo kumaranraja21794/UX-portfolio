@@ -23,9 +23,9 @@ const ProgressBar = () => {
           style={{ scaleX }}
         />
       </div>
-      <div className="progress-text">
+      {/* <div className="progress-text">
         {precent === 100 ? 'Quest Complete!' : `Quest Progress: ${precent}%`}
-      </div>
+      </div> */}
     </>
   );
 };

@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Process from './components/Process';
 import Contact from './components/Contact';
+import ResumeSections from './components/ResumeSections';
 import CustomCursor from './components/CustomCursor';
 import ProgressBar from './components/ProgressBar';
 import Background from './components/Background';
@@ -33,8 +33,8 @@ function App() {
           <Route path="/" element={
             <>
               <Hero />
+              <ResumeSections />
               <Skills />
-              <Experience />
               <Projects />
               <Process />
               <Contact />
