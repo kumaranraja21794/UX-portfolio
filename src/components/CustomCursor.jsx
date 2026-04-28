@@ -22,7 +22,7 @@ const CustomCursor = () => {
       if (e.target && e.target.closest) {
         if (e.target.closest('.featured-project')) {
           setCursorType('project');
-        } else if (e.target.closest('a, button, .exp-item, .skill-card')) {
+        } else if (e.target.closest('a, button, .exp-item, .skill-card, .hero-link-item, .stat-card')) {
           setCursorType('hover');
         } else {
           setCursorType('default');
