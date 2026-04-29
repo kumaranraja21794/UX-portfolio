@@ -94,38 +94,6 @@ section {
   padding: var(--spacing-lg) 0;
 }
 
-/* Custom Cursor */
-#custom-cursor {
-  position: fixed;
-  width: 8px;
-  height: 8px;
-  background: var(--text-primary);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s ease;
-}
-
-#cursor-follower {
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), width 0.3s ease, height 0.3s ease, background 0.3s ease;
-  backdrop-filter: blur(2px);
-}
-
-.cursor-hover #cursor-follower {
-  width: 80px;
-  height: 80px;
-  background: rgba(0, 0, 0, 0.05);
-  border-color: var(--accent-primary);
-}
 
 /* Progress Bar */
 .progress-container {
@@ -3022,5 +2990,203 @@ footer {
     border-bottom: 1px solid rgba(0,0,0,0.08);
     padding-right: 0;
     padding-bottom: 0.9rem;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   SPLASH SCREEN
+   ══════════════════════════════════════════════════════ */
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0a;
+  overflow: hidden;
+}
+
+/* Subtle animated background lines */
+.splash-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15vh 0;
+  pointer-events: none;
+}
+
+.splash-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.04) 20%,
+    rgba(255, 255, 255, 0.06) 50%,
+    rgba(255, 255, 255, 0.04) 80%,
+    transparent 100%
+  );
+  transform-origin: left center;
+}
+
+/* Corner accents */
+.splash-corner {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.splash-corner--tl {
+  top: 40px;
+  left: 40px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.splash-corner--br {
+  bottom: 40px;
+  right: 40px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Main splash content */
+.splash-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* "Design by" label */
+.splash-label-wrapper {
+  overflow: hidden;
+  padding-bottom: 0.3rem;
+}
+
+.splash-label {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+  font-weight: 400;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* "Eskay" name */
+.splash-name-wrapper {
+  overflow: hidden;
+  perspective: 600px;
+}
+
+.splash-name {
+  font-family: var(--font-heading);
+  font-size: clamp(5rem, 14vw, 12rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.splash-char {
+  display: inline-block;
+  will-change: transform;
+  color: transparent;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #e0e0e0 25%,
+    #ffffff 50%,
+    #b0b0b0 75%,
+    #ffffff 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: splash-shimmer 3s ease-in-out infinite;
+}
+
+@keyframes splash-shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Decorative underline */
+.splash-underline {
+  width: clamp(100px, 20vw, 200px);
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  margin-top: 1rem;
+  transform-origin: center;
+}
+
+/* Subtitle */
+.splash-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: 1.2rem;
+}
+
+/* Circle wipe transition */
+.splash-wipe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  background: var(--bg-color);
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .splash-corner {
+    width: 35px;
+    height: 35px;
+  }
+
+  .splash-corner--tl {
+    top: 20px;
+    left: 20px;
+  }
+
+  .splash-corner--br {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .splash-lines {
+    padding: 20vh 0;
   }
 }

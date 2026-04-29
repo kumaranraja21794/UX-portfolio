@@ -93,14 +93,7 @@ const Hero = () => {
               >
                 V
               </motion.span>
-              <motion.span 
-                className="serif"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 1 }}
-              >
-                UI/UX Designer for enterprise products
-              </motion.span>
+             
             </motion.h1>
           </div>
 
