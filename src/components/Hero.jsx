@@ -1,190 +1,129 @@
 import React, { useRef } from 'react';
-import { motion, useTransform, useSpring, useMotionValue } from 'framer-motion';
-import { ArrowUpRight, Mail, Phone } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowUpRight, Mail, Phone, Sparkles, ChevronRight } from 'lucide-react';
+import Magnetic from './Magnetic';
+import TiltCard from './TiltCard';
+import MeshBackground from './MeshBackground';
 
 const profileLinks = [
-  {
-    label: 'Phone',
-    value: '+91 97908 86675',
-    href: 'tel:+919790886675',
-    icon: Phone,
-  },
-  {
-    label: 'Email',
-    value: 'kumaranraja21794@yahoo.com',
-    href: 'mailto:kumaranraja21794@yahoo.com',
-    icon: Mail,
-  },
-  {
-    label: 'Behance',
-    value: 'behance.net/sakthikumaran3',
-    href: 'https://www.behance.net/sakthikumaran3',
-    icon: ArrowUpRight,
-  },
-  {
-    label: 'LinkedIn',
-    value: 'linkedin.com/in/sakthi-kumaran-62645372',
-    href: 'https://www.linkedin.com/in/sakthi-kumaran-62645372',
-    icon: ArrowUpRight,
-  },
+  { label: 'Behance', value: 'sakthikumaran3', href: 'https://www.behance.net/sakthikumaran3' },
+  { label: 'LinkedIn', value: 'sakthi-kumaran', href: 'https://www.linkedin.com/in/sakthi-kumaran-62645372' },
+  { label: 'Email', value: 'kumaranraja21794@yahoo.com', href: 'mailto:kumaranraja21794@yahoo.com' },
 ];
 
 const Hero = () => {
   const containerRef = useRef(null);
-  
-  // Mouse tracking for parallax
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
 
-  const handleMouseMove = (e) => {
-    const { clientX, clientY } = e;
-    const { innerWidth, innerHeight } = window;
-    mouseX.set(clientX / innerWidth - 0.5);
-    mouseY.set(clientY / innerHeight - 0.5);
-  };
-
-  const springConfig = { damping: 25, stiffness: 150 };
-  const portraitX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-20, 20]), springConfig);
-  const portraitY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-20, 20]), springConfig);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 250]);
+  const opacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
 
   return (
-    <section 
-      id="hero" 
-      className="hero" 
-      onMouseMove={handleMouseMove}
-      ref={containerRef}
-    >
-      <div className="hero-glow" />
+    <section id="hero" className="hero-v2" ref={containerRef}>
+      <MeshBackground />
       
-      <div className="hero-grid">
-        <div className="hero-left">
-          <motion.div 
-            className="hero-tagline"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            UI/UX Designer | Design-to-Code Specialist
-          </motion.div>
-
-          <div className="hero-heading">
-            <motion.h1>
-              <motion.span
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                style={{ display: 'inline-block', marginRight: '0.2em' }}
-              >
-                Sakthi
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                style={{ display: 'inline-block', marginRight: '0.2em' }}
-              >
-                Kumaran
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                style={{ display: 'inline-block', marginRight: '0.2em' }}
-              >
-                V
-              </motion.span>
-             
-            </motion.h1>
-          </div>
-
-          <motion.p 
-            className="hero-description"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 1 }}
-          >
-            UI/UX Designer with 5+ years building enterprise SaaS interfaces and a strong design-to-code workflow. I pair design craft with HTML, CSS, Angular, and AI-assisted tooling to ship faster, reduce handoff friction, and keep systems consistent at scale.
-          </motion.p>
-
-          <div className="hero-actions">
-            <motion.div
-              className="hero-profile-block"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
+      <div className="hero-content-v2">
+        <motion.div 
+          className="hero-inner-v2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2 }}
+          style={{ y, opacity }}
+        >
+          <div className="hero-main-v2">
+            <motion.div 
+              className="hero-eyebrow"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
             >
-              <div className="hero-stat-row">
-                <div>
-                  <strong>5+ years</strong>
-                  <span>Enterprise SaaS design</span>
-                </div>
-                <div>
-                  <strong>20+ screens</strong>
-                  <span>Delivered per quarter</span>
-                </div>
-                <div>
-                  <strong>50% faster</strong>
-                  <span>Concept to prototype cycles</span>
-                </div>
-              </div>
+              <Sparkles size={14} />
+              <span>Available for new projects</span>
+            </motion.div>
 
-              <div className="hero-link-list">
-                {profileLinks.map(({ label, value, href, icon: Icon }) => (
-                  <a key={label} href={href} target="_blank" rel="noreferrer">
-                    <span className="hero-link-icon">
-                      <Icon size={16} strokeWidth={1.8} />
-                    </span>
-                    <span>
-                      <small>{label}</small>
-                      <strong>{value}</strong>
-                    </span>
-                  </a>
+            <motion.h1
+              initial={{ y: 40, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Designing <span className="serif">intelligent</span> <br />
+              SaaS experiences
+            </motion.h1>
+
+            <motion.p
+              className="hero-lead"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            >
+              Sakthi Kumaran is a UI/UX Designer specializing in enterprise products. 
+              I blend strategic design thinking with a deep understanding of code 
+              to build seamless digital ecosystems.
+            </motion.p>
+
+            <div className="hero-actions-v2">
+              <Magnetic strength={0.2}>
+                <a href="#projects" className="btn-primary-v2">
+                  View Selected Works
+                  <ChevronRight size={18} />
+                </a>
+              </Magnetic>
+              
+              <div className="hero-socials-v2">
+                {profileLinks.map((link, i) => (
+                  <Magnetic key={link.label} strength={0.1}>
+                    <a href={link.href} target="_blank" rel="noreferrer" className="social-link-v2">
+                      {link.label}
+                    </a>
+                  </Magnetic>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </div>
-        </div>
-
-        <div className="hero-right">
-          <motion.div 
-            className="hero-portrait-wrapper"
-            style={{ x: portraitX, y: portraitY }}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: "circOut" }}
-          >
-            <img 
-              src="/designer_hero.png" 
-              alt="Sakthi Kumaran portrait" 
-              className="hero-portrait"
-            />
-            <div className="hero-portrait-overlay" />
-          </motion.div>
-
-          {/* Dynamic Badges */}
-          <motion.div 
-            className="badge-pill"
-            style={{ position: 'absolute', top: '15%', right: '-5%', zIndex: 10 }}
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <span className="meta-dot"></span>
-            Enterprise SaaS UI/UX
-          </motion.div>
 
           <motion.div 
-            className="intro-snippet"
-            style={{ position: 'absolute', bottom: '10%', left: '-10%', width: '220px', zIndex: 10 }}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.2 }}
+            className="hero-visual-v2"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.5, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            Designing intuitive enterprise products with a focus on usability, collaboration, and seamless execution.
+            <TiltCard className="portrait-tilt-v2">
+              <div className="portrait-container-v2">
+                <img src="/designer_hero.png" alt="Portrait" className="portrait-img-v2" />
+                <div className="portrait-overlay-v2" />
+              </div>
+            </TiltCard>
+
+            <motion.div 
+              className="floating-badge-v2"
+              animate={{ y: [0, -15, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <div className="badge-inner">
+                <strong>5+ Years</strong>
+                <span>Experience</span>
+              </div>
+            </motion.div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
+
+      <motion.div 
+        className="hero-scroll-v2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+      >
+        <div className="scroll-line" />
+        <span>Scroll to explore</span>
+      </motion.div>
     </section>
   );
 };
 
 export default Hero;
+
+
