@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import './designova.css';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Header from './components/Header';
