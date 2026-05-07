@@ -70,12 +70,12 @@ const Projects = () => {
       link: "/case-study/alpha-arena"
     },
     {
-      title: "EcoPulse App",
+      title: "BitWise",
       img: "ecopulse_app.png",
       role: "Product Designer",
-      outcome: "Seamless UX Flow",
-      desc: "Mobile application helping users track their carbon footprint in real-time. Created a gamified experience to encourage sustainable daily habits.",
-      tags: ["Mobile UX", "Sustainability", "Swift"]
+      outcome: "Clear Market Depth",
+      desc: "A dark-first, clarity-focused crypto trading app designed for new and intermediate traders who want simplicity without losing market depth.",
+      tags: ["Crypto", "Mobile UX", "Fintech"]
     },
     {
       title: "Skyline Identity",

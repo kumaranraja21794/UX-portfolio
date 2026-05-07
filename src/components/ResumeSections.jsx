@@ -12,31 +12,16 @@ const experienceItems = [
     role: 'UI Designer',
     company: 'Azentio Software Pvt. Ltd., Chennai',
     period: 'Mar 2021 - Present',
-    context: 'Designated as Product Support Engineer',
-    highlights: [
-      'Built AI-assisted design workflows with Google Stitch for enterprise dashboard ideation, reducing concept-to-prototype time from 3 days to 4 hours.',
-      'Delivered 20+ production-ready screens per quarter with fewer than 5% revision requests from engineering by owning the full design-to-handoff pipeline.',
-      'Removed a recurring 2-week development bottleneck by writing production HTML/CSS for 8 core UI modules directly.',
-    ],
   },
   {
     role: 'UI Designer',
     company: '3i Infotech Ltd., Chennai',
     period: 'Mar 2019 - Mar 2021',
-    highlights: [
-      'Designed 4 end-to-end financial enterprise modules used by 500+ daily users across 6 client organizations.',
-      'Kept the interface visually consistent across 4 connected financial products through shared patterns and reusable UI decisions.',
-      'Worked with 3 product teams in parallel and made developer handoffs clearer, faster, and easier to implement.',
-      'Established a shared component library before the formal design-system phase, cutting new screen production time by more than 30%.',
-    ],
   },
   {
     role: 'Trainee Engineer - Development',
     company: 'IVTL Infoview Technologies Pvt. Ltd., Chennai',
     period: 'Sep 2016 - Aug 2017',
-    highlights: [
-      'Developed Java and SQL modules, building the engineering foundation that now helps bridge design and frontend implementation without translation loss.',
-    ],
   },
 ];
 
@@ -72,34 +57,41 @@ const fadeUp = {
 const ResumeSections = () => {
   return (
     <>
-      <section id="career-highlights" className="resume-career">
+      <section id="career-highlights" className="resume-career-dark">
         <div className="container">
           <motion.div className="resume-section-head" {...fadeUp} transition={{ duration: 0.7 }}>
-            <h2>Career Journey</h2>
+            <span>Career Journey</span>
+            <h2>Experience</h2>
             <p>Designing intuitive enterprise products with a focus on usability, collaboration, and seamless execution.</p>
           </motion.div>
 
-          <div className="resume-career-list">
+          <div className="journey-timeline">
             {experienceItems.map((item, index) => (
-              <motion.article
+              <motion.div
                 key={`${item.role}-${item.company}`}
-                className="resume-role-card"
+                className="journey-item"
                 {...fadeUp}
-                transition={{ duration: 0.7, delay: index * 0.08 }}
+                transition={{ duration: 0.7, delay: index * 0.1 }}
               >
-                <div className="resume-role-meta">
-                  <span className="resume-role-period">{item.period}</span>
-                  <h3>{item.role}</h3>
-                  <p>{item.company}</p>
-                  {item.context ? <span className="resume-role-context">{item.context}</span> : null}
+                {/* Left Column: Company & Period */}
+                <div className="journey-left">
+                  <h3 className="journey-company">{item.company}</h3>
+                  <p className="journey-period">{item.period}</p>
                 </div>
 
-                <ul className="resume-role-highlights">
-                  {item.highlights.map((highlight) => (
-                    <li key={highlight}>{highlight}</li>
-                  ))}
-                </ul>
-              </motion.article>
+                {/* Center: Timeline Line & Dot */}
+                <div className="journey-center">
+                  <div className="journey-line"></div>
+                  <div className={`journey-dot ${index === 1 ? 'dot-gray' : ''}`}>
+                    <div className="dot-inner"></div>
+                  </div>
+                </div>
+
+                {/* Right Column: Role */}
+                <div className="journey-right">
+                  <h3 className="journey-role">{item.role}</h3>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
