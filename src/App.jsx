@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import './designova.css';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import Lenis from '@studio-freight/lenis';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
@@ -11,8 +12,11 @@ import Contact from './components/Contact';
 import ResumeSections from './components/ResumeSections';
 import ProgressBar from './components/ProgressBar';
 import Background from './components/Background';
+import CustomCursor from './components/CustomCursor';
 import CaseStudyAlpha from './components/CaseStudyAlpha';
+import CaseStudyBitwise from './components/CaseStudyBitwise';
 import SplashScreen from './components/SplashScreen';
+import MarqueeStrip from './components/MarqueeStrip';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -24,6 +28,32 @@ const ScrollToTop = () => {
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
+  const lenisRef = useRef(null);
+
+  // Initialize Lenis smooth scroll
+  useEffect(() => {
+    if (showSplash) return;
+    
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      smoothWheel: true,
+    });
+
+    lenisRef.current = lenis;
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, [showSplash]);
 
   // Lock scroll during splash
   useEffect(() => {
@@ -41,6 +71,8 @@ function App() {
 
   return (
     <div className="App">
+      <CustomCursor />
+      
       <AnimatePresence mode="wait">
         {showSplash && (
           <SplashScreen key="splash" onComplete={handleSplashComplete} />
@@ -61,19 +93,49 @@ function App() {
             <Route path="/" element={
               <>
                 <Hero />
+                <MarqueeStrip 
+                  items={['UI DESIGN', 'UX RESEARCH', 'PROTOTYPING', 'DESIGN SYSTEMS', 'USER FLOWS', 'WIREFRAMING', 'FIGMA', 'USER TESTING']}
+                  speed={25}
+                  separator="✦"
+                  className="marquee-dark"
+                />
                 <ResumeSections />
+                <MarqueeStrip 
+                  items={['VISUAL DESIGN', 'INTERACTION DESIGN', 'MICRO-ANIMATIONS', 'RESPONSIVE DESIGN', 'ACCESSIBILITY', 'DESIGN TOKENS']}
+                  speed={30}
+                  separator="◆"
+                  reverse={true}
+                  className="marquee-accent"
+                />
                 <Skills />
                 <Projects />
+                <MarqueeStrip 
+                  items={['DISCOVER', 'DEFINE', 'DESIGN', 'DELIVER', 'ITERATE', 'REFINE', 'LAUNCH', 'MEASURE']}
+                  speed={20}
+                  separator="→"
+                  className="marquee-dark"
+                />
                 <Process />
                 <Contact />
               </>
             } />
             <Route path="/case-study/alpha-arena" element={<CaseStudyAlpha />} />
+            <Route path="/case-study/bitwise" element={<CaseStudyBitwise />} />
           </Routes>
         </main>
-        <footer>
+        <footer className="site-footer">
           <div className="container">
-            <p>&copy; 2026 EsKay. Built with React and Precision.</p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{ textAlign: 'center', padding: '3rem 0' }}
+            >
+              <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.85rem', fontFamily: '"Inter", sans-serif' }}>
+                &copy; 2026 EsKay. Built with React and Precision.
+              </p>
+            </motion.div>
           </div>
         </footer>
       </motion.div>

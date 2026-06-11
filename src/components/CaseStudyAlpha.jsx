@@ -7,6 +7,318 @@ import {
   Info, Sparkles, Scale
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import TextReveal from './TextReveal';
+
+const modelData = {
+  alpha: {
+    name: 'Alpha-Max',
+    color: '#8b5cf6', // Violet
+    badge: 'Momentum',
+    stats: {
+      return: '+184.2%',
+      winRate: '68.5%',
+      trades: '1,240',
+      sharpe: '2.4',
+      drawdown: '-8.2%'
+    },
+    desc: 'High-frequency momentum model optimized for large-cap crypto indices.',
+    points: [
+      { x: 0, y: 250, value: 0, date: 'Month 1' },
+      { x: 60, y: 220, value: 15, date: 'Month 2' },
+      { x: 120, y: 240, value: 10, date: 'Month 3' },
+      { x: 180, y: 170, value: 45, date: 'Month 4' },
+      { x: 240, y: 190, value: 38, date: 'Month 5' },
+      { x: 300, y: 130, value: 75, date: 'Month 6' },
+      { x: 360, y: 150, value: 68, date: 'Month 7' },
+      { x: 420, y: 80, value: 120, date: 'Month 8' },
+      { x: 480, y: 100, value: 112, date: 'Month 9' },
+      { x: 540, y: 50, value: 155, date: 'Month 10' },
+      { x: 600, y: 30, value: 184.2, date: 'Month 11' },
+    ]
+  },
+  beta: {
+    name: 'Beta-Gold',
+    color: '#06b6d4', // Cyan
+    badge: 'Conservative',
+    stats: {
+      return: '+128.6%',
+      winRate: '72.1%',
+      trades: '840',
+      sharpe: '2.8',
+      drawdown: '-5.4%'
+    },
+    desc: 'Conservative risk-adjusted trend-following algorithm targeting commodity futures.',
+    points: [
+      { x: 0, y: 250, value: 0, date: 'Month 1' },
+      { x: 60, y: 235, value: 8, date: 'Month 2' },
+      { x: 120, y: 210, value: 21, date: 'Month 3' },
+      { x: 180, y: 195, value: 29, date: 'Month 4' },
+      { x: 240, y: 170, value: 42, date: 'Month 5' },
+      { x: 300, y: 150, value: 53, date: 'Month 6' },
+      { x: 360, y: 130, value: 65, date: 'Month 7' },
+      { x: 420, y: 110, value: 78, date: 'Month 8' },
+      { x: 480, y: 95, value: 87, date: 'Month 9' },
+      { x: 540, y: 70, value: 105, date: 'Month 10' },
+      { x: 600, y: 55, value: 128.6, date: 'Month 11' },
+    ]
+  },
+  neural: {
+    name: 'Neural-Net',
+    color: '#ff6b4a', // Orange
+    badge: 'Adaptive AI',
+    stats: {
+      return: '+242.8%',
+      winRate: '61.2%',
+      trades: '2,150',
+      sharpe: '1.9',
+      drawdown: '-14.6%'
+    },
+    desc: 'Deep reinforcement learning model adaptive to high-volatility regime shifts.',
+    points: [
+      { x: 0, y: 250, value: 0, date: 'Month 1' },
+      { x: 60, y: 240, value: 5, date: 'Month 2' },
+      { x: 120, y: 200, value: 30, date: 'Month 3' },
+      { x: 180, y: 220, value: 18, date: 'Month 4' },
+      { x: 240, y: 150, value: 62, date: 'Month 5' },
+      { x: 300, y: 180, value: 45, date: 'Month 6' },
+      { x: 360, y: 90, value: 110, date: 'Month 7' },
+      { x: 420, y: 120, value: 95, date: 'Month 8' },
+      { x: 480, y: 60, value: 150, date: 'Month 9' },
+      { x: 540, y: 80, value: 135, date: 'Month 10' },
+      { x: 600, y: 10, value: 242.8, date: 'Month 11' },
+    ]
+  }
+};
+
+const ModelPerformanceSimulator = () => {
+  const [selectedModel, setSelectedModel] = useState('alpha');
+  const [hoveredPoint, setHoveredPoint] = useState(null);
+  const svgRef = useRef(null);
+
+  const currentModel = modelData[selectedModel];
+
+  // Helper to generate path
+  const pathD = currentModel.points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+  const areaD = `${pathD} L 600 300 L 0 300 Z`;
+
+  const handleMouseMove = (e) => {
+    if (!svgRef.current) return;
+    const rect = svgRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    // Scale x from screen space to SVG viewBox space (0 to 600)
+    const svgX = (x / rect.width) * 600;
+    
+    // Find closest point by x coordinate
+    let closest = currentModel.points[0];
+    let minDiff = Math.abs(closest.x - svgX);
+    
+    for (let p of currentModel.points) {
+      const diff = Math.abs(p.x - svgX);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closest = p;
+      }
+    }
+    setHoveredPoint(closest);
+  };
+
+  return (
+    <div className="performance-simulator">
+      <div className="simulator-controls">
+        {Object.entries(modelData).map(([key, data]) => (
+          <button
+            key={key}
+            onClick={() => {
+              setSelectedModel(key);
+              setHoveredPoint(null);
+            }}
+            className={`simulator-tab ${selectedModel === key ? 'active' : ''}`}
+            style={{
+              '--accent-color': data.color
+            }}
+          >
+            <span className="tab-indicator" style={{ backgroundColor: data.color }} />
+            <span className="tab-name">{data.name}</span>
+            <span className="tab-badge">{data.badge}</span>
+          </button>
+        ))}
+      </div>
+
+      <div className="simulator-content-grid">
+        <div className="simulator-stats">
+          <div className="simulator-desc-card">
+            <h4>Model Architecture</h4>
+            <p>{currentModel.desc}</p>
+          </div>
+          <div className="stats-dashboard">
+            <div className="stat-box">
+              <label>Net Return</label>
+              <span className="stat-val" style={{ color: currentModel.color }}>
+                {currentModel.stats.return}
+              </span>
+            </div>
+            <div className="stat-box">
+              <label>Win Rate</label>
+              <span className="stat-val">{currentModel.stats.winRate}</span>
+            </div>
+            <div className="stat-box">
+              <label>Sharpe Ratio</label>
+              <span className="stat-val">{currentModel.stats.sharpe}</span>
+            </div>
+            <div className="stat-box">
+              <label>Max Drawdown</label>
+              <span className="stat-val drawdown">{currentModel.stats.drawdown}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="simulator-chart-container">
+          <div className="chart-title-bar">
+            <div className="live-badge-wrapper">
+              <span className="live-dot" style={{ backgroundColor: currentModel.color }} />
+              <span className="live-label">LIVE EQUITY SIMULATION</span>
+            </div>
+            {hoveredPoint ? (
+              <div className="chart-tooltip-data">
+                <span className="tooltip-date">{hoveredPoint.date}:</span>
+                <span className="tooltip-val" style={{ color: currentModel.color }}>
+                  +{hoveredPoint.value}% Return
+                </span>
+              </div>
+            ) : (
+              <span className="chart-instruction">Hover chart to inspect historical epochs</span>
+            )}
+          </div>
+
+          <div className="svg-chart-wrapper" style={{ position: 'relative' }}>
+            <svg
+              ref={svgRef}
+              viewBox="0 0 600 300"
+              width="100%"
+              height="100%"
+              className="trading-svg-chart"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={() => setHoveredPoint(null)}
+            >
+              <defs>
+                <linearGradient id={`gradient-${selectedModel}`} x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor={currentModel.color} stopOpacity="0.25" />
+                  <stop offset="100%" stopColor={currentModel.color} stopOpacity="0.0" />
+                </linearGradient>
+                <filter id="glow" x="-10%" y="-10%" width="120%" height="120%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+
+              {/* Grid Lines */}
+              {[50, 100, 150, 200, 250].map((y) => (
+                <line
+                  key={`h-${y}`}
+                  x1="0"
+                  y1={y}
+                  x2="600"
+                  y2={y}
+                  stroke="rgba(255,255,255,0.04)"
+                  strokeWidth="1"
+                />
+              ))}
+              {[100, 200, 300, 400, 500].map((x) => (
+                <line
+                  key={`v-${x}`}
+                  x1={x}
+                  y1="0"
+                  x2={x}
+                  y2="300"
+                  stroke="rgba(255,255,255,0.04)"
+                  strokeWidth="1"
+                />
+              ))}
+
+              {/* Area path with framer motion transition or simple SVG path */}
+              <motion.path
+                key={`area-${selectedModel}`}
+                d={areaD}
+                fill={`url(#gradient-${selectedModel})`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              />
+
+              {/* Line path with dasharray animation */}
+              <motion.path
+                key={`line-${selectedModel}`}
+                d={pathD}
+                fill="none"
+                stroke={currentModel.color}
+                strokeWidth="3.5"
+                filter="url(#glow)"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+              />
+
+              {/* Hover crosshair vertical line */}
+              {hoveredPoint && (
+                <line
+                  x1={hoveredPoint.x}
+                  y1="0"
+                  x2={hoveredPoint.x}
+                  y2="300"
+                  stroke={currentModel.color}
+                  strokeWidth="1.5"
+                  strokeDasharray="4 4"
+                  opacity="0.6"
+                />
+              )}
+
+              {/* Hover dot */}
+              {hoveredPoint && (
+                <circle
+                  cx={hoveredPoint.x}
+                  cy={hoveredPoint.y}
+                  r="6"
+                  fill={currentModel.color}
+                  stroke="#0c0c0c"
+                  strokeWidth="2.5"
+                  style={{ filter: 'drop-shadow(0 0 8px ' + currentModel.color + ')' }}
+                />
+              )}
+
+              {/* End of line pulse dot */}
+              {!hoveredPoint && currentModel.points.length > 0 && (
+                <g>
+                  <circle
+                    cx={currentModel.points[currentModel.points.length - 1].x}
+                    cy={currentModel.points[currentModel.points.length - 1].y}
+                    r="5"
+                    fill={currentModel.color}
+                  />
+                  <motion.circle
+                    cx={currentModel.points[currentModel.points.length - 1].x}
+                    cy={currentModel.points[currentModel.points.length - 1].y}
+                    r="12"
+                    fill="none"
+                    stroke={currentModel.color}
+                    strokeWidth="1.5"
+                    initial={{ scale: 0.5, opacity: 1 }}
+                    animate={{ scale: 1.8, opacity: 0 }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 1.5,
+                      ease: 'easeOut'
+                    }}
+                  />
+                </g>
+              )}
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 
 const ComparisonSlider = ({ before, after, label }) => {
   const [sliderPos, setSliderPos] = useState(50);
@@ -300,7 +612,7 @@ const CaseStudyAlpha = () => {
         <div className="container cs-grid">
           <div className="cs-label">Snapshot</div>
           <div className="cs-content">
-            <h2>From dense trading data to faster decisions.</h2>
+            <TextReveal mode="char" as="h2">From dense trading data to faster decisions.</TextReveal>
             <p className="large-p">Alpha Arena provides account value trends, trade logs, model comparisons, and performance metrics. The redesign focused on reducing cognitive load so users could interpret the platform faster and act with more confidence.</p>
 
             <div className="cs-compact-grid" style={{ marginTop: '2.5rem' }}>
@@ -327,7 +639,7 @@ const CaseStudyAlpha = () => {
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <span className="cs-tag" style={{ color: '#8b5cf6', borderColor: '#8b5cf6' }}>Interactive Comparison</span>
-            <h2 style={{ fontSize: '3.5rem', marginTop: '1rem' }}>The Evolution of Arena.</h2>
+            <TextReveal mode="char" as="h2" style={{ fontSize: '3.5rem', marginTop: '1rem' }}>The Evolution of Arena.</TextReveal>
             <p style={{ maxWidth: '700px', margin: '2rem auto', opacity: 0.7 }}>Interact with the slider below to see how we transformed the interface from a data-heavy technical view into a modern, decision-first experience.</p>
           </div>
 
@@ -401,7 +713,7 @@ const CaseStudyAlpha = () => {
         <div className="container cs-grid">
           <div className="cs-label text-accent">Challenge + Solution</div>
           <div className="cs-content">
-            <h2>Challenge the noise. Surface the signal.</h2>
+            <TextReveal mode="char" as="h2">Challenge the noise. Surface the signal.</TextReveal>
             <p>Instead of splitting the story across separate problem and goal sections, the redesign now reads as a direct before-to-after narrative across the three core product surfaces.</p>
 
             <div className="cs-compact-grid cs-solution-grid" style={{ marginTop: '2.5rem' }}>
@@ -453,12 +765,26 @@ const CaseStudyAlpha = () => {
         </div>
       </section>
 
+      {/* Model Performance Simulator Section */}
+      <section className="cs-section bg-dark text-white performance-section">
+        <div className="container cs-grid">
+          <div className="cs-label" style={{ color: '#8b5cf6' }}>Interactive Sim</div>
+          <div className="cs-content">
+            <TextReveal mode="char" as="h2">Model Performance Simulator</TextReveal>
+            <p className="large-p" style={{ opacity: 0.8, color: 'var(--text-secondary)' }}>
+              Experience the performance delta between trading strategies. Toggle below to watch each model execute historical backtests with real-time equity curves.
+            </p>
+            <ModelPerformanceSimulator />
+          </div>
+        </div>
+      </section>
+
       {/* Approach + Validation */}
       <section className="cs-section bg-dark text-white cs-section-compact-dark">
         <div className="container cs-grid">
           <div className="cs-label" style={{ color: 'rgba(255,255,255,0.5)' }}>Methodology</div>
           <div className="cs-content">
-            <h2 style={{ fontSize: '3rem', marginBottom: '2.5rem', letterSpacing: '-0.02em', color: '#fff' }}>Compact process, faster story.</h2>
+            <TextReveal mode="char" as="h2" style={{ fontSize: '3rem', marginBottom: '2.5rem', letterSpacing: '-0.02em', color: '#fff' }}>Compact process, faster story.</TextReveal>
 
             <div className="cs-compact-grid cs-process-grid">
               {processSteps.map((step, index) => (
@@ -519,8 +845,8 @@ const CaseStudyAlpha = () => {
           <div className="impact-editorial-grid">
             <div className="impact-editorial-left">
               <div className="cs-label text-success" style={{ marginBottom: '2rem' }}>The Impact</div>
-              <h2>Designing for the Speed of Thought.</h2>
-              <p style={{ fontSize: '1.2rem', color: '#666', lineHeight: 1.6 }}>By stripping away the noise and establishing a relentless visual hierarchy, we dramatically reduced the cognitive friction required to operate the platform.</p>
+              <TextReveal mode="char" as="h2">Designing for the Speed of Thought.</TextReveal>
+              <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>By stripping away the noise and establishing a relentless visual hierarchy, we dramatically reduced the cognitive friction required to operate the platform.</p>
               <div className="outcome-traits" style={{ marginTop: '2rem' }}>
                 <div className="trait"><div className="trait-dot"></div><span>Scannable</span></div>
                 <div className="trait"><div className="trait-dot"></div><span>Structured</span></div>
@@ -545,7 +871,7 @@ const CaseStudyAlpha = () => {
                 <h3 style={{ marginBottom: '2rem', fontSize: '1.25rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#aaa' }}>Usability Improvements</h3>
                 <table className="comparison-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
                   <thead>
-                    <tr style={{ borderBottom: '2px solid #000', textAlign: 'left' }}>
+                    <tr style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.1)', textAlign: 'left' }}>
                       <th style={{ padding: '1rem 0' }}>Aspect</th>
                       <th style={{ padding: '1rem 0' }}>Before</th>
                       <th style={{ padding: '1rem 0' }}>After</th>
@@ -553,7 +879,7 @@ const CaseStudyAlpha = () => {
                   </thead>
                   <tbody>
                     {improvementRows.map(([aspect, before, after]) => (
-                      <tr key={aspect} style={{ borderBottom: '1px solid #eaeaea' }}>
+                      <tr key={aspect} style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
                         <td style={{ padding: '1.1rem 0', fontWeight: '600' }}>{aspect}</td>
                         <td style={{ color: '#ef4444' }}>{before}</td>
                         <td style={{ color: '#10b981', fontWeight: 'bold' }}>{after}</td>
@@ -577,7 +903,7 @@ const CaseStudyAlpha = () => {
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <span className="cs-tag" style={{ background: 'rgba(255,255,255,0.05)', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' }}>The Takeaways</span>
-            <h2 style={{ fontSize: 'clamp(3rem, 5vw, 4.5rem)', letterSpacing: '-0.03em', marginTop: '1.5rem', color: '#fff' }}>Post-Flight Learnings.</h2>
+            <TextReveal mode="char" as="h2" style={{ fontSize: 'clamp(3rem, 5vw, 4.5rem)', letterSpacing: '-0.03em', marginTop: '1.5rem', color: '#fff' }}>Post-Flight Learnings.</TextReveal>
           </div>
             
           <div className="cs-compact-grid">
@@ -604,7 +930,7 @@ const CaseStudyAlpha = () => {
       <section className="cs-closing">
         <div className="container">
           <div className="closing-content">
-            <h2>Ready for the next evolution?</h2>
+            <TextReveal mode="char" as="h2">Ready for the next evolution?</TextReveal>
             <p>This project proved that in finance, design isn't just about looks—it's about the speed of thought.</p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', alignItems: 'center' }}>
               <Link to="/" className="btn">Back to All Works</Link>

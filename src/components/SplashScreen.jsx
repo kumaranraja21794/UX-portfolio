@@ -1,26 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion';
 
 const SplashScreen = ({ onComplete }) => {
   const [phase, setPhase] = useState('enter'); // enter -> hold -> exit
+  const loadingProgress = useMotionValue(0);
+  const displayPercent = useTransform(loadingProgress, (v) => `${Math.round(v)}%`);
 
   useEffect(() => {
-    // Phase 1: Enter animation plays automatically via framer-motion
-    // Phase 2: Hold for a moment
+    // Animate the loading percentage from 0 to 100 over the total splash duration
+    const controls = animate(loadingProgress, 100, {
+      duration: 1.8,
+      ease: [0.16, 1, 0.3, 1],
+    });
+
+    // Phase 2: Hold for a moment then exit (reduced from 2.8s to 1.8s)
     const holdTimer = setTimeout(() => {
       setPhase('exit');
-    }, 2800);
+    }, 1800);
 
     // Phase 3: Exit and notify parent
     const exitTimer = setTimeout(() => {
       onComplete();
-    }, 3800);
+    }, 2800);
 
     return () => {
+      controls.stop();
       clearTimeout(holdTimer);
       clearTimeout(exitTimer);
     };
-  }, [onComplete]);
+  }, [onComplete, loadingProgress]);
 
   return (
     <AnimatePresence>
@@ -121,6 +129,29 @@ const SplashScreen = ({ onComplete }) => {
                 ease: [0.76, 0, 0.24, 1],
               }}
             />
+
+            {/* Loading percentage counter */}
+            <motion.div
+              className="splash-percentage"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                delay: 0.5,
+                duration: 0.7,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              style={{
+                fontFamily: '"JetBrains Mono", "SF Mono", "Fira Code", "Cascadia Code", monospace',
+                fontSize: 'clamp(0.85rem, 1.5vw, 1.1rem)',
+                color: '#FF6B4A',
+                letterSpacing: '0.15em',
+                marginTop: '1.2rem',
+                fontWeight: 400,
+                textAlign: 'center',
+              }}
+            >
+              <motion.span>{displayPercent}</motion.span>
+            </motion.div>
 
             {/* Subtitle */}
             <motion.p
