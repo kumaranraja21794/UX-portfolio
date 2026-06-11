@@ -19,3 +19,4 @@ A premium, interactive UX Portfolio built with React, Vite, and Framer Motion.
 ## Setup
 1. `npm install`
 2. `npm run dev`
+
