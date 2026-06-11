@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { motion, useMotionValue, useMotionTemplate, AnimatePresence } from 'framer-motion';
-import { Layout, Smartphone, Database, Zap } from 'lucide-react';
+import { Layout, Smartphone, Database, Zap, Search, Activity } from 'lucide-react';
 import Magnetic from './Magnetic';
 import TextReveal from './TextReveal';
 
@@ -489,6 +489,195 @@ const TokenController = ({ isHovered }) => {
   );
 };
 
+/* ── 5. ResearchVisualizer (UX Research Visualizer) ── */
+const ResearchVisualizer = ({ isHovered }) => {
+  const [activeMetric, setActiveMetric] = useState(0);
+  const metrics = [
+    { label: 'Empathy', val: 94, desc: 'User completion rate' },
+    { label: 'Clarity', val: 88, desc: 'Task time reduction' },
+    { label: 'Retention', val: 76, desc: '30-day user loyalty' }
+  ];
+
+  return (
+    <div 
+      className="research-viz"
+      style={{
+        position: 'relative',
+        height: '140px',
+        width: '100%',
+        borderRadius: '16px',
+        background: isHovered ? 'rgba(0,0,0,0.02)' : 'rgba(255,255,255,0.02)',
+        border: isHovered ? '1px dashed rgba(0,0,0,0.1)' : '1px dashed rgba(255,255,255,0.06)',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        padding: '0.8rem',
+        gap: '0.5rem',
+        transition: 'all 0.4s ease',
+        marginTop: '0.5rem',
+        marginBottom: '0.5rem',
+      }}
+    >
+      {/* Empathy Quotes / Metric Details */}
+      <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeMetric}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 10 }}
+            transition={{ duration: 0.25 }}
+            style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ fontSize: '0.65rem', fontWeight: 800, color: isHovered ? '#0a0a0a' : '#fff' }}>
+                {metrics[activeMetric].label} Research
+              </span>
+              <span style={{ fontSize: '0.75rem', fontWeight: 800, color: isHovered ? '#8B5CF6' : '#FF6B4A' }}>
+                {metrics[activeMetric].val}%
+              </span>
+            </div>
+            <p style={{ fontSize: '0.58rem', color: isHovered ? 'rgba(0,0,0,0.5)' : 'rgba(255,255,255,0.4)', margin: 0, lineHeight: 1.2 }}>
+              {metrics[activeMetric].desc} after usability revisions.
+            </p>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Progress Bars */}
+      <div style={{ display: 'flex', gap: '6px', width: '100%' }}>
+        {metrics.map((m, i) => (
+          <div 
+            key={i} 
+            onClick={(e) => { e.stopPropagation(); setActiveMetric(i); }}
+            style={{ flex: 1, cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: '3px' }}
+          >
+            {/* Bar Background */}
+            <div style={{ height: '6px', borderRadius: '3px', background: isHovered ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.05)', overflow: 'hidden' }}>
+              <motion.div 
+                initial={{ width: 0 }}
+                animate={{ width: `${m.val}%` }}
+                transition={{ duration: 0.8, delay: i * 0.1 }}
+                style={{ 
+                  height: '100%', 
+                  background: activeMetric === i 
+                    ? (isHovered ? '#8B5CF6' : '#FF6B4A') 
+                    : (isHovered ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.15)'),
+                  transition: 'background 0.3s'
+                }}
+              />
+            </div>
+            <span style={{ 
+              fontSize: '0.5rem', 
+              textAlign: 'center', 
+              fontWeight: activeMetric === i ? 'bold' : 'normal', 
+              color: activeMetric === i ? (isHovered ? '#8B5CF6' : '#FF6B4A') : (isHovered ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.3)'),
+              transition: 'color 0.3s'
+            }}>
+              {m.label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+/* ── 6. InteractionVisualizer (Interaction Design Visualizer) ── */
+const InteractionVisualizer = ({ isHovered }) => {
+  const [ripples, setRipples] = useState([]);
+
+  const triggerRipple = (e) => {
+    e.stopPropagation();
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const newRipple = {
+      id: Date.now(),
+      x,
+      y
+    };
+    
+    setRipples((prev) => [...prev.slice(-3), newRipple]);
+  };
+
+  useEffect(() => {
+    if (ripples.length > 0) {
+      const timer = setTimeout(() => {
+        setRipples((prev) => prev.slice(1));
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [ripples]);
+
+  return (
+    <div 
+      className="interaction-viz"
+      onClick={triggerRipple}
+      style={{
+        position: 'relative',
+        height: '140px',
+        width: '100%',
+        borderRadius: '16px',
+        background: isHovered ? 'rgba(0,0,0,0.02)' : 'rgba(255,255,255,0.02)',
+        border: isHovered ? '1px dashed rgba(0,0,0,0.1)' : '1px dashed rgba(255,255,255,0.06)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+        transition: 'all 0.4s ease',
+        marginTop: '0.5rem',
+        marginBottom: '0.5rem',
+        cursor: 'pointer'
+      }}
+    >
+      <span style={{ fontSize: '0.55rem', opacity: 0.3, textTransform: 'uppercase', letterSpacing: '0.05em', userSelect: 'none', color: isHovered ? '#000' : '#fff' }}>
+        Click to Trigger Ripple
+      </span>
+
+      {ripples.map((r) => (
+        <motion.div
+          key={r.id}
+          initial={{ width: 0, height: 0, opacity: 0.8 }}
+          animate={{ width: 80, height: 80, opacity: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          style={{
+            position: 'absolute',
+            left: r.x,
+            top: r.y,
+            transform: 'translate(-50%, -50%)',
+            borderRadius: '50%',
+            border: `2px solid ${isHovered ? '#8B5CF6' : '#FF6B4A'}`,
+            pointerEvents: 'none'
+          }}
+        />
+      ))}
+      
+      <motion.div
+        animate={{
+          y: [0, -6, 0],
+          scale: isHovered ? 1.1 : 1
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: 'easeInOut'
+        }}
+        style={{
+          width: '12px',
+          height: '12px',
+          borderRadius: '50%',
+          background: isHovered ? '#8B5CF6' : '#FF6B4A',
+          boxShadow: `0 0 10px ${isHovered ? '#8B5CF6' : '#FF6B4A'}60`,
+          position: 'absolute',
+          pointerEvents: 'none'
+        }}
+      />
+    </div>
+  );
+};
+
 /* ── Skill card with responsive visualizers & hover state ── */
 const SkillCard = ({ title, desc, icon: Icon, tags, size, index, visualizer: VisualizerComponent }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -664,6 +853,22 @@ const Skills = () => {
       size: 'large',
       tags: ['Components', 'Tokens', 'Documentation'],
       visualizer: TokenController,
+    },
+    {
+      title: 'UX Research',
+      desc: 'Conducting user interviews, empathy mapping, and data audits to align product strategies with user needs.',
+      icon: Search,
+      size: 'large',
+      tags: ['Interviews', 'Empathy Maps', 'Usability Audits'],
+      visualizer: ResearchVisualizer,
+    },
+    {
+      title: 'Interaction Design',
+      desc: 'Creating micro-interactions and transitions that make product behaviors predictable, natural, and delightful.',
+      icon: Activity,
+      size: 'medium',
+      tags: ['User Journeys', 'Framer Motion', 'Prototyping'],
+      visualizer: InteractionVisualizer,
     },
   ];
 
