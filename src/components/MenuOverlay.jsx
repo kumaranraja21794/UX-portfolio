@@ -5,8 +5,7 @@ import { X } from 'lucide-react';
 const menuItems = [
   'Facebook',
   'LinkedIn',
-  'Instagram',
-  'Vimeo'
+  'Instagram'
 ];
 
 // Curtain overlay variants
