@@ -3,11 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
 const menuItems = [
-  'Dribbble',
   'Facebook',
   'LinkedIn',
-  'YouTube',
-  'Art Station',
   'Instagram',
   'Vimeo'
 ];
