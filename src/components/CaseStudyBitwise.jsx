@@ -41,7 +41,7 @@ const CaseStudyBitwise = () => {
   ];
 
   return (
-    <div className="case-study-page" style={{ '--accent-primary': '#10B981' }}>
+    <div className="case-study-page bitwise-study-page" style={{ '--accent-primary': '#10B981' }}>
       <div className="cs-watermark">BITWISE</div>
       
       {/* Back Button */}

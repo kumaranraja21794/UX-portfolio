@@ -12,7 +12,6 @@ import Contact from './components/Contact';
 import ResumeSections from './components/ResumeSections';
 import ProgressBar from './components/ProgressBar';
 import Background from './components/Background';
-import CustomCursor from './components/CustomCursor';
 import CaseStudyAlpha from './components/CaseStudyAlpha';
 import CaseStudyBitwise from './components/CaseStudyBitwise';
 import SplashScreen from './components/SplashScreen';
@@ -71,7 +70,6 @@ function App() {
 
   return (
     <div className="App">
-      <CustomCursor />
       
       <AnimatePresence mode="wait">
         {showSplash && (
@@ -132,7 +130,7 @@ function App() {
               transition={{ duration: 0.6 }}
               style={{ textAlign: 'center', padding: '3rem 0' }}
             >
-              <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.85rem', fontFamily: '"Inter", sans-serif' }}>
+              <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.85rem', fontFamily: 'var(--font-body)' }}>
                 &copy; 2026 EsKay. Built with React and Precision.
               </p>
             </motion.div>

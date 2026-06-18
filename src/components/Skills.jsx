@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { motion, useMotionValue, useMotionTemplate, AnimatePresence } from 'framer-motion';
-import { Layout, Smartphone, Database, Zap, Search, Activity } from 'lucide-react';
+import { Layout, Smartphone, Database, Zap, Search, Activity, Code2 } from 'lucide-react';
 import Magnetic from './Magnetic';
 import TextReveal from './TextReveal';
 
@@ -216,7 +216,7 @@ const UXFlowGraph = ({ isHovered }) => {
                 fontSize="0.6rem"
                 fontWeight="700"
                 fill={isHovered ? '#0a0a0a' : '#ffffff'}
-                style={{ fontFamily: 'Inter, sans-serif', transition: 'fill 0.4s' }}
+                style={{ fontFamily: 'var(--font-body)', transition: 'fill 0.4s' }}
               >
                 {node.label}
               </text>
@@ -357,7 +357,7 @@ const MobileDeviceSimulator = ({ isHovered }) => {
           </div>
 
           {/* Bottom Tabs */}
-          <div style={{ borderTop: isHovered ? '1px solid #f0f0f0' : '1px solid rgba(255,255,255,0.06)', display: 'flex', justifyContent: 'space-around', paddingTop: '2px', fontSize: '0.28rem', fontFamily: 'Inter, sans-serif' }}>
+          <div style={{ borderTop: isHovered ? '1px solid #f0f0f0' : '1px solid rgba(255,255,255,0.06)', display: 'flex', justifyContent: 'space-around', paddingTop: '2px', fontSize: '0.28rem', fontFamily: 'var(--font-body)' }}>
             {tabs.map((tab, i) => (
               <span 
                 key={i} 
@@ -428,7 +428,7 @@ const TokenController = ({ isHovered }) => {
           color: '#ffffff',
           fontSize: '0.6rem',
           fontWeight: 800,
-          fontFamily: 'Outfit, sans-serif',
+          fontFamily: 'var(--font-heading)',
           cursor: 'pointer',
           boxShadow: `0 4px 10px ${accent}30`,
           textTransform: 'uppercase',
@@ -489,13 +489,13 @@ const TokenController = ({ isHovered }) => {
   );
 };
 
-/* ── 5. ResearchVisualizer (UX Research Visualizer) ── */
+/* ── 5. ResearchVisualizer (Performance Auditor Visualizer) ── */
 const ResearchVisualizer = ({ isHovered }) => {
   const [activeMetric, setActiveMetric] = useState(0);
   const metrics = [
-    { label: 'Empathy', val: 94, desc: 'User completion rate' },
-    { label: 'Clarity', val: 88, desc: 'Task time reduction' },
-    { label: 'Retention', val: 76, desc: '30-day user loyalty' }
+    { label: 'Performance', val: 98, desc: 'Lighthouse PageSpeed optimization score.' },
+    { label: 'SEO', val: 100, desc: 'Search Engine visibility & crawlability rating.' },
+    { label: 'Accessibility', val: 96, desc: 'WCAG 2.1 compliance check pass rate.' }
   ];
 
   return (
@@ -518,7 +518,7 @@ const ResearchVisualizer = ({ isHovered }) => {
         marginBottom: '0.5rem',
       }}
     >
-      {/* Empathy Quotes / Metric Details */}
+      {/* Metric Details */}
       <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <AnimatePresence mode="wait">
           <motion.div
@@ -531,14 +531,14 @@ const ResearchVisualizer = ({ isHovered }) => {
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ fontSize: '0.65rem', fontWeight: 800, color: isHovered ? '#0a0a0a' : '#fff' }}>
-                {metrics[activeMetric].label} Research
+                {metrics[activeMetric].label} Auditor
               </span>
               <span style={{ fontSize: '0.75rem', fontWeight: 800, color: isHovered ? '#8B5CF6' : '#FF6B4A' }}>
                 {metrics[activeMetric].val}%
               </span>
             </div>
             <p style={{ fontSize: '0.58rem', color: isHovered ? 'rgba(0,0,0,0.5)' : 'rgba(255,255,255,0.4)', margin: 0, lineHeight: 1.2 }}>
-              {metrics[activeMetric].desc} after usability revisions.
+              {metrics[activeMetric].desc}
             </p>
           </motion.div>
         </AnimatePresence>
@@ -749,7 +749,7 @@ const SkillCard = ({ title, desc, icon: Icon, tags, size, index, visualizer: Vis
         <FloatingParticles count={5} />
 
         <div className="skill-card-content" style={{ zIndex: 2, position: 'relative', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '0.8rem' }}>
-          <div className="skill-card-top" style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+          <div className="skill-card-top" style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', minHeight: '72px' }}>
             <motion.div
               className="skill-icon-bg"
               initial={{ scale: 0, rotate: -90 }}
@@ -777,7 +777,7 @@ const SkillCard = ({ title, desc, icon: Icon, tags, size, index, visualizer: Vis
             >
               <Icon size={24} strokeWidth={2} />
             </motion.div>
-            <h3 className="skill-card-title" style={{ fontSize: '1.6rem', fontWeight: 700, margin: 0, fontFamily: 'Outfit, sans-serif', letterSpacing: '-0.02em', color: isHovered ? '#0a0a0a' : '#ffffff', transition: 'color 0.4s' }}>
+            <h3 className="skill-card-title" style={{ fontSize: '1.6rem', fontWeight: 700, margin: 0, fontFamily: 'var(--font-heading)', letterSpacing: '-0.02em', color: isHovered ? '#0a0a0a' : '#ffffff', transition: 'color 0.4s' }}>
               {title}
             </h3>
           </div>
@@ -785,7 +785,7 @@ const SkillCard = ({ title, desc, icon: Icon, tags, size, index, visualizer: Vis
           {/* Embedded Interactive Visualizer */}
           {VisualizerComponent && <VisualizerComponent isHovered={isHovered} />}
 
-          <p className="skill-desc" style={{ fontSize: '0.92rem', lineHeight: 1.6, color: isHovered ? '#444444' : 'rgba(255, 255, 255, 0.45)', margin: 0, fontFamily: 'Inter, sans-serif', flexGrow: 1, transition: 'color 0.4s' }}>
+          <p className="skill-desc" style={{ fontSize: '0.92rem', lineHeight: 1.6, color: isHovered ? '#444444' : 'rgba(255, 255, 255, 0.45)', margin: 0, fontFamily: 'var(--font-body)', flexGrow: 1, transition: 'color 0.4s' }}>
             {desc}
           </p>
 
@@ -805,7 +805,7 @@ const SkillCard = ({ title, desc, icon: Icon, tags, size, index, visualizer: Vis
                     color: isHovered ? '#444444' : 'rgba(255, 255, 255, 0.65)',
                     background: isHovered ? 'rgba(0, 0, 0, 0.03)' : 'rgba(255, 255, 255, 0.02)',
                     transition: 'all 0.4s',
-                    fontFamily: 'Inter, sans-serif'
+                    fontFamily: 'var(--font-body)'
                   }}
                 >
                   {tag}
@@ -824,50 +824,50 @@ const Skills = () => {
   const skills = [
     {
       title: 'Visual Design',
-      desc: 'Crafting precise, high-fidelity interfaces with absolute attention to grid, color theory, and motion.',
+      desc: 'Crafting precise, high-fidelity interfaces with absolute attention to grids, typography, and color harmony.',
       icon: Layout,
       size: 'large',
-      tags: ['Figma', 'Typography', 'Color Theory'],
+      tags: ['Figma', 'Typography', 'Layouts'],
       visualizer: BezierEditor,
     },
     {
       title: 'UX Architecture',
-      desc: 'Structuring complex information into intuitive hierarchies for seamless navigation.',
+      desc: 'Structuring complex information into intuitive, user-friendly hierarchies for seamless navigation.',
       icon: Database,
       size: 'medium',
-      tags: ['IA', 'User Flows', 'Wireframes'],
+      tags: ['IA', 'User Flows', 'Wireframing'],
       visualizer: UXFlowGraph,
     },
     {
-      title: 'Mobile UI',
-      desc: 'Expertise in platform-specific guidelines for iOS and Android ecosystems.',
+      title: 'Responsive Layouts',
+      desc: 'Implementing production-ready, fluid layouts and viewport logic that render beautifully on any device size.',
       icon: Smartphone,
       size: 'medium',
-      tags: ['iOS', 'Android', 'Responsive'],
+      tags: ['CSS Grid', 'Flexbox', 'Breakpoints'],
       visualizer: MobileDeviceSimulator,
     },
     {
       title: 'Design Systems',
-      desc: 'Building scalable, code-ready systems that bridge the gap between design and development.',
+      desc: 'Building tokenized, scalable systems that bridge the gap between Figma libraries and React/Angular component code.',
       icon: Zap,
       size: 'large',
-      tags: ['Components', 'Tokens', 'Documentation'],
+      tags: ['Design Tokens', 'Storybook', 'Style Dictionary'],
       visualizer: TokenController,
     },
     {
-      title: 'UX Research',
-      desc: 'Conducting user interviews, empathy mapping, and data audits to align product strategies with user needs.',
-      icon: Search,
+      title: 'Frontend Development',
+      desc: 'Developing high-performance React and Angular web applications with clean, interactive, and optimized code.',
+      icon: Code2,
       size: 'large',
-      tags: ['Interviews', 'Empathy Maps', 'Usability Audits'],
+      tags: ['React', 'Angular', 'TypeScript'],
       visualizer: ResearchVisualizer,
     },
     {
       title: 'Interaction Design',
-      desc: 'Creating micro-interactions and transitions that make product behaviors predictable, natural, and delightful.',
+      desc: 'Creating fluid micro-interactions and motion animations that make product behavior delightful.',
       icon: Activity,
       size: 'medium',
-      tags: ['User Journeys', 'Framer Motion', 'Prototyping'],
+      tags: ['Framer Motion', 'Keyframes', 'Animations'],
       visualizer: InteractionVisualizer,
     },
   ];

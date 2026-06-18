@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Serif:ital@0;1&family=Urbanist:wght@300;400;500;600;700;800&display=swap');
 
 :root {
   --bg-color: #fafafa;
@@ -7,8 +7,8 @@
   --accent-primary: #171717;
   --accent-secondary: #737373;
   --gradient-main: linear-gradient(135deg, #0a0a0a 0%, #262626 100%);
-  --font-heading: 'Outfit', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Bricolage Grotesque', sans-serif;
+  --font-body: 'Urbanist', sans-serif;
   --font-serif: 'Instrument Serif', serif;
   --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   --glass-border: 1px solid rgba(0, 0, 0, 0.05);
@@ -1006,10 +1006,13 @@ nav a:hover {
 
 .resume-section-head {
   max-width: 760px;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.resume-section-head span,
+.resume-section-head > span,
 .resume-section-label {
   display: inline-block;
   margin-bottom: 1rem;
@@ -1021,6 +1024,8 @@ nav a:hover {
 }
 
 .resume-section-head h2 {
+  font-family: var(--font-heading);
+  font-weight: 800;
   font-size: clamp(2.5rem, 5vw, 4.2rem);
   letter-spacing: -0.05em;
   margin-bottom: 1rem;
@@ -1030,6 +1035,8 @@ nav a:hover {
   font-size: 1.1rem;
   color: var(--text-secondary);
   max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .resume-intro-grid {
@@ -1780,7 +1787,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-heading);
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -3019,7 +3026,7 @@ footer {
   border-radius: var(--radius-xl);
   padding: 1.5rem;
   color: #fff;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   box-shadow: 0 100px 200px rgba(0,0,0,0.4);
   margin: 6rem 0;
   border: 1px solid rgba(255,255,255,0.05);
@@ -3430,7 +3437,7 @@ footer {
 }
 
 .impact-metric-number {
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   font-size: 5.5rem;
   line-height: 0.8;
   color: var(--accent-primary);
@@ -3783,7 +3790,7 @@ footer {
   color: #a3a3a3;
 }
 
-.resume-career-dark .resume-section-head span {
+.resume-career-dark .resume-section-head > span {
   color: #f97316;
 }
 
@@ -4125,7 +4132,7 @@ footer {
 }
 
 .marquee-text {
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(1rem, 1.8vw, 1.4rem);
   font-weight: 500;
   color: rgba(255,255,255,0.2);
@@ -4151,21 +4158,7 @@ footer {
   color: rgba(255,255,255,0.15);
 }
 
-/* ============================================
-   CUSTOM CURSOR (global hide default)
-   ============================================ */
-@media (pointer: fine) {
-  * {
-    cursor: none !important;
-  }
-}
 
-@media (pointer: coarse) {
-  #custom-cursor,
-  #cursor-follower {
-    display: none !important;
-  }
-}
 
 /* ============================================
    TEXT REVEAL
@@ -4395,11 +4388,11 @@ footer {
 /* Background Watermark Number */
 .details-index-watermark {
   position: absolute;
-  top: -5.5rem;
-  left: -2.2rem;
+  top: -2.5rem;
+  right: -3rem;
   font-size: 12rem;
   font-weight: 900;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-heading);
   line-height: 1;
   pointer-events: none;
   opacity: 0.8;
@@ -4415,7 +4408,7 @@ footer {
   font-weight: 800;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-heading);
   transition: color 0.4s ease;
 }
 
@@ -4451,14 +4444,14 @@ footer {
   font-weight: 700;
   color: rgba(255, 255, 255, 0.35);
   letter-spacing: 0.12em;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-heading);
 }
 
 .meta-val {
   font-size: 0.9rem;
   font-weight: 600;
   color: #ffffff;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   transition: color 0.4s ease;
 }
 
@@ -4467,7 +4460,7 @@ footer {
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.45);
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
 }
 
 .details-tags-row {
@@ -4484,7 +4477,7 @@ footer {
   font-weight: 500;
   color: rgba(255, 255, 255, 0.65);
   background: rgba(255, 255, 255, 0.02);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   transition: border-color 0.4s ease;
 }
 
@@ -4584,7 +4577,7 @@ footer {
   font-size: 0.72rem;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.25);
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-heading);
   letter-spacing: 0.05em;
   transition: color 0.3s;
 }
@@ -4639,8 +4632,7 @@ footer {
    ============================================ */
 .skills .skill-card {
   position: relative;
-  min-height: 470px;
-  height: auto !important;
+  height: 530px !important;
   border-radius: 32px;
   background: rgba(22, 22, 22, 0.65) !important;
   backdrop-filter: blur(16px);
@@ -4833,7 +4825,7 @@ footer {
   color: #fff;
   margin: 0;
   letter-spacing: -0.02em;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-heading);
 }
 
 /* AI Radar scanner visuals */
@@ -4912,7 +4904,7 @@ footer {
   border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 16px;
   padding: 1.2rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -5164,7 +5156,7 @@ footer {
 
 .bento-card-hint {
   font-size: 0.72rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   color: rgba(255, 255, 255, 0.25);
   font-weight: 500;
   margin: 0;
@@ -5250,7 +5242,7 @@ footer {
   background: transparent;
   outline: none;
   transition: border-color 0.35s ease;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
 }
 
 .contact-form-group input:focus,
@@ -5266,7 +5258,7 @@ footer {
   color: rgba(255, 255, 255, 0.35);
   pointer-events: none;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   font-weight: 500;
 }
 
@@ -5326,6 +5318,10 @@ footer {
   color: rgba(255, 255, 255, 0.01) !important;
 }
 
+.bitwise-study-page .cs-hero::before {
+  content: "BITWISE";
+}
+
 .case-study-page .cs-tag {
   color: #a3a3a3;
 }
@@ -5335,8 +5331,8 @@ footer {
 }
 
 .case-study-page .cs-meta-strip {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: transparent;
+  border: none;
 }
 
 .case-study-page .cs-meta-strip-item span {

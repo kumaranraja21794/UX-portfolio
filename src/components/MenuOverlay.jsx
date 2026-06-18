@@ -134,7 +134,7 @@ const MenuOverlay = ({ isOpen, onClose }) => {
                     transform: 'translateY(-50%)',
                     fontSize: 'clamp(3rem, 6vw, 6rem)',
                     fontWeight: 900,
-                    fontFamily: 'Outfit, sans-serif',
+                    fontFamily: 'var(--font-heading)',
                     color: '#fff',
                     pointerEvents: 'none',
                     userSelect: 'none',

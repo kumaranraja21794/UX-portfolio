@@ -1,12 +1,12 @@
 /* Designova Theme Styles */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&family=Great+Vibes&display=swap');
 
 :root {
   --color-orange: #FF6B4A;
   --color-dark: #0F0F0F;
   --color-glass: rgba(255, 255, 255, 0.08);
   --color-glass-border: rgba(255, 255, 255, 0.15);
-  --font-inter: 'Inter', sans-serif;
+  --font-inter: 'Urbanist', sans-serif;
 }
 
 /* Ensure the body remains dark if this is loaded */

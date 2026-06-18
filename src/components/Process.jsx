@@ -192,7 +192,7 @@ const ProcessStep = ({ title, desc, index }) => {
 
       {/* Card Header: Step Index Badge & Icon */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 2 }}>
-        <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#FF6B4A', letterSpacing: '0.12em', fontFamily: 'Outfit, sans-serif' }}>
+        <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#FF6B4A', letterSpacing: '0.12em', fontFamily: 'var(--font-heading)' }}>
           0{index + 1} / PHASE
         </span>
         <div 
@@ -219,10 +219,10 @@ const ProcessStep = ({ title, desc, index }) => {
 
       {/* Footer Text Details */}
       <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '0.6rem', zIndex: 2 }}>
-        <h3 style={{ fontSize: '1.6rem', fontWeight: 700, margin: 0, color: '#fff', fontFamily: 'Outfit, sans-serif', letterSpacing: '-0.02em' }}>
+        <h3 style={{ fontSize: '1.6rem', fontWeight: 700, margin: 0, color: '#fff', fontFamily: 'var(--font-heading)', letterSpacing: '-0.02em' }}>
           {title}
         </h3>
-        <p style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.65, margin: 0, fontFamily: 'Inter, sans-serif' }}>
+        <p style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.65, margin: 0, fontFamily: 'var(--font-body)' }}>
           {desc}
         </p>
       </div>
@@ -263,7 +263,7 @@ const Process = () => {
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <TextReveal
           as="h2"
-          mode="char"
+          mode="word"
           stagger={0.03}
           duration={0.5}
           className="process-heading"
@@ -274,7 +274,7 @@ const Process = () => {
             marginBottom: '8vh',
             letterSpacing: '0.4em',
             color: 'var(--accent-primary, #FF6B4A)',
-            fontFamily: 'Outfit, sans-serif',
+            fontFamily: 'var(--font-heading)',
           }}
         >
           DESIGN METHODOLOGY

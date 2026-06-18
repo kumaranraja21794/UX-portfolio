@@ -4,24 +4,26 @@ import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motio
 const CustomCursor = () => {
   const [cursorType, setCursorType] = useState('default');
   const [isClicked, setIsClicked] = useState(false);
+  const [ripples, setRipples] = useState([]);
   
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
   
-  const followerX = useSpring(-100, { damping: 30, stiffness: 400 });
-  const followerY = useSpring(-100, { damping: 30, stiffness: 400 });
+  // High-performance responsive springs for smooth trailing drag
+  const followerX = useSpring(mouseX, { damping: 28, stiffness: 350 });
+  const followerY = useSpring(mouseY, { damping: 28, stiffness: 350 });
 
   const moveCursor = useCallback((e) => {
     mouseX.set(e.clientX);
     mouseY.set(e.clientY);
-    followerX.set(e.clientX);
-    followerY.set(e.clientY);
-  }, [mouseX, mouseY, followerX, followerY]);
+  }, [mouseX, mouseY]);
 
   const handleHoverStart = useCallback((e) => {
     const target = e.target;
     if (target && target.closest) {
-      if (target.closest('.project-item-ref, .featured-project, .project-visual-ref')) {
+      if (target.closest('input, textarea, [contenteditable="true"]')) {
+        setCursorType('text');
+      } else if (target.closest('.project-item-ref, .featured-project, .project-visual-ref')) {
         setCursorType('project');
       } else if (target.closest('.contact-section, .contact-email-link')) {
         setCursorType('contact');
@@ -33,8 +35,25 @@ const CustomCursor = () => {
     }
   }, []);
 
-  const handleMouseDown = useCallback(() => setIsClicked(true), []);
+  const handleMouseDown = useCallback((e) => {
+    setIsClicked(true);
+    const target = e.target;
+    // Spawn ripple unless we are hovering over an input
+    if (target && target.closest && !target.closest('input, textarea, [contenteditable="true"]')) {
+      const newRipple = {
+        id: Date.now() + Math.random(),
+        x: e.clientX,
+        y: e.clientY
+      };
+      setRipples((prev) => [...prev, newRipple]);
+    }
+  }, []);
+
   const handleMouseUp = useCallback(() => setIsClicked(false), []);
+
+  const removeRipple = (id) => {
+    setRipples((prev) => prev.filter((r) => r.id !== id));
+  };
 
   useEffect(() => {
     window.addEventListener('mousemove', moveCursor);
@@ -52,57 +71,95 @@ const CustomCursor = () => {
 
   const getFollowerSize = () => {
     switch (cursorType) {
-      case 'project': return 90;
-      case 'contact': return 100;
-      case 'hover': return 50;
-      default: return 30;
+      case 'project': return 80;
+      case 'contact': return 90;
+      case 'hover': return 40;
+      case 'text': return 0;
+      default: return 20;
     }
   };
 
   const getFollowerLabel = () => {
     switch (cursorType) {
-      case 'project': return 'VIEW';
-      case 'contact': return 'SAY HI';
+      case 'project': return 'VIEW ↗';
+      case 'contact': return 'SAY HI 👋';
       default: return null;
     }
   };
 
   return (
     <>
-      {/* Precision Point */}
+      {/* Click Ripples */}
+      {ripples.map((ripple) => (
+        <motion.div
+          key={ripple.id}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            x: ripple.x,
+            y: ripple.y,
+            pointerEvents: 'none',
+            zIndex: 99997,
+            width: 8,
+            height: 8,
+            borderRadius: '50%',
+            border: '1.5px solid #FF6B4A',
+            transform: 'translate(-50%, -50%)',
+          }}
+          initial={{ scale: 0.8, opacity: 0.8 }}
+          animate={{ scale: 6, opacity: 0 }}
+          transition={{ duration: 0.45, ease: 'easeOut' }}
+          onAnimationComplete={() => removeRipple(ripple.id)}
+        />
+      ))}
+
+      {/* Precision Center Point / Blinking I-Beam */}
       <motion.div
         id="custom-cursor"
         style={{
           x: mouseX,
           y: mouseY,
-          scale: isClicked ? 0.5 : 1,
-          opacity: 1,
           position: 'fixed',
           top: 0,
           left: 0,
-          width: 8,
-          height: 8,
-          borderRadius: '50%',
-          backgroundColor: '#FF6B4A',
           pointerEvents: 'none',
           zIndex: 99999,
           transform: 'translate(-50%, -50%)',
           mixBlendMode: 'difference',
         }}
+        animate={{
+          width: cursorType === 'text' ? 2 : (isClicked ? 4 : 6),
+          height: cursorType === 'text' ? 18 : (isClicked ? 4 : 6),
+          borderRadius: cursorType === 'text' ? '1px' : '50%',
+          backgroundColor: '#FF6B4A',
+          opacity: cursorType === 'text' ? [1, 0, 1] : 1,
+        }}
+        transition={{
+          opacity: cursorType === 'text' ? { repeat: Infinity, duration: 1, ease: 'easeInOut' } : { duration: 0.2 },
+          width: { type: 'spring', damping: 25, stiffness: 450 },
+          height: { type: 'spring', damping: 25, stiffness: 450 },
+          borderRadius: { duration: 0.1 }
+        }}
       />
       
-      {/* Aesthetic Follower */}
+      {/* Simple Follower Ring */}
       <motion.div
         id="cursor-follower"
         animate={{
           width: getFollowerSize(),
           height: getFollowerSize(),
-          backgroundColor: cursorType !== 'default' ? 'rgba(255, 107, 74, 0.06)' : 'transparent',
-          borderWidth: cursorType === 'default' ? 1 : 2,
-          borderColor: cursorType !== 'default' ? 'rgba(255, 107, 74, 0.5)' : 'rgba(255,255,255,0.15)',
-          scale: isClicked ? 0.8 : 1,
+          scale: isClicked ? 0.85 : 1,
+          opacity: cursorType === 'text' ? 0 : 1,
+          backgroundColor: cursorType === 'project' || cursorType === 'contact' 
+            ? 'rgba(15, 15, 15, 0.85)' 
+            : (cursorType === 'hover' ? 'rgba(255, 107, 74, 0.05)' : 'transparent'),
+          borderColor: cursorType === 'project' || cursorType === 'contact' || cursorType === 'hover'
+            ? '#FF6B4A' 
+            : 'rgba(255, 255, 255, 0.3)',
+          borderWidth: cursorType === 'text' ? 0 : 1.5,
         }}
-        transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+        transition={{ type: 'spring', damping: 26, stiffness: 320 }}
         style={{
           x: followerX,
           y: followerY,
@@ -117,24 +174,25 @@ const CustomCursor = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          mixBlendMode: 'difference',
-          backdropFilter: cursorType !== 'default' ? 'blur(2px)' : 'none',
+          backdropFilter: cursorType === 'project' || cursorType === 'contact' ? 'blur(8px)' : 'none',
         }}
       >
         <AnimatePresence mode="wait">
           {getFollowerLabel() && (
             <motion.span 
               key={cursorType}
-              initial={{ opacity: 0, scale: 0.5 }}
+              initial={{ opacity: 0, scale: 0.6 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.5 }}
+              exit={{ opacity: 0, scale: 0.6 }}
+              transition={{ duration: 0.2 }}
               style={{ 
                 color: '#FFF', 
-                fontSize: '0.55rem', 
+                fontSize: '0.65rem', 
                 fontWeight: '700', 
-                letterSpacing: '0.15em',
+                letterSpacing: '0.12em',
                 textTransform: 'uppercase',
-                fontFamily: '"Inter", sans-serif',
+                fontFamily: 'var(--font-body)',
+                zIndex: 2,
               }}
             >
               {getFollowerLabel()}

@@ -11,14 +11,14 @@ import TextReveal from './TextReveal';
 
 const experienceItems = [
   {
-    role: 'AI-Powered Freelance Designer',
+    role: 'AI-Powered Freelance Developer',
     company: 'Self-Employed / Remote',
     period: 'Jun 2026 - Present',
     icon: Sparkles,
     iconColor: '#FF6B4A',
   },
   {
-    role: 'UI/UX Designer',
+    role: 'UI/UX Designer & Frontend Developer',
     company: 'Azentio Software Pvt. Ltd., Chennai',
     period: 'Mar 2021 - May 2026',
     icon: SwatchBook,
@@ -109,17 +109,14 @@ const ResumeSections = () => {
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.5 }}
           >
-            <TextReveal as="span" mode="word" delay={0} stagger={0.06}>
+            <TextReveal as="h2" mode="word" delay={0} stagger={0.03}>
               Career Journey
-            </TextReveal>
-            <TextReveal as="h2" mode="char" delay={0.15} stagger={0.03}>
-              Experience
             </TextReveal>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
-              transition={{ delay: 0.4, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ delay: 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
               Designing intuitive enterprise products with a focus on usability, collaboration, and seamless execution.
             </motion.p>
@@ -228,60 +225,6 @@ const ResumeSections = () => {
                 </div>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="toolkit" className="resume-toolkit" style={{ position: 'relative' }}>
-        {/* Subtle horizontal line that draws across the top */}
-        <motion.div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            height: '1px',
-            background: 'linear-gradient(90deg, transparent, rgba(255,107,74,0.35), rgba(255,255,255,0.06), rgba(255,107,74,0.35), transparent)',
-            transformOrigin: 'center',
-            width: '100%',
-            maxWidth: '1200px',
-          }}
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        />
-
-        <div className="container">
-          {/* Section heading with TextReveal */}
-          <motion.div
-            className="resume-section-head"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.5 }}
-          >
-            <TextReveal as="span" mode="word" delay={0} stagger={0.06}>
-              Skills & AI Toolkit
-            </TextReveal>
-            <TextReveal as="h2" mode="char" delay={0.15} stagger={0.025}>
-              Skills & Expertise
-            </TextReveal>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ delay: 0.4, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            >
-              A balance of interface design, systems thinking, frontend fluency, and AI-assisted workflow acceleration.
-            </motion.p>
-          </motion.div>
-
-          <div className="resume-toolkit-grid bento-grid">
-            <AICard />
-            <CoreDesignCard />
-            <DesignToCodeCard />
-            <ProcessPipelineCard />
           </div>
         </div>
       </section>
@@ -402,7 +345,7 @@ const AICard = () => {
 const CoreDesignCard = () => {
   const [borderRadius, setBorderRadius] = useState('12px');
   const [accentColor, setAccentColor] = useState('#8B5CF6');
-  const [fontFamily, setFontFamily] = useState('Outfit, sans-serif');
+  const [fontFamily, setFontFamily] = useState('var(--font-heading)');
 
   return (
     <BentoCard accentColor="#8B5CF6" className="bento-core-card" delay={0.08}>
@@ -484,7 +427,7 @@ const CoreDesignCard = () => {
               className="figma-token-row"
               style={{ padding: '0.4rem 0.5rem', borderRadius: '6px', fontSize: '0.75rem' }}
               onMouseEnter={() => setFontFamily('Georgia, serif')}
-              onMouseLeave={() => setFontFamily('Outfit, sans-serif')}
+              onMouseLeave={() => setFontFamily('var(--font-heading)')}
             >
               <span className="token-label">--font</span>
               <div className="token-value-wrap">
@@ -607,8 +550,8 @@ const ProcessPipelineCard = () => {
                 <span>{idx + 1}</span>
               </div>
               
-              <h4 style={{ fontSize: '0.75rem', fontWeight: 700, color: '#10B981', margin: '0 0 0.2rem 0', fontFamily: 'Outfit, sans-serif' }}>{step.title}</h4>
-              <p style={{ fontSize: '0.62rem', color: 'rgba(255, 255, 255, 0.45)', lineHeight: 1.3, margin: 0, padding: '0 4px', fontFamily: 'Inter, sans-serif' }}>{step.desc}</p>
+              <h4 style={{ fontSize: '0.75rem', fontWeight: 700, color: '#10B981', margin: '0 0 0.2rem 0', fontFamily: 'var(--font-heading)' }}>{step.title}</h4>
+              <p style={{ fontSize: '0.62rem', color: 'rgba(255, 255, 255, 0.45)', lineHeight: 1.3, margin: 0, padding: '0 4px', fontFamily: 'var(--font-body)' }}>{step.desc}</p>
             </div>
           ))}
         </div>

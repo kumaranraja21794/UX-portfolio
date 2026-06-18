@@ -54,8 +54,8 @@ const Hero = () => {
               animate={{ scaleX: 1 }}
               transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             />
-            <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: '"Inter", sans-serif' }}>
-              Freelance UI/UX Designer
+            <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>
+              UI/UX Designer & Frontend Developer
             </span>
           </motion.div>
 
@@ -65,7 +65,7 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
               style={{ 
-                fontFamily: '"Outfit", sans-serif', 
+                fontFamily: 'var(--font-heading)', 
                 fontSize: 'clamp(2.8rem, 5vw, 4.2rem)', 
                 fontWeight: 600, 
                 color: '#FFF', 
@@ -74,7 +74,7 @@ const Hero = () => {
                 margin: 0
               }}
             >
-              {'Crafting'.split('').map((char, i) => (
+              {'Designing'.split('').map((char, i) => (
                 <motion.span
                   key={`c1-${i}`}
                   initial={{ y: 80, opacity: 0, rotateX: 40 }}
@@ -86,12 +86,12 @@ const Hero = () => {
                 </motion.span>
               ))}
               <br />
-              {'Digital'.split('').map((char, i) => (
+              {'& Coding'.split('').map((char, i) => (
                 <motion.span
                   key={`c2-${i}`}
                   initial={{ y: 80, opacity: 0, rotateX: 40 }}
                   animate={{ y: 0, opacity: 1, rotateX: 0 }}
-                  transition={{ delay: 0.55 + i * 0.03, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ delay: 0.6 + i * 0.03, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                   style={{ display: 'inline-block', transformOrigin: 'bottom' }}
                 >
                   {char}
@@ -99,12 +99,12 @@ const Hero = () => {
               ))}
               <br />
               <span style={{ color: 'rgba(255,255,255,0.4)' }}>
-                {'Experiences'.split('').map((char, i) => (
+                {'Products'.split('').map((char, i) => (
                   <motion.span
                     key={`c3-${i}`}
                     initial={{ y: 80, opacity: 0, rotateX: 40 }}
                     animate={{ y: 0, opacity: 1, rotateX: 0 }}
-                    transition={{ delay: 0.8 + i * 0.025, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ delay: 0.85 + i * 0.025, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                     style={{ display: 'inline-block', transformOrigin: 'bottom' }}
                   >
                     {char}
@@ -130,7 +130,7 @@ const Hero = () => {
                 background: '#FF6B4A', color: '#FFF', padding: '0.9rem 2rem', borderRadius: '100px', 
                 fontWeight: 600, textDecoration: 'none', fontSize: '0.95rem', 
                 transition: 'all 0.3s ease', display: 'inline-block',
-                fontFamily: '"Inter", sans-serif',
+                fontFamily: 'var(--font-body)',
               }}
             >
               Hire Me
@@ -144,7 +144,7 @@ const Hero = () => {
                 background: 'transparent', color: '#FFF', padding: '0.9rem 2rem', borderRadius: '100px', 
                 border: '1px solid rgba(255,255,255,0.2)', fontWeight: 500, textDecoration: 'none', 
                 fontSize: '0.95rem', transition: 'all 0.3s ease', display: 'inline-block',
-                fontFamily: '"Inter", sans-serif',
+                fontFamily: 'var(--font-body)',
               }}
             >
               View Work
@@ -165,8 +165,8 @@ const Hero = () => {
               animate={{ opacity: [0.4, 1, 0.4] }}
               transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
             >∴</motion.div>
-            <h3 style={{ fontSize: '1rem', marginBottom: '0.2rem', fontWeight: 500, fontFamily: '"Inter", sans-serif' }}>UX/UI Design</h3>
-            <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', lineHeight: '1.5', margin: 0, fontFamily: '"Inter", sans-serif' }}>Crafting intuitive interfaces</p>
+            <h3 style={{ fontSize: '1rem', marginBottom: '0.2rem', fontWeight: 500, fontFamily: 'var(--font-body)' }}>UI/UX Design</h3>
+            <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', lineHeight: '1.5', margin: 0, fontFamily: 'var(--font-body)' }}>Designing intuitive interfaces</p>
           </motion.div>
 
           <motion.div
@@ -179,8 +179,8 @@ const Hero = () => {
               animate={{ opacity: [0.4, 1, 0.4] }}
               transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
             >∷</motion.div>
-            <h3 style={{ fontSize: '1rem', marginBottom: '0.2rem', fontWeight: 500, fontFamily: '"Inter", sans-serif' }}>Prototyping</h3>
-            <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', lineHeight: '1.5', margin: 0, fontFamily: '"Inter", sans-serif' }}>Interactive & high-fidelity</p>
+            <h3 style={{ fontSize: '1rem', marginBottom: '0.2rem', fontWeight: 500, fontFamily: 'var(--font-body)' }}>Frontend Development</h3>
+            <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', lineHeight: '1.5', margin: 0, fontFamily: 'var(--font-body)' }}>Clean, interactive & responsive code</p>
           </motion.div>
 
           <motion.div
@@ -189,8 +189,8 @@ const Hero = () => {
             transition={{ delay: 1.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             style={{ marginTop: '0.5rem', paddingTop: '1.5rem', borderTop: '1px dashed rgba(255,255,255,0.15)' }}
           >
-            <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', lineHeight: '1.6', margin: 0, fontFamily: '"Inter", sans-serif' }}>
-              From initial user research to pixel-perfect design handoffs, I create seamless digital experiences that solve real user problems.
+            <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', lineHeight: '1.6', margin: 0, fontFamily: 'var(--font-body)' }}>
+              Bridging the gap between user research, beautiful interfaces, and production-ready frontend code to build high-performance products.
             </p>
           </motion.div>
 
@@ -225,7 +225,7 @@ const Hero = () => {
           zIndex: 20, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem',
         }}
       >
-        <motion.span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: '"Inter", sans-serif' }}>
+        <motion.span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>
           Scroll
         </motion.span>
         <motion.div

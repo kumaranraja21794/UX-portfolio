@@ -166,7 +166,7 @@ const Projects = () => {
                     <span style={{ fontSize: '0.8rem', fontWeight: 800, color: p.accentColor }}>0{i + 1}</span>
                     <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.35)', fontWeight: 600 }}>/ FEATURED</span>
                   </div>
-                  <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#fff', margin: 0, fontFamily: 'Outfit, sans-serif' }}>{p.title}</h3>
+                  <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#fff', margin: 0, fontFamily: 'var(--font-heading)' }}>{p.title}</h3>
                   
                   <div className="project-meta-pills" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                     <span className="meta-pill"><strong>Role:</strong> {p.role}</span>
