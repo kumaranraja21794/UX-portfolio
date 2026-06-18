@@ -23,10 +23,48 @@ const Hero = () => {
           scale: bgScale,
         }}
       >
-        <img src="/hero-bg-v13.png" alt="Hero Background" style={{ height: '100%', width: '100%', objectFit: 'cover', objectPosition: 'center', mixBlendMode: 'lighten' }} />
-        {/* Soft gradient edges */}
-        <div className="hero-gradient-overlay" style={{ zIndex: 2, pointerEvents: 'none', position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(15,15,15,0.9) 0%, transparent 25%, transparent 75%, rgba(15,15,15,0.9) 100%)' }}></div>
-        <div style={{ position: 'absolute', inset: 0, zIndex: 3, pointerEvents: 'none', background: 'linear-gradient(to top, rgba(15,15,15,1) 0%, transparent 30%)' }}></div>
+        <img 
+          src="/hero-bg-v13.png" 
+          alt="Hero Background" 
+          style={{ 
+            height: '100%', 
+            width: '100%', 
+            objectFit: 'cover', 
+            objectPosition: 'center',
+            opacity: 1
+          }} 
+        />
+        {/* Spotlight Vignette to highlight the user's portrait and keep text/graphics dark and high-contrast */}
+        <div 
+          style={{ 
+            position: 'absolute', 
+            inset: 0, 
+            zIndex: 2, 
+            pointerEvents: 'none', 
+            background: 'radial-gradient(circle at 45% 55%, transparent 15%, rgba(15,15,15,0.4) 40%, rgba(15,15,15,0.95) 75%, #0F0F0F 100%)' 
+          }} 
+        />
+        {/* Soft horizontal gradient edges for additional text and motion graphics readability */}
+        <div 
+          className="hero-gradient-overlay" 
+          style={{ 
+            zIndex: 3, 
+            pointerEvents: 'none', 
+            position: 'absolute', 
+            inset: 0, 
+            background: 'linear-gradient(to right, #0F0F0F 0%, rgba(15,15,15,0.95) 20%, rgba(15,15,15,0.1) 45%, rgba(15,15,15,0.1) 60%, rgba(15,15,15,0.95) 80%, #0F0F0F 100%)' 
+          }} 
+        />
+        {/* Soft bottom fade to blend into the next section */}
+        <div 
+          style={{ 
+            position: 'absolute', 
+            inset: 0, 
+            zIndex: 4, 
+            pointerEvents: 'none', 
+            background: 'linear-gradient(to top, #0F0F0F 0%, rgba(15,15,15,0.8) 15%, transparent 50%)' 
+          }} 
+        />
       </motion.div>
 
       <motion.div 
@@ -55,7 +93,7 @@ const Hero = () => {
               animate={{ scaleX: 1 }}
               transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             />
-            <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>
+            <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.75)', letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>
               UI/UX Designer & Frontend Developer
             </span>
           </motion.div>
@@ -99,7 +137,7 @@ const Hero = () => {
                 </motion.span>
               ))}
               <br />
-              <span style={{ color: 'rgba(255,255,255,0.4)' }}>
+              <span style={{ color: 'rgba(255,255,255,0.65)' }}>
                 {'Products'.split('').map((char, i) => (
                   <motion.span
                     key={`c3-${i}`}
@@ -187,14 +225,14 @@ const Hero = () => {
           zIndex: 20, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem',
         }}
       >
-        <motion.span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>
+        <motion.span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.7)', letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>
           Scroll
         </motion.span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <ChevronDown size={18} color="rgba(255,255,255,0.4)" />
+          <ChevronDown size={18} color="rgba(255,255,255,0.7)" />
         </motion.div>
       </motion.div>
 

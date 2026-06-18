@@ -1545,8 +1545,8 @@ footer {
 
 /* Skills Redesign - Bento Grid + Magnetic Glow */
 .skills {
-  padding: 7rem 0;
-  margin-top: 2rem;
+  padding: 12rem 0;
+  margin-top: 5vh;
 }
 
 .skills-grid {
@@ -3778,7 +3778,7 @@ footer {
   color: #fff;
   border-radius: 40px;
   padding: 6rem 3rem;
-  margin: 2rem 0 3.5rem;
+  margin: 2rem 0 6rem;
   box-shadow: 0 40px 100px rgba(0,0,0,0.5);
 }
 
@@ -4106,7 +4106,8 @@ footer {
    ============================================ */
 .marquee-strip {
   overflow: hidden;
-  padding: 1.1rem 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
   border-bottom: 1px solid rgba(255,255,255,0.06);
   background: #0a0a0a;
   cursor: default;
@@ -4241,7 +4242,7 @@ footer {
    ============================================ */
 @media (max-width: 768px) {
   .marquee-strip {
-    padding: 0.8rem 0;
+    padding: 1rem 0;
   }
   
   .marquee-text {
