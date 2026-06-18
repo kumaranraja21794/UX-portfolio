@@ -37,16 +37,6 @@ const projects = [
     accentColor: "#10B981",
   },
   {
-    title: "WallVect",
-    img: "wallvect_thumb.png",
-    role: "Frontend Developer & UI Designer",
-    outcome: "E-commerce Storefront",
-    desc: "Building a poster-selling e-commerce storefront — product browsing, cart, and checkout flow with a clean, responsive UI.",
-    tags: ["E-commerce", "React", "Responsive UI"],
-    link: "https://github.com/kumaranraja21794",
-    accentColor: "#FF6B4A",
-  },
-  {
     title: "Oman United Insurance",
     img: "oman_insurance_thumb.png",
     role: "Frontend Developer & UI Designer",

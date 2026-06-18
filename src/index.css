@@ -4341,7 +4341,7 @@ footer {
    ============================================ */
 .cinematic-projects-section {
   position: relative;
-  height: 800vh; /* 8 projects, scrollable distance */
+  height: 700vh; /* 7 projects, scrollable distance */
   background: #090909;
 }
 
