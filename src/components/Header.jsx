@@ -34,94 +34,106 @@ const Header = () => {
   return (
     <>
       <motion.header
-        className="craftfolio-header"
-        initial={{ y: 0 }}
+        initial={{ y: -100, opacity: 0 }}
         animate={{
-          y: isHidden ? '-100%' : '0%',
+          y: isHidden ? -100 : 0,
+          opacity: 1
         }}
         transition={{
-          duration: 0.35,
-          ease: [0.32, 0.72, 0, 1],
+          duration: 0.45,
+          ease: [0.16, 1, 0.3, 1],
         }}
         style={{
-          backgroundColor: headerBg,
-          backdropFilter: useTransform(backdropBlur, (v) => `blur(${v}px)`),
-          WebkitBackdropFilter: useTransform(backdropBlur, (v) => `blur(${v}px)`),
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          zIndex: 1000,
+          padding: '20px 0',
+          pointerEvents: 'none'
         }}
       >
-        <div className="header-container">
-          {/* Logo with letter-spacing expand on hover */}
+        <div 
+          className="header-capsule"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            background: 'rgba(15, 15, 15, 0.65)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            borderRadius: '100px',
+            padding: '6px 12px',
+            width: '90%',
+            maxWidth: '550px',
+            pointerEvents: 'auto',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.02)'
+          }}
+        >
+          {/* Left: Menu button */}
+          <motion.button
+            onClick={() => setIsMenuOpen(true)}
+            whileHover={{ scale: 1.05, background: 'rgba(255, 255, 255, 0.08)' }}
+            whileTap={{ scale: 0.95 }}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              color: '#FFFFFF',
+              fontSize: '0.85rem',
+              fontWeight: 500,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '8px 16px',
+              borderRadius: '100px',
+              fontFamily: 'var(--font-body)',
+              letterSpacing: '0.05em'
+            }}
+          >
+            <span style={{ color: '#FF6B4A', fontSize: '1rem', lineHeight: 1 }}>∴</span> Menu
+          </motion.button>
+
+          {/* Center: Logo */}
           <motion.a
             href="#hero"
-            className="logo-brand"
-            whileHover="hovered"
-            initial="idle"
+            whileHover={{ scale: 1.05 }}
+            style={{
+              fontSize: '1.25rem',
+              fontWeight: 800,
+              letterSpacing: '0.15em',
+              color: '#FFFFFF',
+              textDecoration: 'none',
+              fontFamily: 'var(--font-heading)'
+            }}
           >
-            <span style={{ display: 'flex', alignItems: 'center', fontSize: '1.35rem' }}>
-              <motion.span
-                style={{ fontWeight: 800, display: 'inline-block' }}
-                variants={{
-                  idle: { letterSpacing: '-0.04em' },
-                  hovered: { letterSpacing: '0.08em' },
-                }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              >
-                ES
-              </motion.span>
-              <motion.span
-                style={{ fontWeight: 300, marginLeft: '1px', color: '#A0A0A0', display: 'inline-block' }}
-                variants={{
-                  idle: { letterSpacing: '0.15em' },
-                  hovered: { letterSpacing: '0.3em' },
-                }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              >
-                KAY
-              </motion.span>
-            </span>
+            ESKAY
           </motion.a>
 
-          <div className="header-right">
-            {/* Menu button with smooth rotation on click */}
-            <motion.button
-              className="btn-icon-outline"
-              onClick={() => setIsMenuOpen(true)}
-              whileHover={{ scale: 1.08, borderColor: '#FF6B4A' }}
-              whileTap={{ scale: 0.92 }}
-              animate={{ rotate: isMenuOpen ? 90 : 0 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            >
-              <Menu size={20} />
-            </motion.button>
-            <motion.a
-              href="#contact"
-              className="btn-hire-me"
-              whileHover={{ scale: 1.05, y: -1 }}
-              whileTap={{ scale: 0.96 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-            >
-              Hire Me
-            </motion.a>
-          </div>
+          {/* Right: CTA */}
+          <motion.a
+            href="#contact"
+            whileHover={{ scale: 1.05, background: '#FFFFFF', color: '#0F0F0F', borderColor: '#FFFFFF' }}
+            whileTap={{ scale: 0.95 }}
+            style={{
+              background: 'rgba(255, 255, 255, 0.06)',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
+              color: '#FFFFFF',
+              fontSize: '0.85rem',
+              fontWeight: 500,
+              padding: '6px 18px',
+              borderRadius: '100px',
+              textDecoration: 'none',
+              fontFamily: 'var(--font-body)',
+              transition: 'background 0.3s, color 0.3s, border-color 0.3s'
+            }}
+          >
+            Hire Me
+          </motion.a>
         </div>
-
-        {/* Subtle bottom border that fades in after scrolling past hero */}
-        <motion.div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: '1px',
-            background: 'linear-gradient(90deg, transparent, rgba(255,107,74,0.3), rgba(255,255,255,0.08), rgba(255,107,74,0.3), transparent)',
-          }}
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={{
-            opacity: hasScrolled ? 1 : 0,
-            scaleX: hasScrolled ? 1 : 0,
-          }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        />
       </motion.header>
 
       <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
