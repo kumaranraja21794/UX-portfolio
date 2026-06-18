@@ -243,7 +243,7 @@ const Process = () => {
       id="process"
       className="process"
       style={{
-        padding: '10rem 0',
+        padding: '6rem 0',
         background: '#0d0d0d',
         position: 'relative',
         overflow: 'hidden',
