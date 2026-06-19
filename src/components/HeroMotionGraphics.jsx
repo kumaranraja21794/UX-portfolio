@@ -4,13 +4,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 const HeroMotionGraphics = () => {
   const [stage, setStage] = useState(0); // 0: Design, 1: Code, 2: Product (Portal & Mobile)
 
-  // Auto cycle through stages
+  // Auto cycle through stages (resets timer on manual stage switch)
   useEffect(() => {
-    const interval = setInterval(() => {
+    const timer = setTimeout(() => {
       setStage((prev) => (prev + 1) % 3);
     }, 4500);
-    return () => clearInterval(interval);
-  }, []);
+    return () => clearTimeout(timer);
+  }, [stage]);
 
   const stages = [
     { name: 'Design', color: '#FF6B4A', desc: 'Vector Layouts & Figma UI' },
@@ -484,7 +484,7 @@ const HeroMotionGraphics = () => {
         {/* Active Stage Progress line */}
         <motion.div 
           animate={{
-            left: stage === 0 ? '10%' : stage === 1 ? '50%' : '50%',
+            left: '10%',
             width: stage === 0 ? '0%' : stage === 1 ? '40%' : '80%'
           }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -493,7 +493,7 @@ const HeroMotionGraphics = () => {
             top: '50%',
             transform: 'translateY(-50%)',
             height: '1.5px',
-            background: `linear-gradient(90deg, #FF6B4A, ${stage === 2 ? '#10B981' : '#8B5CF6'})`,
+            background: `linear-gradient(90deg, #FF6B4A, ${stage === 1 ? '#8B5CF6' : '#10B981'})`,
             zIndex: 1
           }}
         />
