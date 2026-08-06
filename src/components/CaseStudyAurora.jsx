@@ -6,7 +6,7 @@ import {
   Maximize2, Activity, ShieldAlert,
   Sparkles, Download, FileText, Lock,
   Percent, ArrowRight, Zap, Bell, Sliders, Smartphone,
-  DollarSign, Check, X, RefreshCw, Layers, Eye
+  DollarSign, Check, X, RefreshCw, Layers, Eye, Clock, AlertTriangle, Shield
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import TextReveal from './TextReveal';
@@ -14,32 +14,73 @@ import TextReveal from './TextReveal';
 const screensData = [
   {
     id: 'home',
-    title: 'Home & Wallet Telemetry',
-    subtitle: 'Central Hub & UPI Circle Manager',
+    title: 'Home & Account Telemetry',
+    subtitle: 'Main Dashboard & Action Matrix',
     img: '/aurora/home_screen.png',
     badge: '01 / DASHBOARD',
     tags: ['UPI Circle', 'Quick Actions', 'Bill Tracker', 'Live Balance'],
-    description: 'Centralized financial control center featuring live balance telemetry (₹67,356.70), quick payment matrix, featured UPI Circle family pool setup, and upcoming bill reminders.',
+    description: 'Centralized financial control center featuring glanceable account balance telemetry (₹67,356.70), one-tap UPI ID copy, budget threshold alerts (82% limit reached), action icon matrix, and upcoming bill reminders.',
     metrics: [
       { label: 'Account Balance', val: '₹67,356.70' },
       { label: 'UPI Circle Pool', val: 'Active' },
       { label: 'Upcoming Bills', val: '3 Pending' }
     ],
     highlights: [
-      'Glanceable account telemetry with one-tap balance reveal and UPI ID copy feature',
-      'UPI Circle spotlight card driving 1-tap family spending pool onboarding',
-      '82% threshold warning alert pill notifying users before budget limits trigger',
-      'Circular quick-action matrix (Scan QR, Pay Anyone, Request Money, Recharge)'
+      'Glanceable Account Balance with one-tap account switcher and copyable UPI ID (eskay32uniq@hdfcbank)',
+      'UPI Circle banner with 1-tap onboarding CTA to pool and control family spending',
+      '82% monthly limit warning bar (₹27,060 / ₹5,940 remaining) to prevent unexpected POS rejections',
+      'Quick action circular grid (Scan QR, Pay Anyone, Request Money, Bank Transfer, Mobile Recharge)',
+      'Upcoming bill reminder card (Airtel Postpaid ₹1,249, Due in 3 days) with instant Pay Now button'
+    ]
+  },
+  {
+    id: 'circle',
+    title: 'Streling Family UPI Circle',
+    subtitle: 'Delegated Allowance Pool & Request Queue',
+    img: '/aurora/family_circle.png',
+    badge: '02 / UPI CIRCLE',
+    tags: ['Family Pool', 'Utilization Ring', 'Approval Queue', 'Member Caps'],
+    description: 'Central family allowance hub displaying total circle utilization (₹15,000 of ₹25,000 pool - 60% used gauge), real-time member approval requests ("Rohan requests ₹1,200 - Decathlon"), member status breakdown, and live transaction activity feed.',
+    metrics: [
+      { label: 'Total Pool Cap', val: '₹25,000' },
+      { label: 'Circle Utilization', val: '60% Used' },
+      { label: 'Approval Queue', val: '1 Pending' }
+    ],
+    highlights: [
+      'Circular utilization ring visually depicting 60% pool consumption (₹15,000 spent / ₹10,000 remaining)',
+      'Real-time approval action card ("Rohan requests ₹1,200 - Decathlon • exceeds daily limit") with 1-tap Accept/Decline',
+      'Member hierarchy cards: Meera (Admin - ₹4,500 of ₹10,000) and Rohan (Member - ₹4,250 of ₹5,000)',
+      'Live audit stream tracking instant member deposits and merchant payments in real-time'
+    ]
+  },
+  {
+    id: 'banking',
+    title: 'Savings & Aurora Titanium Card',
+    subtitle: 'Account Overview & Asset Telemetry',
+    img: '/aurora/account_banking.png',
+    badge: '03 / BANKING & CARDS',
+    tags: ['Savings A/C', 'Debit Card', 'Loan Telemetry', 'Beneficiaries'],
+    description: 'Comprehensive banking and card management portal displaying primary Savings Account balance (₹6,356.70), quick banking actions, Aurora Titanium International Debit Card container, and long-term loan repayment trackers.',
+    metrics: [
+      { label: 'Savings Balance', val: '₹6,356.70' },
+      { label: 'Debit Card Tier', val: 'Aurora Titanium' },
+      { label: 'Home Loan EMIs', val: '24/180 Paid' }
+    ],
+    highlights: [
+      'Savings Account telemetry (A/C No. 32218909823) with total available liquidity breakdown',
+      'Quick banking navigation pills (Fund Transfer, View Transactions, Manage Beneficiaries, Cheque Book)',
+      'Realistic Aurora Titanium Debit Card UI preview with contactless NFC badge and masked card number',
+      'Home Loan asset tracker (A/C •••• 9820 - ₹12,60,000) with visual EMI repayment progress (24 of 180 EMIs paid)'
     ]
   },
   {
     id: 'analytics',
     title: 'Spending Telemetry & Analytics',
     subtitle: 'Monthly Overview & Category Insights',
-    img: '/aurora/analytics_screen.png',
-    badge: '02 / ANALYTICS',
+    img: '/aurora/spending_analytics.png',
+    badge: '04 / ANALYTICS',
     tags: ['Weekly Chart', 'Category Distribution', 'Budget Alert', 'Transaction Filter'],
-    description: 'In-depth financial telemetry screen comparing monthly income (₹1.2L) vs expenses (₹68K) through weekly dual-bar charts, category progress bars, and instant transaction filters.',
+    description: 'In-depth financial telemetry screen comparing monthly income (₹1.2L) vs expenses (₹68K) through weekly dual-bar comparative histograms, category progress bars, and instant transaction filter chips.',
     metrics: [
       { label: 'Monthly Income', val: '₹1.2 Lakh' },
       { label: 'Total Expense', val: '₹68,356' },
@@ -48,54 +89,36 @@ const screensData = [
     highlights: [
       'Weekly income vs expense dual-bar comparative histogram across 4 weeks',
       'High-precision category breakdown (Food & Drinks 42%, Shopping 28%)',
-      'Instant filter chips (All, Shopping, Food, Travel) for instant drilldown',
-      'Transaction search & CSV export utility for tax and accounting exports'
+      'Instant filter chips (All, Shopping, Food, Travel) for rapid transaction audit',
+      'Search transactions input bar with instant export download utility'
     ]
   },
   {
-    id: 'limits',
-    title: 'Member Allowance & Role Caps',
+    id: 'controls',
+    title: 'Member Allowance & Risk Caps',
     subtitle: 'Rohan (Member) Spending Profile',
-    img: '/aurora/member_limits.png',
-    badge: '03 / ALLOWANCE',
-    tags: ['Allowance Cap', 'Monthly Limit', 'Daily Limit', 'Segmented Bar'],
-    description: 'Detailed member profile management screen for teen allowance allocation, showing role badge (Member), Monthly Limit (₹5,000), and Daily Limit (₹800) with segmented visual progress trackers.',
+    img: '/aurora/member_controls.png',
+    badge: '05 / RISK CONTROLS',
+    tags: ['Allowance Cap', 'Monthly Limit', 'Daily Limit', 'Merchant Lock'],
+    description: 'Detailed member profile management screen for teen allowance allocation, showing role badge (Member), Monthly Limit (₹5,000), and Daily Limit (₹800) with segmented visual progress trackers and security toggles.',
     metrics: [
       { label: 'Monthly Cap', val: '₹5,000' },
       { label: 'Daily Cap', val: '₹800' },
-      { label: 'Member Age', val: '16 Yrs' }
+      { label: 'Merchant Lock', val: 'Gaming/Betting' }
     ],
     highlights: [
       'Segmented progress indicator bars for quick visual cognitive parsing',
       'Granular monthly limit set to ₹5,000 with 3/5 segments filled',
       'Daily limit set to ₹800 with 4/5 segments filled',
-      'Member identity card with verified mobile number and age indicator'
-    ]
-  },
-  {
-    id: 'controls',
-    title: 'Risk Guardrails & Curfews',
-    subtitle: 'Merchant Category & Time Locks',
-    img: '/aurora/member_controls.png',
-    badge: '04 / SECURITY',
-    tags: ['Approval Threshold', 'Category Lock', 'Night Curfew', 'Role Control'],
-    description: 'Custom risk management toggle stack allowing parent guardians to enforce approval limits, block high-risk merchant categories (gaming & betting), and toggle night spending curfews.',
-    metrics: [
-      { label: 'Approval Limit', val: '> ₹500' },
-      { label: 'Gaming Block', val: 'ENABLED' },
-      { label: 'Night Lock', val: '11PM-6AM' }
-    ],
-    highlights: [
-      'Approval required toggle requiring parent PIN verification for payments > ₹500',
-      'Merchant Category Code (MCC 7995) restriction switch blocking betting and casino apps',
-      'Night spending curfew toggle restricting transactions between 11 PM and 6 AM',
-      'Segmented role permission manager (Owner, Admin, Member)'
+      'Approval required toggle for payments over ₹500',
+      'Merchant Category Code (MCC 7995) restriction switch blocking betting and casino platforms',
+      'Night spending curfew toggle restricting transactions between 11 PM and 6 AM'
     ]
   }
 ];
 
 const designTokens = [
-  { name: 'Aurora Mint', hex: '#00E699', role: 'Primary Accent & Action Calls' },
+  { name: 'Aurora Mint', hex: '#00E699', role: 'Primary Action Accent & Positive Balance' },
   { name: 'Void Black', hex: '#07090E', role: 'Background Canvas & Deep Contrast' },
   { name: 'Surface Dark', hex: '#111622', role: 'Bento Card Container & Navigation' },
   { name: 'Warning Amber', hex: '#F59E0B', role: 'Budget Threshold Alerts (80%+)' },
@@ -106,41 +129,17 @@ const CaseStudyAurora = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
 
-  // Interactive Simulator State
-  const [monthlyLimit, setMonthlyLimit] = useState(5000);
-  const [dailyLimit, setDailyLimit] = useState(800);
-  const [approvalReq, setApprovalReq] = useState(true);
-  const [blockGaming, setBlockGaming] = useState(true);
-  const [nightLock, setNightLock] = useState(false);
-
-  // Simulation test state
-  const [simTxnAmount, setSimTxnAmount] = useState(750);
-  const [simCategory, setSimCategory] = useState('Shopping');
+  // Approval Request Simulation State
+  const [requestStatus, setRequestStatus] = useState('PENDING'); // PENDING, APPROVED, DECLINED
 
   const currentScreen = screensData[activeTab];
-
-  // Evaluate simulation result
-  const evaluateSimulation = () => {
-    if (simCategory === 'Gaming' && blockGaming) {
-      return { status: 'REJECTED', reason: 'Blocked by Merchant Category Restriction (Gaming/Betting Policy)', color: '#EF4444' };
-    }
-    if (simTxnAmount > dailyLimit) {
-      return { status: 'REJECTED', reason: `Exceeds Daily Spending Cap (Max ₹${dailyLimit})`, color: '#EF4444' };
-    }
-    if (simTxnAmount > 500 && approvalReq) {
-      return { status: 'PENDING_APPROVAL', reason: 'Requires Parent PIN Authorization (Txn > ₹500)', color: '#F59E0B' };
-    }
-    return { status: 'APPROVED', reason: 'Transaction Authorized & Dispatched via UPI Circle', color: '#00E699' };
-  };
-
-  const simResult = evaluateSimulation();
 
   return (
     <div className="case-study-page aurora-study-page" style={{ '--accent-primary': '#00E699', background: '#07090E', color: '#fff', minHeight: '100vh', fontFamily: 'var(--font-body)' }}>
       
       {/* Background Glow Beams */}
-      <div style={{ position: 'fixed', top: 0, left: '20%', width: '600px', height: '600px', background: 'radial-gradient(circle, rgba(0, 230, 153, 0.07) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
-      <div style={{ position: 'fixed', top: '40%', right: '10%', width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(6, 182, 212, 0.05) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
+      <div style={{ position: 'fixed', top: 0, left: '20%', width: '600px', height: '600px', background: 'radial-gradient(circle, rgba(0, 230, 153, 0.08) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
+      <div style={{ position: 'fixed', top: '40%', right: '10%', width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(6, 182, 212, 0.06) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
 
       {/* Top Floating Navigation Bar */}
       <div className="container" style={{ position: 'relative', zIndex: 100, paddingTop: '2rem' }}>
@@ -152,7 +151,7 @@ const CaseStudyAurora = () => {
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(0, 230, 153, 0.1)', border: '1px solid rgba(0, 230, 153, 0.25)', padding: '0.4rem 1rem', borderRadius: '30px', color: '#00E699', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em' }}>
             <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#00E699', display: 'inline-block', boxShadow: '0 0 10px #00E699' }} />
-            CASE STUDY // FINTECH ECOSYSTEM
+            FEATURED CASE STUDY // FINTECH & UPI CIRCLE
           </div>
         </div>
       </div>
@@ -167,20 +166,20 @@ const CaseStudyAurora = () => {
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
               <span style={{ background: 'rgba(0, 230, 153, 0.15)', color: '#00E699', padding: '0.35rem 0.85rem', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 800, border: '1px solid rgba(0, 230, 153, 0.3)' }}>
-                MOBILE UX & FINTECH
+                PRODUCT DESIGN & UX RESEARCH
               </span>
-              <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.85rem' }}>• 2026 DESIGN SYSTEM</span>
+              <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.85rem' }}>• 5 COMPREHENSIVE MOBILE SCREENS</span>
             </div>
 
             <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4.2rem)', fontWeight: 800, lineHeight: 1.1, margin: '0 0 1.5rem 0', fontFamily: 'var(--font-heading)', letterSpacing: '-0.02em' }}>
               Aurora Fintech App <br />
               <span style={{ background: 'linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.5) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                Family UPI Circle & Smart Telemetry
+                Streling Family UPI Circle & Financial Telemetry
               </span>
             </h1>
 
-            <p style={{ fontSize: '1.15rem', color: 'rgba(255,255,255,0.65)', maxWidth: '750px', lineHeight: 1.7, margin: '0 0 3rem 0' }}>
-              Aurora Fintech App is a dark-void emerald mobile banking solution built to redefine how parents allocate allowances to teenagers via NPCI UPI Circle. It combines real-time budget telemetry, customizable spending guardrails, and category restrictions into an intuitive mobile workflow.
+            <p style={{ fontSize: '1.15rem', color: 'rgba(255,255,255,0.65)', maxWidth: '780px', lineHeight: 1.7, margin: '0 0 3rem 0' }}>
+              Aurora Fintech App is a dark-void emerald mobile banking and allowance management platform. Designed around the National Payments Corporation of India (NPCI) UPI Circle specification, it enables parents to pool family funds, grant delegated allowances to teenagers (like Rohan, Age 16), enforce real-time spending caps, and manage bank accounts & debit cards seamlessly.
             </p>
           </motion.div>
 
@@ -192,46 +191,46 @@ const CaseStudyAurora = () => {
             style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.25rem' }}
           >
             <div style={{ background: '#111622', padding: '1.5rem', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.07)' }}>
-              <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#00E699', fontFamily: 'var(--font-heading)' }}>40%</div>
-              <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', marginTop: '0.25rem' }}>Impulse Teen Spend Reduction</div>
+              <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#00E699', fontFamily: 'var(--font-heading)' }}>₹25,000</div>
+              <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', marginTop: '0.25rem' }}>Max Family Circle Pool Cap</div>
             </div>
 
             <div style={{ background: '#111622', padding: '1.5rem', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.07)' }}>
-              <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#fff', fontFamily: 'var(--font-heading)' }}>&lt; 15ms</div>
-              <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', marginTop: '0.25rem' }}>Edge Guardrail Telemetry Check</div>
+              <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#fff', fontFamily: 'var(--font-heading)' }}>60%</div>
+              <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', marginTop: '0.25rem' }}>Streling Circle Pool Utilization</div>
             </div>
 
             <div style={{ background: '#111622', padding: '1.5rem', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.07)' }}>
-              <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#00E699', fontFamily: 'var(--font-heading)' }}>95%</div>
-              <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', marginTop: '0.25rem' }}>Parent Peace of Mind Rating</div>
+              <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#00E699', fontFamily: 'var(--font-heading)' }}>&lt; 15ms</div>
+              <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', marginTop: '0.25rem' }}>Real-time Edge Guardrail Check</div>
             </div>
 
             <div style={{ background: '#111622', padding: '1.5rem', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.07)' }}>
               <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#fff', fontFamily: 'var(--font-heading)' }}>100%</div>
-              <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', marginTop: '0.25rem' }}>NPCI UPI Circle Compliant</div>
+              <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', marginTop: '0.25rem' }}>NPCI Delegated UPI Protocol</div>
             </div>
           </motion.div>
 
         </div>
       </header>
 
-      {/* Main Section Explorer */}
+      {/* Main Content Body */}
       <main style={{ position: 'relative', zIndex: 10, padding: '3rem 0 6rem 0' }}>
         <div className="container">
 
-          {/* Section 1: Interactive Device Frame & Screen Explorer */}
+          {/* Section 1: Interactive Device Frame & 5 Screen Showcase */}
           <section style={{ marginBottom: '6rem' }}>
             <div style={{ marginBottom: '2.5rem' }}>
-              <span style={{ color: '#00E699', fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.15em' }}>01 / VISUAL ARCHITECTURE</span>
+              <span style={{ color: '#00E699', fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.15em' }}>01 / DESIGN SYSTEM & INTERFACE FLOW</span>
               <TextReveal as="h2" mode="word" style={{ fontSize: '2.4rem', fontWeight: 800, color: '#fff', marginTop: '0.25rem' }}>
-                High-Fidelity Screen Showcase
+                Complete 5-Screen Interface Architecture
               </TextReveal>
               <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '1rem', margin: '0.5rem 0 0 0' }}>
-                Select a tab below to inspect the design rationale and key micro-interactions of each mobile screen.
+                Select any of the 5 designed screens below to inspect its visual structure, UX rationale, and micro-interactions.
               </p>
             </div>
 
-            {/* Interactive Screen Tabs Bar */}
+            {/* 5 Screen Interactive Tabs Bar */}
             <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '2.5rem' }}>
               {screensData.map((screen, idx) => {
                 const isActive = activeTab === idx;
@@ -262,14 +261,14 @@ const CaseStudyAurora = () => {
               })}
             </div>
 
-            {/* Split Screen Grid (Phone Frame + Details Bento) */}
+            {/* Split View Container (3D Mobile Mockup + Deep UX Analysis) */}
             <div style={{ background: '#0B0F17', borderRadius: '32px', border: '1px solid rgba(255,255,255,0.08)', padding: '3rem', display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: '3.5rem', alignItems: 'center' }}>
               
               {/* Phone Mockup Frame */}
               <div style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
                 
-                {/* Backdrop Glow behind Phone */}
-                <div style={{ position: 'absolute', width: '280px', height: '550px', background: 'radial-gradient(circle, rgba(0, 230, 153, 0.25) 0%, transparent 70%)', filter: 'blur(40px)', opacity: 0.7 }} />
+                {/* Dynamic Backdrop Glow */}
+                <div style={{ position: 'absolute', width: '290px', height: '580px', background: 'radial-gradient(circle, rgba(0, 230, 153, 0.22) 0%, transparent 70%)', filter: 'blur(45px)', opacity: 0.7 }} />
 
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -280,7 +279,7 @@ const CaseStudyAurora = () => {
                     transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                     style={{
                       position: 'relative',
-                      maxWidth: '310px',
+                      maxWidth: '315px',
                       width: '100%',
                       borderRadius: '44px',
                       padding: '12px',
@@ -291,16 +290,15 @@ const CaseStudyAurora = () => {
                     }}
                     onClick={() => setIsZoomed(true)}
                   >
-                    {/* Device Screen Frame */}
+                    {/* Device Inner Display */}
                     <div style={{ borderRadius: '34px', overflow: 'hidden', position: 'relative', background: '#000', aspectRatio: '9/19.5' }}>
-                      
                       <img 
                         src={currentScreen.img} 
                         alt={currentScreen.title}
                         style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
                       />
 
-                      {/* Zoom Indicator */}
+                      {/* Lightbox Zoom Badge */}
                       <div style={{ position: 'absolute', bottom: '16px', right: '16px', background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(10px)', borderRadius: '50%', padding: '10px', color: '#00E699', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(0, 230, 153, 0.3)' }}>
                         <Maximize2 size={16} />
                       </div>
@@ -345,10 +343,10 @@ const CaseStudyAurora = () => {
                     ))}
                   </div>
 
-                  {/* Highlights List */}
+                  {/* Key Highlights */}
                   <div style={{ background: 'rgba(0, 230, 153, 0.03)', borderRadius: '20px', border: '1px solid rgba(0, 230, 153, 0.15)', padding: '1.5rem' }}>
                     <h4 style={{ fontSize: '0.85rem', color: '#00E699', margin: '0 0 1rem 0', fontWeight: 800, letterSpacing: '0.05em' }}>
-                      KEY DESIGN HIGHLIGHTS
+                      KEY DESIGN DECISIONS & INTERACTION HEURISTICS
                     </h4>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                       {currentScreen.highlights.map((h, idx) => (
@@ -366,109 +364,97 @@ const CaseStudyAurora = () => {
             </div>
           </section>
 
-          {/* Section 2: Live Interactive Allowance & Risk Control Simulator */}
+          {/* Section 2: Live Interactive Approval Queue Sandbox */}
           <section style={{ marginBottom: '6rem' }}>
             <div style={{ marginBottom: '2.5rem' }}>
-              <span style={{ color: '#00E699', fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.15em' }}>02 / LIVE INTERACTIVE WIDGET</span>
+              <span style={{ color: '#00E699', fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.15em' }}>02 / INTERACTIVE APPROVAL ENGINE</span>
               <TextReveal as="h2" mode="word" style={{ fontSize: '2.4rem', fontWeight: 800, color: '#fff', marginTop: '0.25rem' }}>
-                Allowance Guardrail Simulator
+                UPI Circle Real-time Request Sandbox
               </TextReveal>
               <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '1rem', margin: '0.5rem 0 0 0' }}>
-                Adjust Rohan's member limits and test live transaction authorization rules in real-time.
+                Simulate how parent owners receive and review live teen spending approval requests on the Streling Family Circle.
               </p>
             </div>
 
             <div style={{ background: '#0B0F17', borderRadius: '32px', border: '1px solid rgba(0, 230, 153, 0.25)', padding: '3rem', display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '3.5rem', alignItems: 'center' }}>
               
-              {/* Controls Column */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+              {/* Request Details Column */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 
-                {/* Rohan Profile Header */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#111622', padding: '1.25rem 1.5rem', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.08)' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'linear-gradient(135deg, #00E699 0%, #06B6D4 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, color: '#000', fontSize: '1.2rem' }}>
-                      RN
-                    </div>
-                    <div>
-                      <h4 style={{ margin: 0, color: '#fff', fontSize: '1.1rem', fontWeight: 700 }}>Rohan (Teen Member)</h4>
-                      <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.45)' }}>+91 98765 ****3 • Age 16</span>
-                    </div>
-                  </div>
-                  <span style={{ background: 'rgba(0, 230, 153, 0.15)', color: '#00E699', padding: '0.4rem 0.85rem', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 800, border: '1px solid rgba(0, 230, 153, 0.3)' }}>
-                    MEMBER ROLE
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                  <span style={{ background: 'rgba(245, 158, 11, 0.15)', color: '#F59E0B', padding: '0.35rem 0.85rem', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 800, border: '1px solid rgba(245, 158, 11, 0.3)' }}>
+                    ACTION REQUIRED
                   </span>
+                  <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.85rem' }}>Daily Cap Exceeded Warning</span>
                 </div>
 
-                {/* Slider: Monthly Limit */}
-                <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.6rem' }}>
-                    <label style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 700 }}>Monthly Allowance Cap</label>
-                    <span style={{ color: '#00E699', fontWeight: 800, fontSize: '1.1rem' }}>₹{monthlyLimit.toLocaleString()}</span>
-                  </div>
-                  <input 
-                    type="range" 
-                    min="1000" 
-                    max="10000" 
-                    step="500" 
-                    value={monthlyLimit} 
-                    onChange={(e) => setMonthlyLimit(Number(e.target.value))}
-                    style={{ width: '100%', accentColor: '#00E699', height: '6px', cursor: 'pointer' }}
-                  />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', color: 'rgba(255,255,255,0.3)', fontSize: '0.75rem', marginTop: '0.4rem' }}>
-                    <span>₹1,000</span>
-                    <span>₹5,000</span>
-                    <span>₹10,000</span>
-                  </div>
-                </div>
-
-                {/* Slider: Daily Limit */}
-                <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.6rem' }}>
-                    <label style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 700 }}>Daily Transaction Cap</label>
-                    <span style={{ color: '#00E699', fontWeight: 800, fontSize: '1.1rem' }}>₹{dailyLimit.toLocaleString()}</span>
-                  </div>
-                  <input 
-                    type="range" 
-                    min="100" 
-                    max="2000" 
-                    step="100" 
-                    value={dailyLimit} 
-                    onChange={(e) => setDailyLimit(Number(e.target.value))}
-                    style={{ width: '100%', accentColor: '#00E699', height: '6px', cursor: 'pointer' }}
-                  />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', color: 'rgba(255,255,255,0.3)', fontSize: '0.75rem', marginTop: '0.4rem' }}>
-                    <span>₹100</span>
-                    <span>₹800</span>
-                    <span>₹2,000</span>
-                  </div>
-                </div>
-
-                {/* Security Toggles Grid */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', background: '#111622', padding: '1.5rem', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.06)' }}>
+                <div style={{ background: '#111622', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.08)', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                   
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div>
-                      <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 700 }}>Approval Required</div>
-                      <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.8rem' }}>For payments over ₹500</div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                      <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'linear-gradient(135deg, #00E699 0%, #06B6D4 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, color: '#000' }}>
+                        RN
+                      </div>
+                      <div>
+                        <h4 style={{ margin: 0, color: '#fff', fontSize: '1.1rem', fontWeight: 700 }}>Rohan (Member)</h4>
+                        <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.45)' }}>Decathlon • ₹1,200</span>
+                      </div>
                     </div>
-                    <button 
-                      onClick={() => setApprovalReq(!approvalReq)}
-                      style={{ background: approvalReq ? '#00E699' : 'rgba(255,255,255,0.1)', color: approvalReq ? '#000' : 'rgba(255,255,255,0.4)', padding: '0.4rem 1rem', borderRadius: '20px', border: 'none', fontWeight: 800, fontSize: '0.8rem', cursor: 'pointer' }}
-                    >
-                      {approvalReq ? 'ON' : 'OFF'}
-                    </button>
+
+                    <div style={{ textAlign: 'right' }}>
+                      <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#F59E0B' }}>₹1,200</div>
+                      <span style={{ fontSize: '0.75rem', color: '#EF4444', fontWeight: 600 }}>Exceeds ₹800 Daily Cap</span>
+                    </div>
                   </div>
 
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div>
-                      <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 700 }}>Block Gaming & Betting</div>
-                      <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.8rem' }}>MCC 7995 merchant restriction</div>
-                    </div>
-                    <button 
-                      onClick={() => setBlockGaming(!blockGaming)}
-                      style={{ background: blockGaming ? '#00E699' : 'rgba(255,255,255,0.1)', color: blockGaming ? '#000' : 'rgba(255,255,255,0.4)', padding: '0.4rem 1rem', borderRadius: '20px', border: 'none', fontWeight: 800, fontSize: '0.8rem', cursor: 'pointer' }}
+                  <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '14px', border: '1px solid rgba(255,255,255,0.05)', fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.5 }}>
+                    💡 <strong>Guardrail Triggered:</strong> Rohan's attempt to pay Decathlon for sport gear exceeds his assigned ₹800 daily allowance limit. Payment paused pending parent PIN verification.
+                  </div>
+
+                  {/* Interactive Action Buttons */}
+                  <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
+                    <button
+                      onClick={() => setRequestStatus('APPROVED')}
+                      style={{
+                        flex: 1,
+                        padding: '0.85rem',
+                        borderRadius: '14px',
+                        border: 'none',
+                        background: '#00E699',
+                        color: '#000',
+                        fontWeight: 800,
+                        fontSize: '0.9rem',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '0.5rem'
+                      }}
                     >
-                      {blockGaming ? 'ON' : 'OFF'}
+                      <Check size={18} />
+                      <span>Approve Request</span>
+                    </button>
+
+                    <button
+                      onClick={() => setRequestStatus('DECLINED')}
+                      style={{
+                        flex: 1,
+                        padding: '0.85rem',
+                        borderRadius: '14px',
+                        border: '1px solid rgba(239, 68, 68, 0.3)',
+                        background: 'rgba(239, 68, 68, 0.12)',
+                        color: '#EF4444',
+                        fontWeight: 800,
+                        fontSize: '0.9rem',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '0.5rem'
+                      }}
+                    >
+                      <X size={18} />
+                      <span>Decline Request</span>
                     </button>
                   </div>
 
@@ -476,71 +462,38 @@ const CaseStudyAurora = () => {
 
               </div>
 
-              {/* Live Simulation Sandbox Screen */}
-              <div style={{ background: '#05070A', borderRadius: '24px', padding: '2.25rem', border: '1px solid rgba(0, 230, 153, 0.3)', display: 'flex', flexDirection: 'column', gap: '1.5rem', boxShadow: '0 20px 50px rgba(0,0,0,0.8)' }}>
-                
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#00E699', fontWeight: 800, fontSize: '0.8rem', letterSpacing: '0.1em' }}>
-                    <Activity size={16} /> LIVE TRANSACTION TESTER
-                  </div>
-                  <span style={{ fontSize: '0.75rem', background: 'rgba(0, 230, 153, 0.1)', color: '#00E699', padding: '0.2rem 0.6rem', borderRadius: '10px' }}>SANDBOX</span>
+              {/* Live Status Result Display */}
+              <div style={{ background: '#05070A', borderRadius: '24px', padding: '2.25rem', border: '1px solid rgba(0, 230, 153, 0.3)', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyBetween: 'space-between', gap: '0.5rem', color: '#00E699', fontWeight: 800, fontSize: '0.8rem', letterSpacing: '0.1em' }}>
+                  <Activity size={16} /> NPCI DELEGATED UPI RESPONSE
                 </div>
 
-                {/* Test Inputs */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <div>
-                    <label style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', display: 'block', marginBottom: '0.4rem' }}>Select Test Merchant Category:</label>
-                    <div style={{ display: 'flex', gap: '0.5rem' }}>
-                      {['Shopping', 'Food', 'Gaming'].map(cat => (
-                        <button
-                          key={cat}
-                          onClick={() => setSimCategory(cat)}
-                          style={{
-                            flex: 1,
-                            padding: '0.6rem',
-                            borderRadius: '10px',
-                            border: simCategory === cat ? '1px solid #00E699' : '1px solid rgba(255,255,255,0.1)',
-                            background: simCategory === cat ? 'rgba(0, 230, 153, 0.15)' : '#111622',
-                            color: simCategory === cat ? '#00E699' : 'rgba(255,255,255,0.6)',
-                            fontWeight: 700,
-                            fontSize: '0.8rem',
-                            cursor: 'pointer'
-                          }}
-                        >
-                          {cat}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+                <div style={{ background: '#111622', padding: '1.75rem', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.08)', textAlign: 'center' }}>
+                  {requestStatus === 'PENDING' && (
+                    <>
+                      <Clock size={36} style={{ color: '#F59E0B', margin: '0 auto 1rem auto' }} />
+                      <h4 style={{ margin: '0 0 0.5rem 0', color: '#F59E0B', fontSize: '1.2rem' }}>Awaiting Parent Authorization</h4>
+                      <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', margin: 0 }}>Click Approve or Decline on the left to simulate live UPI Circle resolution.</p>
+                    </>
+                  )}
 
-                  <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', marginBottom: '0.4rem' }}>
-                      <span>Test Transaction Amount:</span>
-                      <span style={{ color: '#fff', fontWeight: 700 }}>₹{simTxnAmount}</span>
-                    </div>
-                    <input 
-                      type="range" 
-                      min="100" 
-                      max="3000" 
-                      step="50" 
-                      value={simTxnAmount}
-                      onChange={(e) => setSimTxnAmount(Number(e.target.value))}
-                      style={{ width: '100%', accentColor: '#00E699' }}
-                    />
-                  </div>
-                </div>
+                  {requestStatus === 'APPROVED' && (
+                    <>
+                      <CheckCircle2 size={36} style={{ color: '#00E699', margin: '0 auto 1rem auto' }} />
+                      <h4 style={{ margin: '0 0 0.5rem 0', color: '#00E699', fontSize: '1.2rem' }}>Transaction Authorized!</h4>
+                      <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', margin: '0 0 1rem 0' }}>₹1,200 dispatched to Decathlon via Streling Family Circle pool.</p>
+                      <button onClick={() => setRequestStatus('PENDING')} style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', border: 'none', padding: '0.4rem 1rem', borderRadius: '10px', fontSize: '0.78rem', cursor: 'pointer' }}>Reset Test</button>
+                    </>
+                  )}
 
-                {/* Simulation Output Card */}
-                <div style={{ background: '#111622', padding: '1.5rem', borderRadius: '16px', border: `1px solid ${simResult.color}50` }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
-                    <span style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', fontWeight: 700 }}>Gateway Decision</span>
-                    <span style={{ background: `${simResult.color}20`, color: simResult.color, padding: '0.25rem 0.65rem', borderRadius: '10px', fontSize: '0.75rem', fontWeight: 900 }}>
-                      {simResult.status}
-                    </span>
-                  </div>
-                  <p style={{ color: '#fff', fontSize: '0.9rem', margin: 0, fontWeight: 600, lineHeight: 1.4 }}>
-                    {simResult.reason}
-                  </p>
+                  {requestStatus === 'DECLINED' && (
+                    <>
+                      <X size={36} style={{ color: '#EF4444', margin: '0 auto 1rem auto' }} />
+                      <h4 style={{ margin: '0 0 0.5rem 0', color: '#EF4444', fontSize: '1.2rem' }}>Request Declined</h4>
+                      <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', margin: '0 0 1rem 0' }}>Transaction rejected. Rohan notified on mobile device.</p>
+                      <button onClick={() => setRequestStatus('PENDING')} style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', border: 'none', padding: '0.4rem 1rem', borderRadius: '10px', fontSize: '0.78rem', cursor: 'pointer' }}>Reset Test</button>
+                    </>
+                  )}
                 </div>
 
               </div>
@@ -548,10 +501,72 @@ const CaseStudyAurora = () => {
             </div>
           </section>
 
-          {/* Section 3: Design System & Color Tokens */}
+          {/* Section 3: Information Architecture & Persona Matrix */}
           <section style={{ marginBottom: '6rem' }}>
             <div style={{ marginBottom: '2.5rem' }}>
-              <span style={{ color: '#00E699', fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.15em' }}>03 / DESIGN SYSTEM</span>
+              <span style={{ color: '#00E699', fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.15em' }}>03 / USER PERSONAS & ROLE SCHEMAS</span>
+              <TextReveal as="h2" mode="word" style={{ fontSize: '2.4rem', fontWeight: 800, color: '#fff', marginTop: '0.25rem' }}>
+                Role Hierarchy & Permission Model
+              </TextReveal>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+              
+              {/* Owner Role Card */}
+              <div style={{ background: '#111622', padding: '2rem', borderRadius: '24px', border: '1px solid rgba(0, 230, 153, 0.25)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
+                  <div style={{ width: '40px', height: '40px', borderRadius: '12px', background: 'rgba(0, 230, 153, 0.15)', color: '#00E699', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Shield size={20} />
+                  </div>
+                  <div>
+                    <h3 style={{ margin: 0, color: '#fff', fontSize: '1.2rem' }}>Circle Owner</h3>
+                    <span style={{ fontSize: '0.75rem', color: '#00E699', fontWeight: 700 }}>PRIMARY PARENT / GUARDIAN</span>
+                  </div>
+                </div>
+                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', lineHeight: 1.6, margin: 0 }}>
+                  Controls global circle budget (e.g. ₹25,000), approves request queues exceeding daily caps, sets merchant category blocks, and invites secondary admins or members.
+                </p>
+              </div>
+
+              {/* Admin Role Card */}
+              <div style={{ background: '#111622', padding: '2rem', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.07)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
+                  <div style={{ width: '40px', height: '40px', borderRadius: '12px', background: 'rgba(6, 182, 212, 0.15)', color: '#06B6D4', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Users size={20} />
+                  </div>
+                  <div>
+                    <h3 style={{ margin: 0, color: '#fff', fontSize: '1.2rem' }}>Circle Admin</h3>
+                    <span style={{ fontSize: '0.75rem', color: '#06B6D4', fontWeight: 700 }}>SPOUSE / SECONDARY PARENT</span>
+                  </div>
+                </div>
+                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', lineHeight: 1.6, margin: 0 }}>
+                  Assigned sub-limits (e.g. Meera ₹4,500 of ₹10,000), views live telemetry feed, and holds authorization rights over member requests when Owner is offline.
+                </p>
+              </div>
+
+              {/* Member Role Card */}
+              <div style={{ background: '#111622', padding: '2rem', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.07)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
+                  <div style={{ width: '40px', height: '40px', borderRadius: '12px', background: 'rgba(245, 158, 11, 0.15)', color: '#F59E0B', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Smartphone size={20} />
+                  </div>
+                  <div>
+                    <h3 style={{ margin: 0, color: '#fff', fontSize: '1.2rem' }}>Circle Member</h3>
+                    <span style={{ fontSize: '0.75rem', color: '#F59E0B', fontWeight: 700 }}>TEENAGER / DEPENDENT</span>
+                  </div>
+                </div>
+                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', lineHeight: 1.6, margin: 0 }}>
+                  Delegated digital spending allowance (e.g. Rohan ₹5,000 monthly / ₹800 daily), subject to merchant restrictions (gaming/betting lock) and night curfews.
+                </p>
+              </div>
+
+            </div>
+          </section>
+
+          {/* Section 4: Design Tokens & Palette */}
+          <section style={{ marginBottom: '6rem' }}>
+            <div style={{ marginBottom: '2.5rem' }}>
+              <span style={{ color: '#00E699', fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.15em' }}>04 / DESIGN SYSTEM</span>
               <TextReveal as="h2" mode="word" style={{ fontSize: '2.4rem', fontWeight: 800, color: '#fff', marginTop: '0.25rem' }}>
                 Color Tokens & Design Language
               </TextReveal>
@@ -574,7 +589,7 @@ const CaseStudyAurora = () => {
             </div>
           </section>
 
-          {/* Section 4: Specification Documentation Hub */}
+          {/* Section 5: Specification PDF Hub */}
           <section style={{ background: 'linear-gradient(135deg, rgba(0, 230, 153, 0.12) 0%, rgba(17, 22, 34, 0.95) 100%)', borderRadius: '32px', border: '1px solid rgba(0, 230, 153, 0.3)', padding: '4rem 3rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '2rem' }}>
               <div>
@@ -618,7 +633,7 @@ const CaseStudyAurora = () => {
         </div>
       </main>
 
-      {/* Fullscreen Zoom Modal */}
+      {/* Fullscreen Lightbox Modal */}
       {isZoomed && (
         <div 
           onClick={() => setIsZoomed(false)}
