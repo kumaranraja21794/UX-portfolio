@@ -14,6 +14,7 @@ import ProgressBar from './components/ProgressBar';
 import Background from './components/Background';
 import CaseStudyAlpha from './components/CaseStudyAlpha';
 import CaseStudyBitwise from './components/CaseStudyBitwise';
+import CaseStudyAurora from './components/CaseStudyAurora';
 import SplashScreen from './components/SplashScreen';
 import MarqueeStrip from './components/MarqueeStrip';
 
@@ -119,6 +120,7 @@ function App() {
             } />
             <Route path="/case-study/alpha-arena" element={<CaseStudyAlpha />} />
             <Route path="/case-study/bitwise" element={<CaseStudyBitwise />} />
+            <Route path="/case-study/aurora-fintech" element={<CaseStudyAurora />} />
           </Routes>
         </main>
         <footer className="site-footer">

@@ -7,6 +7,16 @@ import TextReveal from './TextReveal';
 
 const projects = [
   {
+    title: "Aurora Fintech App",
+    img: "aurora/home_screen.png",
+    role: "Lead UX/UI Designer",
+    outcome: "40% Unplanned Spend Reduction",
+    desc: "A dark-emerald mobile fintech & family spending platform powered by UPI Circle — features live balance telemetry, smart member allowance limits, and category risk guardrails.",
+    tags: ["Fintech UX", "UPI Circle", "Family Allowance", "Mobile App"],
+    link: "/case-study/aurora-fintech",
+    accentColor: "#00E699",
+  },
+  {
     title: "KC Chinnadurai Silk Emporium",
     img: "silk_emporium.png",
     role: "UX/UI Designer",
