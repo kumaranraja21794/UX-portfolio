@@ -56,10 +56,30 @@ body:has(.sp-page) { background-color: var(--sp-paper); }
   overflow-x: clip;
   position: relative;
 }
-.sp-page img { max-width: 100%; display: block; }
-.sp-page a { color: inherit; text-decoration: none; }
-.sp-page button { font: inherit; color: inherit; border: none; background: none; cursor: pointer; }
+/* :where() keeps these at (0,1,0) so single-class component rules
+   like .sp-btn-solid still set their own colour. */
+.sp-page :where(img) { max-width: 100%; display: block; }
+.sp-page :where(a) { color: inherit; text-decoration: none; }
+.sp-page :where(button) { font: inherit; color: inherit; border: none; background: none; cursor: pointer; }
 .sp-page :focus-visible { outline: 2px solid var(--sp-indigo); outline-offset: 3px; border-radius: 4px; }
+
+/* The legacy index.css styles bare elements globally — notably
+   `header { position: fixed }` and `section { padding: 10rem 0 }`.
+   Those reach into this markup and pull the hero out of flow, so
+   neutralise them. Specificity is deliberate: `.sp-page :where(el)`
+   is (0,1,0) — above the bare element selector it has to beat, and
+   level with the .sp-* rules below, which win on source order since
+   they come later in this file. */
+.sp-page :where(header) {
+  position: static; top: auto; left: auto; width: auto;
+  padding: 0; background: none; backdrop-filter: none;
+  border-bottom: none; z-index: auto;
+}
+.sp-page :where(section) { padding: 0; }
+.sp-page :where(footer) {
+  text-align: left; padding: 0; color: inherit;
+  font-size: inherit; border-top: none;
+}
 
 .sp-shell { max-width: var(--sp-shell); margin: 0 auto; padding-inline: var(--sp-pad); }
 
@@ -124,17 +144,20 @@ body:has(.sp-page) { background-color: var(--sp-paper); }
 }
 .sp-nav-cta:hover { transform: translateY(-2px); }
 .sp-nav-cta .sp-pip { width: 7px; height: 7px; border-radius: 50%; background: var(--sp-lime); }
-.sp-nav-burger { display: none; padding: 8px; }
+.sp-cta-short { display: none; }
 @media (max-width: 920px) {
   .sp-nav-links { display: none; }
-  .sp-nav-cta span:not(.sp-pip) { display: none; }
-  .sp-nav-cta { padding: 10px 14px; }
+  .sp-cta-long { display: none; }
+  .sp-cta-short { display: inline; }
+  .sp-nav-cta { padding: 10px 16px; }
 }
 
 /* =========================================================
    Hero
    ========================================================= */
-.sp-hero { padding: clamp(40px, 5.5vw, 74px) 0 clamp(50px, 6vw, 88px); }
+/* padding-block, not the shorthand — these elements also carry
+   .sp-shell, whose padding-inline the shorthand would wipe out. */
+.sp-hero { padding-block: clamp(40px, 5.5vw, 74px) clamp(50px, 6vw, 88px); }
 
 .sp-eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
@@ -298,6 +321,16 @@ body:has(.sp-page) { background-color: var(--sp-paper); }
   .sp-hero-type { grid-column: 1 / -1; }
   .sp-hero-panel { grid-column: 1 / -1; grid-row: 2; margin-top: 56px; max-width: 420px; }
 }
+/* Wrapped stats left a divider dangling at the row end — swap the
+   rules for a grid once there isn't room for one row. */
+@media (max-width: 620px) {
+  .sp-stats { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 14px; }
+  .sp-stat { padding: 18px 0 0; margin: 0; border-right: none; }
+  .sp-stat-l { letter-spacing: 0.08em; }
+  /* the badge's negative offset runs past the viewport once the
+     panel is full-width — pull it back inside */
+  .sp-face { left: -8px; top: -20px; width: 76px; height: 76px; border-width: 4px; }
+}
 
 /* =========================================================
    Ticker
@@ -325,7 +358,7 @@ body:has(.sp-page) { background-color: var(--sp-paper); }
 /* =========================================================
    Section scaffolding
    ========================================================= */
-.sp-sec { padding: clamp(56px, 7vw, 104px) 0; }
+.sp-sec { padding-block: clamp(56px, 7vw, 104px); }
 .sp-sec-head {
   display: flex; align-items: flex-end; justify-content: space-between;
   gap: 28px; margin-bottom: clamp(30px, 3.6vw, 52px); flex-wrap: wrap;
@@ -543,6 +576,20 @@ body:has(.sp-page) { background-color: var(--sp-paper); }
   align-items: center; justify-content: space-between;
   padding: 30px 0 44px; font-family: var(--sp-mono); font-size: 10.5px;
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--sp-ink-soft);
+}
+
+/* =========================================================
+   Legacy case-study fix
+   Each case study has an in-flow <header>, but index.css styles
+   bare `header` as position:fixed with a translucent light fill and
+   a 20px backdrop-blur. That pinned a washed bar across the dark
+   page. Pre-existing bug; scoped out here rather than touching the
+   5.8k-line legacy sheet.
+   ========================================================= */
+.case-study-page :where(header) {
+  position: static; top: auto; left: auto; width: auto;
+  padding: 0; background: none; backdrop-filter: none;
+  border-bottom: none; z-index: auto;
 }
 
 /* =========================================================

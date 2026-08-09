@@ -23,7 +23,8 @@ export const SpHeader = () => (
 
       <a className="sp-nav-cta" href="#contact">
         <span className="sp-pip" aria-hidden="true" />
-        <span>Available for work</span>
+        <span className="sp-cta-long">Available for work</span>
+        <span className="sp-cta-short">Hire me</span>
       </a>
     </div>
   </nav>

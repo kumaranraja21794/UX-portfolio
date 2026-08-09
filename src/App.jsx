@@ -11,7 +11,8 @@ import CaseStudyAlpha from './components/CaseStudyAlpha';
 import CaseStudyBitwise from './components/CaseStudyBitwise';
 import CaseStudyAurora from './components/CaseStudyAurora';
 import SpHome from './spectra/SpHome';
-import SpSplash, { shouldSkipSplash } from './spectra/SpSplash';
+import SpSplash from './spectra/SpSplash';
+import { shouldSkipSplash } from './spectra/splashPreference';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
