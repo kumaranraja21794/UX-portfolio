@@ -387,30 +387,74 @@ body:has(.sp-page) { background-color: var(--sp-paper); }
 }
 
 /* =========================================================
-   Work — staggered irregular grid
+   Work — two featured rows, then an even 3-up index
+
+   The earlier version staggered every card with margin offsets and
+   align-items:start. Because card heights vary, that left ragged
+   holes and gave the eye no alignment to hold on to. Hierarchy now
+   comes from size (featured vs index), not from misalignment.
    ========================================================= */
-.sp-work-grid {
-  display: grid; grid-template-columns: repeat(12, 1fr);
+
+/* ---- featured: full-width split rows ---- */
+.sp-featured {
+  display: flex; flex-direction: column;
   gap: clamp(18px, 2.2vw, 30px);
-  align-items: start;   /* keeps the stagger — stretch would flatten it */
+  margin-bottom: clamp(18px, 2.2vw, 30px);
+}
+.sp-feat {
+  position: relative; display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  border-radius: 26px; overflow: hidden;
+  background: var(--sp-card); border: 1px solid var(--sp-line);
+  transition: transform 0.5s var(--sp-ease), box-shadow 0.5s var(--sp-ease);
+}
+.sp-feat:hover { transform: translateY(-6px); box-shadow: 0 36px 74px -30px rgba(14, 15, 19, 0.32); }
+.sp-feat-visual { position: relative; overflow: hidden; min-height: 400px; grid-column: 1; grid-row: 1; }
+.sp-feat-body {
+  grid-column: 2; grid-row: 1;
+  padding: clamp(26px, 3vw, 44px);
+  display: flex; flex-direction: column; gap: 14px; justify-content: center;
+}
+/* alternate which side the image sits on so the pair reads as a spread */
+.sp-feat--flip .sp-feat-visual { grid-column: 2; }
+.sp-feat--flip .sp-feat-body { grid-column: 1; }
+
+.sp-feat-title {
+  font-family: var(--sp-display); font-size: clamp(28px, 3.4vw, 46px);
+  font-weight: 700; letter-spacing: -0.04em; line-height: 1; margin: 0;
+}
+.sp-feat-desc { font-size: 15px; line-height: 1.7; color: var(--sp-ink-soft); margin: 0; }
+.sp-feat-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.sp-feat-tag {
+  font-family: var(--sp-mono); font-size: 10px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--sp-ink-soft);
+  border: 1px solid var(--sp-line); border-radius: 999px; padding: 6px 12px;
+}
+
+/* ---- index: even 3-up ---- */
+.sp-work-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(18px, 2.2vw, 30px);
+  align-items: stretch;   /* equal heights — no ragged holes */
 }
 .sp-card {
   position: relative; border-radius: 24px; overflow: hidden;
   background: var(--sp-card); border: 1px solid var(--sp-line);
-  display: flex; flex-direction: column;
+  display: flex; flex-direction: column; height: 100%;
   transition: transform 0.5s var(--sp-ease), box-shadow 0.5s var(--sp-ease);
 }
 .sp-card:hover { transform: translateY(-8px); box-shadow: 0 34px 70px -28px rgba(14, 15, 19, 0.34); }
 
-/* 4-item rhythm: wide / narrow / narrow / wide, offset on 2 and 4 */
-.sp-card:nth-child(4n + 1) { grid-column: 1 / 8; }
-.sp-card:nth-child(4n + 2) { grid-column: 8 / 13; margin-top: clamp(26px, 4.5vw, 64px); }
-.sp-card:nth-child(4n + 3) { grid-column: 1 / 6; }
-.sp-card:nth-child(4n + 4) { grid-column: 6 / 13; margin-top: clamp(16px, 2.6vw, 40px); }
-
-.sp-card-visual { position: relative; overflow: hidden; margin: 13px 13px 0; border-radius: 15px; }
-.sp-card--fill  .sp-card-visual { aspect-ratio: 16 / 10.2; }
-.sp-card--phone .sp-card-visual { aspect-ratio: 1 / 1.10; }
+/* one frame for every product shot, whatever its native aspect —
+   this is what makes the lifestyle mockups and the phone screens
+   read as a single system.
+   Index cards only: the featured visual stretches to its row instead.
+   aspect-ratio plus a taller min-height inflates the box's WIDTH,
+   which overflowed the column and covered the body copy. */
+.sp-card-visual {
+  position: relative; overflow: hidden; margin: 13px 13px 0;
+  border-radius: 15px; aspect-ratio: 16 / 10.2;
+}
 .sp-card-wash { position: absolute; inset: 0; }
 .sp-fill-img {
   position: relative; width: 100%; height: 100%;
@@ -418,13 +462,18 @@ body:has(.sp-page) { background-color: var(--sp-paper); }
   transition: transform 0.7s var(--sp-ease);
 }
 .sp-card:hover .sp-fill-img { transform: scale(1.045); }
+/* Size the device by HEIGHT, not width. These frames are wider than
+   they are tall, so a width-based phone overflows and gets cropped
+   top and bottom — it stops reading as a device at all. */
 .sp-phone {
-  position: absolute; left: 50%; bottom: -9%; transform: translateX(-50%);
-  width: 47%; border-radius: 15px;
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  height: 88%; width: auto; max-width: none; border-radius: 14px;
   box-shadow: 0 24px 50px -14px rgba(14, 15, 19, 0.55), 0 0 0 4px rgba(11, 13, 16, 0.85);
   transition: transform 0.7s var(--sp-ease);
 }
-.sp-card:hover .sp-phone { transform: translateX(-50%) translateY(-10px); }
+.sp-card:hover .sp-phone,
+.sp-feat:hover .sp-phone { transform: translate(-50%, calc(-50% - 9px)); }
 
 .sp-card-body {
   padding: 20px 20px 24px; display: flex; flex-direction: column;
@@ -440,7 +489,12 @@ body:has(.sp-page) { background-color: var(--sp-paper); }
   font-family: var(--sp-display); font-size: clamp(21px, 2.3vw, 30px); font-weight: 700;
   letter-spacing: -0.035em; line-height: 1.03; margin: 0;
 }
-.sp-card-desc { font-size: 14px; line-height: 1.68; color: var(--sp-ink-soft); margin: 0; }
+/* clamp so uneven copy lengths don't stretch one card past its row */
+.sp-card-desc {
+  font-size: 14px; line-height: 1.68; color: var(--sp-ink-soft); margin: 0;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3;
+  overflow: hidden;
+}
 .sp-card-foot {
   display: flex; align-items: center; justify-content: space-between; gap: 14px;
   margin-top: auto; padding-top: 15px; border-top: 1px solid var(--sp-line);
@@ -456,16 +510,19 @@ body:has(.sp-page) { background-color: var(--sp-paper); }
 .sp-card-link { position: absolute; inset: 0; z-index: 2; }
 
 @media (max-width: 1100px) {
-  .sp-card:nth-child(4n + 1),
-  .sp-card:nth-child(4n + 2),
-  .sp-card:nth-child(4n + 3),
-  .sp-card:nth-child(4n + 4) { grid-column: span 6; margin-top: 0; }
+  .sp-work-grid { grid-template-columns: repeat(2, 1fr); }
 }
-@media (max-width: 780px) {
-  .sp-card:nth-child(4n + 1),
-  .sp-card:nth-child(4n + 2),
-  .sp-card:nth-child(4n + 3),
-  .sp-card:nth-child(4n + 4) { grid-column: 1 / -1; }
+@media (max-width: 860px) {
+  /* stack the featured split; keep the image first in both */
+  .sp-feat,
+  .sp-feat--flip { grid-template-columns: 1fr; }
+  .sp-feat-visual,
+  .sp-feat--flip .sp-feat-visual { grid-column: 1; grid-row: 1; min-height: 0; aspect-ratio: 16 / 10.2; }
+  .sp-feat-body,
+  .sp-feat--flip .sp-feat-body { grid-column: 1; grid-row: 2; }
+}
+@media (max-width: 640px) {
+  .sp-work-grid { grid-template-columns: 1fr; }
 }
 
 /* =========================================================
