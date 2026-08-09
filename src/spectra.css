@@ -75,7 +75,11 @@ body:has(.sp-page) { background-color: var(--sp-paper); }
   padding: 0; background: none; backdrop-filter: none;
   border-bottom: none; z-index: auto;
 }
-.sp-page :where(section) { padding: 0; }
+/* Homepage only. Case studies inherit the legacy `section { padding:
+   10rem 0 }` for their vertical rhythm — zeroing it collapses them
+   into each other. :where() keeps this at (0,1,0) so .sp-sec, defined
+   later, still wins on the homepage. */
+.sp-page:where(:not(.sp-case)) :where(section) { padding: 0; }
 .sp-page :where(footer) {
   text-align: left; padding: 0; color: inherit;
   font-size: inherit; border-top: none;

@@ -1,0 +1,182 @@
+/* =========================================================
+   SPECTRA — case-study retheme
+   Maps the legacy dark case-study surfaces onto the Spectra
+   light palette. Colour/border only: layout, spacing and grid
+   rules in index.css are left untouched on purpose.
+   Loaded after index.css so these win on equal specificity.
+   ========================================================= */
+
+/* Per-page accent. The wrappers set --accent-primary inline to a
+   bright fill colour that fails contrast as text on paper, so each
+   page gets a darkened text variant alongside the original fill. */
+.case-study-page {
+  --cs-accent: #0B8F6B;
+  --cs-accent-fill: #10B981;
+  --cs-ink: var(--sp-ink, #0E0F13);
+  --cs-soft: var(--sp-ink-soft, #63666F);
+  --cs-line: rgba(14, 15, 19, 0.10);
+  --cs-paper: var(--sp-paper, #F2F3EC);
+  --cs-card: #FFFFFF;
+
+  background: var(--cs-paper) !important;
+  color: var(--cs-ink) !important;
+  font-family: var(--sp-body, 'Manrope', sans-serif);
+}
+.aurora-study-page  { --cs-accent: #0B8F6B; --cs-accent-fill: #00E699; }
+.bitwise-study-page { --cs-accent: #0B8F6B; --cs-accent-fill: #10B981; }
+.alpha-study-page   { --cs-accent: #3A1FD6; --cs-accent-fill: #8B5CF6; }
+
+/* ---- headings / body ---- */
+.case-study-page h1,
+.case-study-page h2,
+.case-study-page h3,
+.case-study-page h4 { font-family: var(--sp-display, 'Bricolage Grotesque', sans-serif); color: var(--cs-ink); }
+.case-study-page .cs-hero h1 { color: var(--cs-ink); }
+.case-study-page .cs-hero h1 span { color: var(--cs-soft); }
+.case-study-page .cs-content h2 { color: var(--cs-ink); }
+.case-study-page .cs-content p,
+.case-study-page .cs-lead,
+.case-study-page .cs-quote { color: var(--cs-soft); }
+
+/* ---- hero ---- */
+.case-study-page .cs-hero { background: var(--cs-paper); }
+.case-study-page .cs-hero::before,
+.bitwise-study-page .cs-hero::before { opacity: 0.5; }
+.case-study-page .cs-watermark { color: rgba(14, 15, 19, 0.05); }
+.case-study-page .back-link { color: var(--cs-soft); }
+.case-study-page .back-link:hover { color: var(--cs-ink); }
+
+.case-study-page .cs-tag { color: var(--cs-accent); }
+.case-study-page .cs-tag::before { background: var(--cs-accent-fill); }
+
+/* ---- meta strip ---- */
+.case-study-page .cs-meta-strip {
+  background: var(--cs-card);
+  border: 1px solid var(--cs-line);
+}
+.case-study-page .cs-meta-strip-divider { background: var(--cs-line); }
+.case-study-page .cs-meta-info label,
+.case-study-page .cs-meta-strip-item label { color: var(--cs-soft); }
+.case-study-page .cs-meta-info span,
+.case-study-page .cs-meta-strip-item span { color: var(--cs-ink); }
+
+.case-study-page .cs-figma-btn {
+  background: var(--cs-ink);
+  color: var(--cs-paper);
+  border: 1px solid var(--cs-ink);
+}
+.case-study-page .cs-figma-btn:hover {
+  background: transparent;
+  color: var(--cs-ink);
+}
+
+/* ---- sections ---- */
+.case-study-page .cs-section { background: var(--cs-paper); }
+.case-study-page .cs-section.bg-light { background: var(--cs-paper); }
+/* the old "dark" bands become raised white panels so the rhythm survives */
+.case-study-page .cs-section.bg-dark,
+.case-study-page .cs-section-compact-dark {
+  background: var(--cs-card);
+  border-block: 1px solid var(--cs-line);
+}
+.case-study-page .cs-section.bg-dark .cs-content p,
+.case-study-page .cs-section.bg-dark .process-info p { color: var(--cs-soft); }
+.case-study-page .cs-label { color: var(--cs-accent); }
+
+/* ---- cards ---- */
+.case-study-page .cs-impact-card,
+.case-study-page .cs-solution-card,
+.case-study-page .cs-process-card,
+.case-study-page .cs-learning-card,
+.case-study-page .cs-compact-card {
+  background: var(--cs-card);
+  border: 1px solid var(--cs-line);
+  color: var(--cs-ink);
+}
+.case-study-page .cs-impact-card:hover {
+  border-color: rgba(14, 15, 19, 0.22);
+  box-shadow: 0 24px 50px -26px rgba(14, 15, 19, 0.3);
+}
+.case-study-page .cs-impact-card .impact-metric-number { color: var(--cs-accent); }
+.case-study-page .cs-impact-card .impact-metric-content h4 { color: var(--cs-ink); }
+.case-study-page .cs-impact-card .impact-metric-content p,
+.case-study-page .cs-compact-card p,
+.case-study-page .cs-learning-card p,
+.case-study-page .cs-mini-list li { color: var(--cs-soft); }
+.case-study-page .cs-learning-card h4,
+.case-study-page .cs-solution-head h3 { color: var(--cs-ink); }
+.case-study-page .cs-compact-eyebrow,
+.case-study-page .cs-process-number { color: var(--cs-accent); }
+.case-study-page .cs-learning-stripe { background: linear-gradient(180deg, var(--sp-lime, #C8F03C), var(--sp-coral, #FF4D7D)); }
+.case-study-page .cs-solution-icon {
+  background: rgba(14, 15, 19, 0.05);
+  border: 1px solid var(--cs-line);
+  color: var(--cs-accent);
+}
+
+/* ---- validation rows ---- */
+.case-study-page .cs-validation-row { border-color: var(--cs-line); }
+.case-study-page .cs-validation-row::before { background: var(--cs-accent-fill); }
+.case-study-page .cs-validation-row:hover { background: rgba(14, 15, 19, 0.03); }
+.case-study-page .cs-validation-copy h4,
+.case-study-page .cs-validation-inline h3 { color: var(--cs-ink); }
+.case-study-page .cs-validation-copy p,
+.case-study-page .cs-validation-row p,
+.case-study-page .cs-validation-inline > div > p { color: var(--cs-soft); }
+.case-study-page .cs-validation-icon-col { color: var(--cs-accent); }
+
+/* ---- comparison table ---- */
+.case-study-page .comparison-table th {
+  background: rgba(14, 15, 19, 0.04);
+  color: var(--cs-ink);
+  border-color: var(--cs-line);
+}
+.case-study-page .comparison-table td {
+  color: var(--cs-soft);
+  border-color: var(--cs-line);
+}
+
+/* ---- before/after slider ---- */
+.case-study-page .before-after-slider { border: 1px solid var(--cs-line); }
+.case-study-page .slider-handle { background: var(--cs-ink); }
+.case-study-page .handle-circle {
+  background: var(--cs-ink);
+  border-color: var(--cs-paper);
+  color: var(--cs-paper);
+}
+
+/* ---- closing CTA — reuse the homepage gradient ---- */
+.case-study-page .cs-closing {
+  background:
+    radial-gradient(90% 130% at 6% 4%, rgba(200, 240, 60, 0.95), transparent 50%),
+    radial-gradient(80% 110% at 94% 92%, rgba(255, 77, 125, 0.9), transparent 54%),
+    linear-gradient(135deg, #190F42 0%, #3A1FD6 100%);
+  color: #fff;
+  border: none;
+}
+.case-study-page .cs-closing h2,
+.case-study-page .cs-closing h3 { color: #fff; }
+.case-study-page .cs-closing p { color: rgba(255, 255, 255, 0.86); }
+
+/* ---- case-study chrome ---- */
+.sp-case-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--sp-mono, monospace); font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--sp-ink-soft, #63666F);
+  border: 1px solid rgba(14, 15, 19, 0.10); border-radius: 999px;
+  padding: 9px 16px; background: #fff;
+  transition: color 0.25s, border-color 0.25s;
+}
+.sp-case-back:hover { color: var(--sp-ink, #0E0F13); border-color: rgba(14, 15, 19, 0.28); }
+/* the page paints its own ground; don't double up the shell padding */
+.sp-case > main { display: block; }
+/* the nav already offers "All work" — drop the in-page duplicate */
+.sp-case .back-link { display: none; }
+
+/* ---- imagery ---- */
+.case-study-page .cs-main-visual img,
+.case-study-page .cs-overlap-gallery img {
+  border: 1px solid var(--cs-line);
+  box-shadow: 0 30px 70px -30px rgba(14, 15, 19, 0.4);
+}

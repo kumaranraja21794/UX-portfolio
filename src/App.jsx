@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import './designova.css';
 import './spectra.css';
+import './spectra-case.css';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
 import Lenis from '@studio-freight/lenis';
-import Header from './components/Header';
-import ProgressBar from './components/ProgressBar';
-import Background from './components/Background';
+import SpChrome from './spectra/SpChrome';
+import SpCaseNav, { SpCaseFooter } from './spectra/SpCaseNav';
 import CaseStudyAlpha from './components/CaseStudyAlpha';
 import CaseStudyBitwise from './components/CaseStudyBitwise';
 import CaseStudyAurora from './components/CaseStudyAurora';
@@ -22,24 +22,16 @@ const ScrollToTop = () => {
   return null;
 };
 
-/* Case studies still run on the legacy stylesheet and chrome.
-   Keeping them wrapped means the Spectra rebuild can't regress them. */
+/* Case studies keep their legacy markup but wear Spectra chrome.
+   The old Header/Background paint white-on-dark, which vanishes
+   against the light ground spectra-case.css now gives these pages. */
 const CaseStudyLayout = ({ children }) => (
-  <>
-    <ProgressBar />
-    <Background />
-    <Header />
+  <div className="sp-page sp-case">
+    <SpChrome />
+    <SpCaseNav />
     <main>{children}</main>
-    <footer className="site-footer">
-      <div className="container">
-        <div style={{ textAlign: 'center', padding: '3rem 0' }}>
-          <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.85rem', fontFamily: 'var(--font-body)' }}>
-            &copy; 2026 EsKay. Built with React and Precision.
-          </p>
-        </div>
-      </div>
-    </footer>
-  </>
+    <SpCaseFooter />
+  </div>
 );
 
 function App() {

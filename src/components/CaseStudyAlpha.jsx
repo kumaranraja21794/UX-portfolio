@@ -12,7 +12,7 @@ import TextReveal from './TextReveal';
 const modelData = {
   alpha: {
     name: 'Alpha-Max',
-    color: '#8b5cf6', // Violet
+    color: '#3A1FD6', // Violet
     badge: 'Momentum',
     stats: {
       return: '+184.2%',
@@ -38,7 +38,7 @@ const modelData = {
   },
   beta: {
     name: 'Beta-Gold',
-    color: '#06b6d4', // Cyan
+    color: '#0E7490', // Cyan
     badge: 'Conservative',
     stats: {
       return: '+128.6%',
@@ -64,7 +64,7 @@ const modelData = {
   },
   neural: {
     name: 'Neural-Net',
-    color: '#ff6b4a', // Orange
+    color: '#D6401B', // Orange
     badge: 'Adaptive AI',
     stats: {
       return: '+242.8%',
@@ -400,7 +400,7 @@ const CaseStudyAlpha = () => {
   const challengeSolutionCards = [
     {
       icon: Activity,
-      color: '#8b5cf6',
+      color: '#3A1FD6',
       title: 'Live Trading Screen',
       challenges: [
         'Overlapping trend lines created noise.',
@@ -413,7 +413,7 @@ const CaseStudyAlpha = () => {
     },
     {
       icon: BarChart3,
-      color: '#10b981',
+      color: '#0B8F6B',
       title: 'Model Detail Screen',
       challenges: [
         'Large empty areas weakened information hierarchy.',
@@ -426,7 +426,7 @@ const CaseStudyAlpha = () => {
     },
     {
       icon: Users,
-      color: '#f59e0b',
+      color: '#B45309',
       title: 'Leaderboard Screen',
       challenges: [
         'Metric-heavy tables caused scanning fatigue.',
@@ -460,19 +460,19 @@ const CaseStudyAlpha = () => {
   const validationTasks = [
     {
       icon: Target,
-      color: '#8b5cf6',
+      color: '#3A1FD6',
       task: 'Identify Best Performing Model',
       result: 'Users relied on visual hierarchy and badges instead of scanning raw rows.',
     },
     {
       icon: Maximize2,
-      color: '#f59e0b',
+      color: '#B45309',
       task: 'Analyze Recent Trades',
       result: 'The redesigned log format made vertical scanning noticeably faster and easier.',
     },
     {
       icon: TrendingUp,
-      color: '#10b981',
+      color: '#0B8F6B',
       task: 'Understand Account Growth',
       result: 'Semantic color and cleaner chart structure improved interpretation speed.',
     },
@@ -507,19 +507,19 @@ const CaseStudyAlpha = () => {
   const learningCards = [
     {
       icon: Info,
-      color: '#8b5cf6',
+      color: '#3A1FD6',
       title: 'Clarity Over Features',
       body: 'In data-heavy products, removing noise creates more value than adding more surface area.',
     },
     {
       icon: Shield,
-      color: '#10b981',
+      color: '#0B8F6B',
       title: 'Cognitive Offloading',
       body: 'Strong hierarchy lets the interface do more of the processing work for the user.',
     },
     {
       icon: Layout,
-      color: '#f59e0b',
+      color: '#B45309',
       title: 'Synthesis First',
       body: 'Users need grouped meaning, not scattered raw metrics.',
     },
@@ -638,14 +638,14 @@ const CaseStudyAlpha = () => {
       <section className="cs-section bg-dark text-white">
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <span className="cs-tag" style={{ color: '#8b5cf6', borderColor: '#8b5cf6' }}>Interactive Comparison</span>
+            <span className="cs-tag" style={{ color: '#3A1FD6', borderColor: '#8b5cf6' }}>Interactive Comparison</span>
             <TextReveal mode="char" as="h2" style={{ fontSize: '3.5rem', marginTop: '1rem' }}>The Evolution of Arena.</TextReveal>
             <p style={{ maxWidth: '700px', margin: '2rem auto', opacity: 0.7 }}>Interact with the slider below to see how we transformed the interface from a data-heavy technical view into a modern, decision-first experience.</p>
           </div>
 
           <div className="comparison-container">
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '4rem', padding: '0 1rem' }}>
-              <div style={{ display: 'flex', background: 'rgba(255,255,255,0.03)', padding: '0.4rem', borderRadius: '100px', border: '1px solid rgba(255,255,255,0.05)', backdropFilter: 'blur(10px)', overflowX: 'auto', WebkitOverflowScrolling: 'touch', maxWidth: '100%' }}>
+              <div style={{ display: 'flex', background: 'rgba(14, 15, 19, 0.04)', padding: '0.4rem', borderRadius: '100px', border: '1px solid rgba(14, 15, 19, 0.06)', backdropFilter: 'blur(10px)', overflowX: 'auto', WebkitOverflowScrolling: 'touch', maxWidth: '100%' }}>
                 {Object.keys(comparisonData).map((tab) => (
                   <button 
                     key={tab}
@@ -702,7 +702,7 @@ const CaseStudyAlpha = () => {
             </motion.div>
             
             <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-              <p style={{ fontSize: '1.2rem', fontWeight: '500', color: '#8b5cf6' }}>{comparisonData[activeTab].desc}</p>
+              <p style={{ fontSize: '1.2rem', fontWeight: '500', color: '#3A1FD6' }}>{comparisonData[activeTab].desc}</p>
             </div>
           </div>
         </div>
@@ -768,7 +768,7 @@ const CaseStudyAlpha = () => {
       {/* Model Performance Simulator Section */}
       <section className="cs-section bg-dark text-white performance-section">
         <div className="container cs-grid">
-          <div className="cs-label" style={{ color: '#8b5cf6' }}>Interactive Sim</div>
+          <div className="cs-label" style={{ color: '#3A1FD6' }}>Interactive Sim</div>
           <div className="cs-content">
             <TextReveal mode="char" as="h2">Model Performance Simulator</TextReveal>
             <p className="large-p" style={{ opacity: 0.8, color: 'var(--text-secondary)' }}>
@@ -782,9 +782,9 @@ const CaseStudyAlpha = () => {
       {/* Approach + Validation */}
       <section className="cs-section bg-dark text-white cs-section-compact-dark">
         <div className="container cs-grid">
-          <div className="cs-label" style={{ color: 'rgba(255,255,255,0.5)' }}>Methodology</div>
+          <div className="cs-label" style={{ color: 'rgba(14, 15, 19, 0.56)' }}>Methodology</div>
           <div className="cs-content">
-            <TextReveal mode="char" as="h2" style={{ fontSize: '3rem', marginBottom: '2.5rem', letterSpacing: '-0.02em', color: '#fff' }}>Compact process, faster story.</TextReveal>
+            <TextReveal mode="char" as="h2" style={{ fontSize: '3rem', marginBottom: '2.5rem', letterSpacing: '-0.02em', color: '#0E0F13' }}>Compact process, faster story.</TextReveal>
 
             <div className="cs-compact-grid cs-process-grid">
               {processSteps.map((step, index) => (
@@ -871,7 +871,7 @@ const CaseStudyAlpha = () => {
                 <h3 style={{ marginBottom: '2rem', fontSize: '1.25rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#aaa' }}>Usability Improvements</h3>
                 <table className="comparison-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
                   <thead>
-                    <tr style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.1)', textAlign: 'left' }}>
+                    <tr style={{ borderBottom: '2px solid rgba(14, 15, 19, 0.10)', textAlign: 'left' }}>
                       <th style={{ padding: '1rem 0' }}>Aspect</th>
                       <th style={{ padding: '1rem 0' }}>Before</th>
                       <th style={{ padding: '1rem 0' }}>After</th>
@@ -879,10 +879,10 @@ const CaseStudyAlpha = () => {
                   </thead>
                   <tbody>
                     {improvementRows.map(([aspect, before, after]) => (
-                      <tr key={aspect} style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                      <tr key={aspect} style={{ borderBottom: '1px solid rgba(14, 15, 19, 0.06)' }}>
                         <td style={{ padding: '1.1rem 0', fontWeight: '600' }}>{aspect}</td>
-                        <td style={{ color: '#ef4444' }}>{before}</td>
-                        <td style={{ color: '#10b981', fontWeight: 'bold' }}>{after}</td>
+                        <td style={{ color: '#DC2626' }}>{before}</td>
+                        <td style={{ color: '#0B8F6B', fontWeight: 'bold' }}>{after}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -902,8 +902,8 @@ const CaseStudyAlpha = () => {
 
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <span className="cs-tag" style={{ background: 'rgba(255,255,255,0.05)', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' }}>The Takeaways</span>
-            <TextReveal mode="char" as="h2" style={{ fontSize: 'clamp(3rem, 5vw, 4.5rem)', letterSpacing: '-0.03em', marginTop: '1.5rem', color: '#fff' }}>Post-Flight Learnings.</TextReveal>
+            <span className="cs-tag" style={{ background: 'rgba(14, 15, 19, 0.06)', color: '#0E0F13', border: '1px solid rgba(14, 15, 19, 0.10)' }}>The Takeaways</span>
+            <TextReveal mode="char" as="h2" style={{ fontSize: 'clamp(3rem, 5vw, 4.5rem)', letterSpacing: '-0.03em', marginTop: '1.5rem', color: '#0E0F13' }}>Post-Flight Learnings.</TextReveal>
           </div>
             
           <div className="cs-compact-grid">

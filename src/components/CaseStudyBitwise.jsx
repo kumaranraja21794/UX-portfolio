@@ -53,13 +53,13 @@ const CaseStudyBitwise = () => {
       </div>
 
       {/* Hero Header */}
-      <header className="cs-hero" style={{ background: 'radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.04) 0%, transparent 60%), #0c0c0c' }}>
+      <header className="cs-hero" style={{ background: 'radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.04) 0%, transparent 60%), #F2F3EC' }}>
         <div className="container">
           <motion.div 
             className="cs-tag"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            style={{ color: '#10B981' }}
+            style={{ color: '#0B8F6B' }}
           >
             Case Study — Crypto Trading App
           </motion.div>
@@ -70,7 +70,7 @@ const CaseStudyBitwise = () => {
               animate={{ opacity: 1, y: 0 }}
             >
               BitWise: <br />
-              <span style={{ color: 'rgba(255,255,255,0.7)' }}>Streamlining the Crypto Trading Funnel</span>
+              <span style={{ color: 'rgba(14, 15, 19, 0.64)' }}>Streamlining the Crypto Trading Funnel</span>
             </motion.h1>
             
             <motion.div 
@@ -140,7 +140,7 @@ const CaseStudyBitwise = () => {
       <section className="cs-section bg-dark text-white">
         <div className="container" style={{ textAlign: 'center' }}>
           <div className="section-header" style={{ marginBottom: '4rem' }}>
-            <span className="cs-tag" style={{ color: '#10b981', borderColor: '#10b981' }}>Interface Mockups</span>
+            <span className="cs-tag" style={{ color: '#0B8F6B', borderColor: '#10b981' }}>Interface Mockups</span>
             <TextReveal mode="char" as="h2" style={{ fontSize: '3.5rem', marginTop: '1rem' }}>Original Portfolio Designs</TextReveal>
             <p style={{ maxWidth: '700px', margin: '2rem auto', opacity: 0.7 }}>
               These high-fidelity screens from BitWise showcase the core architecture: Profile Settings, Buy/Swap Execution, Search & Listings, Asset Diligence Info, and price charts.
@@ -168,8 +168,8 @@ const CaseStudyBitwise = () => {
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 style={{
-                  background: 'rgba(255,255,255,0.01)',
-                  border: '1px solid rgba(255,255,255,0.04)',
+                  background: 'rgba(14, 15, 19, 0.02)',
+                  border: '1px solid rgba(14, 15, 19, 0.05)',
                   borderRadius: '24px',
                   padding: '0.75rem',
                   boxShadow: '0 30px 60px rgba(0,0,0,0.3)',
@@ -189,7 +189,7 @@ const CaseStudyBitwise = () => {
                     display: 'block'
                   }} 
                 />
-                <span style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                <span style={{ fontSize: '0.75rem', color: 'rgba(14, 15, 19, 0.52)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                   {screen.label}
                 </span>
               </motion.div>
@@ -201,7 +201,7 @@ const CaseStudyBitwise = () => {
       {/* Screen-by-Screen Breakdown */}
       <section className="cs-section bg-light">
         <div className="container cs-grid">
-          <div className="cs-label text-accent" style={{ color: '#10b981' }}>UX Breakdown</div>
+          <div className="cs-label text-accent" style={{ color: '#0B8F6B' }}>UX Breakdown</div>
           <div className="cs-content">
             <TextReveal mode="char" as="h2">Architecture & Flow Details</TextReveal>
             <p>
@@ -219,7 +219,7 @@ const CaseStudyBitwise = () => {
                   transition={{ delay: index * 0.08 }}
                 >
                   <div className="cs-solution-head">
-                    <span className="cs-solution-icon" style={{ color: '#10b981' }}>
+                    <span className="cs-solution-icon" style={{ color: '#0B8F6B' }}>
                       <Layers size={22} />
                     </span>
                     <h3>{card.title}</h3>
@@ -227,7 +227,7 @@ const CaseStudyBitwise = () => {
 
                   <div className="cs-solution-columns">
                     <div>
-                      <span className="cs-compact-eyebrow" style={{ color: '#10b981' }}>Key Features</span>
+                      <span className="cs-compact-eyebrow" style={{ color: '#0B8F6B' }}>Key Features</span>
                       <ul className="cs-mini-list">
                         {card.features.map((feature, fIdx) => (
                           <li key={fIdx}>
@@ -240,7 +240,7 @@ const CaseStudyBitwise = () => {
 
                     <div>
                       <span className="cs-compact-eyebrow">UX Rationale</span>
-                      <p style={{ fontSize: '0.95rem', lineHeight: '1.6', color: 'rgba(255,255,255,0.7)', margin: 0 }}>
+                      <p style={{ fontSize: '0.95rem', lineHeight: '1.6', color: 'rgba(14, 15, 19, 0.64)', margin: 0 }}>
                         {card.takeaway}
                       </p>
                     </div>
@@ -259,7 +259,7 @@ const CaseStudyBitwise = () => {
         <div className="container">
           <div className="impact-editorial-grid" style={{ gridTemplateColumns: '1fr' }}>
             <div className="impact-editorial-left" style={{ position: 'static', marginBottom: '3rem' }}>
-              <div className="cs-label text-success" style={{ marginBottom: '1.5rem', color: '#10b981' }}>Comparative Analysis</div>
+              <div className="cs-label text-success" style={{ marginBottom: '1.5rem', color: '#0B8F6B' }}>Comparative Analysis</div>
               <TextReveal mode="char" as="h2">BitWise vs. Traditional Trading Platforms</TextReveal>
               <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', lineHeight: 1.6, maxWidth: '800px' }}>
                 How the minimalist dark-first aesthetics and selective data hierarchies of BitWise rank against traditional, high-density crypto platforms.
@@ -270,32 +270,32 @@ const CaseStudyBitwise = () => {
               <div className="table-wrap">
                 <table className="comparison-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
                   <thead>
-                    <tr style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.1)', textAlign: 'left' }}>
+                    <tr style={{ borderBottom: '2px solid rgba(14, 15, 19, 0.10)', textAlign: 'left' }}>
                       <th style={{ padding: '1rem' }}>Dimension</th>
                       <th style={{ padding: '1rem' }}>Traditional Exchanges (e.g. Binance)</th>
-                      <th style={{ padding: '1rem', color: '#10b981' }}>BitWise Mobile Design</th>
+                      <th style={{ padding: '1rem', color: '#0B8F6B' }}>BitWise Mobile Design</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                    <tr style={{ borderBottom: '1px solid rgba(14, 15, 19, 0.06)' }}>
                       <td style={{ padding: '1.2rem 1rem', fontWeight: '600' }}>Information Density</td>
-                      <td style={{ color: 'rgba(255,255,255,0.6)' }}>Extreme density. Flashing order books, bid-ask spreadsheets, leverage selectors, and multiple chart indicators cause instant visual clutter.</td>
-                      <td style={{ color: '#10b981', fontWeight: 'bold' }}>Progressive disclosure. Chart metrics are isolated; buy prompts show only flat fees and calculated cost breakdowns.</td>
+                      <td style={{ color: 'rgba(14, 15, 19, 0.60)' }}>Extreme density. Flashing order books, bid-ask spreadsheets, leverage selectors, and multiple chart indicators cause instant visual clutter.</td>
+                      <td style={{ color: '#0B8F6B', fontWeight: 'bold' }}>Progressive disclosure. Chart metrics are isolated; buy prompts show only flat fees and calculated cost breakdowns.</td>
                     </tr>
-                    <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                    <tr style={{ borderBottom: '1px solid rgba(14, 15, 19, 0.06)' }}>
                       <td style={{ padding: '1.2rem 1rem', fontWeight: '600' }}>Educational Context</td>
-                      <td style={{ color: 'rgba(255,255,255,0.6)' }}>Housed in a separate website category or academy section, separating knowledge from direct transactional choices.</td>
-                      <td style={{ color: '#10b981', fontWeight: 'bold' }}>Contextual tabs. An "Info" description is built directly into the core charting view to encourage safe asset due diligence.</td>
+                      <td style={{ color: 'rgba(14, 15, 19, 0.60)' }}>Housed in a separate website category or academy section, separating knowledge from direct transactional choices.</td>
+                      <td style={{ color: '#0B8F6B', fontWeight: 'bold' }}>Contextual tabs. An "Info" description is built directly into the core charting view to encourage safe asset due diligence.</td>
                     </tr>
-                    <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                    <tr style={{ borderBottom: '1px solid rgba(14, 15, 19, 0.06)' }}>
                       <td style={{ padding: '1.2rem 1rem', fontWeight: '600' }}>Visual Balance & Color</td>
-                      <td style={{ color: 'rgba(255,255,255,0.6)' }}>Hyper-reactive green and red indicators trigger emotional trading. Cluttered borders increase user cognitive exhaustion.</td>
-                      <td style={{ color: '#10b981', fontWeight: 'bold' }}>Calming dark blue palette. Neon greens are reserved strictly for positive returns, slider positions, and BUY action cues.</td>
+                      <td style={{ color: 'rgba(14, 15, 19, 0.60)' }}>Hyper-reactive green and red indicators trigger emotional trading. Cluttered borders increase user cognitive exhaustion.</td>
+                      <td style={{ color: '#0B8F6B', fontWeight: 'bold' }}>Calming dark blue palette. Neon greens are reserved strictly for positive returns, slider positions, and BUY action cues.</td>
                     </tr>
-                    <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                    <tr style={{ borderBottom: '1px solid rgba(14, 15, 19, 0.06)' }}>
                       <td style={{ padding: '1.2rem 1rem', fontWeight: '600' }}>Transaction Funnel</td>
-                      <td style={{ color: 'rgba(255,255,255,0.6)' }}>Highly complex order forms with limit/market selections, GTC options, and margin leverage variables.</td>
-                      <td style={{ color: '#10b981', fontWeight: 'bold' }}>A simple two-step amount input. Direct flat fee and total pay details make cost immediate and transparent.</td>
+                      <td style={{ color: 'rgba(14, 15, 19, 0.60)' }}>Highly complex order forms with limit/market selections, GTC options, and margin leverage variables.</td>
+                      <td style={{ color: '#0B8F6B', fontWeight: 'bold' }}>A simple two-step amount input. Direct flat fee and total pay details make cost immediate and transparent.</td>
                     </tr>
                   </tbody>
                 </table>
@@ -305,15 +305,15 @@ const CaseStudyBitwise = () => {
               <div style={{
                 marginTop: '3rem',
                 padding: '2rem',
-                background: 'rgba(255, 255, 255, 0.01)',
-                border: '1px solid rgba(255, 255, 255, 0.03)',
+                background: 'rgba(14, 15, 19, 0.02)',
+                border: '1px solid rgba(14, 15, 19, 0.04)',
                 borderRadius: '24px'
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-                  <Info size={20} style={{ color: '#10b981' }} />
-                  <h4 style={{ margin: 0, fontSize: '1.15rem', color: '#fff', fontWeight: '700' }}>Aesthetic Mockup Anomalies</h4>
+                  <Info size={20} style={{ color: '#0B8F6B' }} />
+                  <h4 style={{ margin: 0, fontSize: '1.15rem', color: '#0E0F13', fontWeight: '700' }}>Aesthetic Mockup Anomalies</h4>
                 </div>
-                <p style={{ fontSize: '0.95rem', lineHeight: '1.6', color: 'rgba(255,255,255,0.6)', margin: 0 }}>
+                <p style={{ fontSize: '0.95rem', lineHeight: '1.6', color: 'rgba(14, 15, 19, 0.60)', margin: 0 }}>
                   A detailed review of the portfolio assets reveals minor anomalies, such as coin prices (e.g. SOL at $8.7k, ETH at $67.90) and chart Y-axis ranges ($0 - $250) that do not align with actual values. Additionally, a duplicated "New Listings" tab is visible in the search columns. These artifacts indicate that the mockups were engineered to prioritize visual flow, typographic spacing, and aesthetic harmony over mathematical precision, a common standard in early-stage UX layout testing.
                 </p>
               </div>
@@ -327,8 +327,8 @@ const CaseStudyBitwise = () => {
         <div style={{ position: 'absolute', top: '10%', left: '20%', width: '40vw', height: '40vw', background: 'radial-gradient(circle, rgba(16,185,129,0.12) 0%, transparent 60%)', filter: 'blur(80px)', zIndex: 0, pointerEvents: 'none' }}></div>
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <span className="cs-tag" style={{ background: 'rgba(255,255,255,0.05)', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' }}>UX Insights</span>
-            <TextReveal mode="char" as="h2" style={{ fontSize: 'clamp(3rem, 5vw, 4.5rem)', letterSpacing: '-0.03em', marginTop: '1.5rem', color: '#fff' }}>Key Takeaways.</TextReveal>
+            <span className="cs-tag" style={{ background: 'rgba(14, 15, 19, 0.06)', color: '#0E0F13', border: '1px solid rgba(14, 15, 19, 0.10)' }}>UX Insights</span>
+            <TextReveal mode="char" as="h2" style={{ fontSize: 'clamp(3rem, 5vw, 4.5rem)', letterSpacing: '-0.03em', marginTop: '1.5rem', color: '#0E0F13' }}>Key Takeaways.</TextReveal>
           </div>
             
           <div className="cs-compact-grid">
@@ -370,9 +370,9 @@ const CaseStudyBitwise = () => {
                 rel="noopener noreferrer"
                 className="btn-figma"
                 style={{
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  background: 'rgba(255,255,255,0.03)',
-                  color: '#fff'
+                  border: '1px solid rgba(14, 15, 19, 0.10)',
+                  background: 'rgba(14, 15, 19, 0.04)',
+                  color: '#0E0F13'
                 }}
               >
                 View Figma Mockups
