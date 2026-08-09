@@ -24,7 +24,7 @@ export const projects = [
     domain: 'Fintech · Mobile',
     role: 'Lead UX/UI Designer',
     shape: 'phone',
-    img: '/aurora/analytics_screen.png',
+    img: '/aurora/home_screen.png',
     wash: 'radial-gradient(95% 110% at 22% 0%, #C8F03C, transparent 58%), linear-gradient(150deg, #10B981, #064E45)',
     desc: 'Family spending on UPI Circle — live balance, per-member allowance limits and category guardrails that stop overspend before it happens.',
     impact: '↓ 40% unplanned spend',

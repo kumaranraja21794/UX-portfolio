@@ -49,10 +49,15 @@
 .case-study-page .cs-tag { color: var(--cs-accent); }
 .case-study-page .cs-tag::before { background: var(--cs-accent-fill); }
 
-/* ---- meta strip ---- */
+/* ---- meta strip ----
+   This is a hairline-ruled row, not a card: index.css gives it
+   `padding: 2rem 0 0` with only a border-top. Filling it as a card
+   pushes the labels against the top edge and lets the right-aligned
+   CTA hang outside the fill, so keep it a rule. */
 .case-study-page .cs-meta-strip {
-  background: var(--cs-card);
-  border: 1px solid var(--cs-line);
+  background: transparent;
+  border: none;
+  border-top: 1px solid var(--cs-line);
 }
 .case-study-page .cs-meta-strip-divider { background: var(--cs-line); }
 .case-study-page .cs-meta-info label,

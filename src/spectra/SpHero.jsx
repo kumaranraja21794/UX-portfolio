@@ -87,12 +87,12 @@ export const SpHero = () => {
 
           <div className="sp-panel">
             <div className="sp-face">
-              <img src="/aurora/home_screen.png" alt="Portrait of Sakthi Kumaran V" />
+              <img src="/aurora/portrait.png" alt="Portrait of Sakthi Kumaran V" />
             </div>
 
             <div className="sp-panel-stage">
               <div className={`sp-view sp-view-media${isDesign ? ' sp-on' : ''}`} aria-hidden={!isDesign}>
-                <img className="sp-device" src="/aurora/analytics_screen.png" alt="Aurora app balance screen" />
+                <img className="sp-device" src="/aurora/home_screen.png" alt="Aurora app balance screen" />
               </div>
 
               <div className={`sp-view sp-view-code${!isDesign ? ' sp-on' : ''}`} aria-hidden={isDesign}>
