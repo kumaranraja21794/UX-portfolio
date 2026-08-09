@@ -242,26 +242,7 @@ body:has(.sp-page) { background-color: var(--sp-paper); }
   text-transform: uppercase; color: var(--sp-ink-soft); margin-top: 8px; display: block;
 }
 
-/* ---- hero panel: design ⇄ code ---- */
-.sp-panel-head {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 12px; margin-bottom: 13px;
-}
-.sp-panel-tag {
-  font-family: var(--sp-mono); font-size: 10px; letter-spacing: 0.13em;
-  text-transform: uppercase; color: var(--sp-ink-soft);
-}
-.sp-toggle {
-  display: inline-flex; background: rgba(14, 15, 19, 0.05);
-  border-radius: 999px; padding: 3px; gap: 2px; border: 1px solid var(--sp-line);
-}
-.sp-toggle button {
-  font-family: var(--sp-mono); font-size: 10px; letter-spacing: 0.1em;
-  text-transform: uppercase; padding: 8px 14px; border-radius: 999px;
-  color: var(--sp-ink-soft); transition: background 0.3s, color 0.3s;
-}
-.sp-toggle button.sp-on { background: var(--sp-ink); color: var(--sp-paper); }
-
+/* ---- hero panel: portrait ---- */
 .sp-panel {
   position: relative; border-radius: 26px;
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -293,33 +274,6 @@ body:has(.sp-page) { background-color: var(--sp-paper); }
   filter: contrast(1.06) saturate(0.92);
 }
 
-/* Two insets rather than one that resizes: a phone footprint is far
-   too narrow to set code in, so each state gets its own dimensions
-   and they cross-fade. */
-.sp-inset {
-  position: absolute; left: -20px; bottom: -20px; z-index: 2;
-  opacity: 0; transform: translateY(10px) scale(0.97); pointer-events: none;
-  transition: opacity 0.45s var(--sp-ease), transform 0.45s var(--sp-ease);
-}
-.sp-inset.sp-on { opacity: 1; transform: none; pointer-events: auto; }
-.sp-inset--design { width: 34%; }
-.sp-inset--design img {
-  width: 100%; display: block; border-radius: 13px;
-  box-shadow: 0 26px 55px -16px rgba(14, 15, 19, 0.6), 0 0 0 4px rgba(11, 13, 16, 0.9);
-}
-.sp-inset--code {
-  width: 66%; background: #0B0D10; color: #D7DBE6;
-  border-radius: 13px; padding: 15px 16px;
-  font-family: var(--sp-mono); font-size: 10.5px; line-height: 1.8;
-  box-shadow: 0 26px 55px -16px rgba(14, 15, 19, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
-}
-.sp-inset--code pre { margin: 0; white-space: pre-wrap; }
-.sp-c-key { color: #C8F03C; }
-.sp-c-tag { color: #FF4D7D; }
-.sp-c-attr { color: #8FA6FF; }
-.sp-c-str { color: #E8C36B; }
-.sp-c-dim { color: #5D6474; }
-
 /* small badge, top-right of the panel — a signature, not a portrait,
    now that the panel itself carries the photo */
 .sp-panel-badge {
@@ -339,9 +293,6 @@ body:has(.sp-page) { background-color: var(--sp-paper); }
   margin-top: 13px; font-family: var(--sp-mono); font-size: 10px;
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--sp-ink-soft);
 }
-.sp-dotpair { display: flex; gap: 5px; }
-.sp-dotpair i { width: 6px; height: 6px; border-radius: 50%; background: var(--sp-ink); opacity: 0.16; }
-.sp-dotpair i.sp-hot { opacity: 1; background: var(--sp-coral); }
 
 @media (max-width: 1000px) {
   .sp-hero-type { grid-column: 1 / -1; }
@@ -353,9 +304,6 @@ body:has(.sp-page) { background-color: var(--sp-paper); }
   .sp-stats { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 14px; }
   .sp-stat { padding: 18px 0 0; margin: 0; border-right: none; }
   .sp-stat-l { letter-spacing: 0.08em; }
-  /* the badge's negative offset runs past the viewport once the
-     panel is full-width — pull it back inside */
-  .sp-face { left: -8px; top: -20px; width: 76px; height: 76px; border-width: 4px; }
 }
 
 /* =========================================================
