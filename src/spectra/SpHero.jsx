@@ -89,8 +89,8 @@ export const SpHero = () => {
             <div className="sp-panel-stage">
               <img
                 className="sp-hero-photo"
-                src="/hero-bg-v13.png"
-                alt="Sakthi Kumaran V wireframing on a tablet at his desk"
+                src="/designer_hero.png"
+                alt="Sakthi Kumaran V seated with a tablet showing wireframes"
               />
 
               <span className="sp-panel-badge">
