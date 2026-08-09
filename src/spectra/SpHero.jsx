@@ -63,8 +63,8 @@ export const SpHero = () => (
           <div className="sp-panel-stage">
             <img
               className="sp-hero-photo"
-              src="/designer_hero.png"
-              alt="Sakthi Kumaran V seated with a tablet showing wireframes"
+              src="/hero-bg-v7.png"
+              alt="Sakthi Kumaran V sketching on a tablet, surrounded by floating UI wireframes"
             />
             <span className="sp-panel-badge">
               <i aria-hidden="true" />

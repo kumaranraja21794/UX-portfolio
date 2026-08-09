@@ -261,17 +261,14 @@ body:has(.sp-page) { background-color: var(--sp-paper); }
 .sp-panel-stage { position: relative; width: 100%; height: 100%; }
 
 /* the portrait is the hero subject; the work floats over it */
-/* The studio shot is a dark subject on a near-white wall. multiply
-   drops that wall out over the gradient instead of covering it with a
-   flat white rectangle, so the panel keeps its colour and the subject
-   stays solid. A tuned contrast/saturate keeps him from going muddy
-   where the gradient is darkest. */
+/* Opaque, no blend: this shot is dark and already saturated, so the
+   multiply used for the white-wall studio image would crush it to
+   near-black. The gradient reads as a frame around it instead of
+   through it. */
 .sp-hero-photo {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: center 12%;
+  object-fit: cover; object-position: center 18%;
   border-radius: 14px;
-  mix-blend-mode: multiply;
-  filter: contrast(1.06) saturate(0.92);
 }
 
 /* small badge, top-right of the panel — a signature, not a portrait,
