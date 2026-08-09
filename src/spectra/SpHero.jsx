@@ -64,7 +64,7 @@ export const SpHero = () => {
           transition={{ duration: 0.9, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="sp-panel-head">
-            <span className="sp-panel-tag">Aurora · Balance</span>
+            <span className="sp-panel-tag">Chennai · At the desk</span>
             <div className="sp-toggle" role="group" aria-label="Switch between design and code view">
               <button
                 type="button"
@@ -86,37 +86,39 @@ export const SpHero = () => {
           </div>
 
           <div className="sp-panel">
-            <div className="sp-face">
-              <img src="/aurora/portrait.png" alt="Portrait of Sakthi Kumaran V" />
-            </div>
-
             <div className="sp-panel-stage">
-              <div className={`sp-view sp-view-media${isDesign ? ' sp-on' : ''}`} aria-hidden={!isDesign}>
-                <img className="sp-device" src="/aurora/home_screen.png" alt="Aurora app balance screen" />
+              <img
+                className="sp-hero-photo"
+                src="/hero-bg-v13.png"
+                alt="Sakthi Kumaran V wireframing on a tablet at his desk"
+              />
+
+              <span className="sp-panel-badge">
+                <i aria-hidden="true" />
+                Sakthi Kumaran V
+              </span>
+
+              <div className={`sp-inset sp-inset--design${isDesign ? ' sp-on' : ''}`} aria-hidden={!isDesign}>
+                <img src="/aurora/home_screen.png" alt="Aurora app balance screen" />
               </div>
 
-              <div className={`sp-view sp-view-code${!isDesign ? ' sp-on' : ''}`} aria-hidden={isDesign}>
+              <div className={`sp-inset sp-inset--code${!isDesign ? ' sp-on' : ''}`} aria-hidden={isDesign}>
                 <pre>
 <span className="sp-c-dim">{'// BalanceCard.jsx — Aurora'}</span>{'\n'}
-<span className="sp-c-key">export function</span> <span className="sp-c-attr">BalanceCard</span>{'({ balance, delta }) {'}{'\n'}
-{'  '}<span className="sp-c-key">const</span>{' risk = '}<span className="sp-c-attr">useSpendRisk</span>{'(delta)'}{'\n\n'}
-{'  '}<span className="sp-c-key">return</span>{' ('}{'\n'}
-{'    <'}<span className="sp-c-tag">Card</span>{' '}<span className="sp-c-attr">tone</span>{'={risk.tone}>'}{'\n'}
-{'      <'}<span className="sp-c-tag">Label</span>{'>'}<span className="sp-c-str">Available today</span>{'</'}<span className="sp-c-tag">Label</span>{'>'}{'\n'}
-{'      <'}<span className="sp-c-tag">Amount</span>{' '}<span className="sp-c-attr">value</span>{'={balance} '}<span className="sp-c-attr">animate</span>{' />'}{'\n'}
-{'      <'}<span className="sp-c-tag">Delta</span>{' '}<span className="sp-c-attr">pct</span>{'={delta} '}<span className="sp-c-attr">guard</span>{'={risk.cap} />'}{'\n'}
-{'    </'}<span className="sp-c-tag">Card</span>{'>'}{'\n'}
-{'  )'}{'\n'}
-{'}'}{'\n\n'}
-<span className="sp-c-dim">{'// The guardrail that cut unplanned'}</span>{'\n'}
-<span className="sp-c-dim">{'// spend by 40%.'}</span>
+<span className="sp-c-key">const</span>{' risk = '}<span className="sp-c-attr">useSpendRisk</span>{'(delta)'}{'\n\n'}
+{'<'}<span className="sp-c-tag">Card</span>{' '}<span className="sp-c-attr">tone</span>{'={risk.tone}>'}{'\n'}
+{'  <'}<span className="sp-c-tag">Amount</span>{' '}<span className="sp-c-attr">value</span>{'={balance} '}<span className="sp-c-attr">animate</span>{' />'}{'\n'}
+{'  <'}<span className="sp-c-tag">Delta</span>{' '}<span className="sp-c-attr">pct</span>{'={delta} '}<span className="sp-c-attr">guard</span>{'={risk.cap} />'}{'\n'}
+{'</'}<span className="sp-c-tag">Card</span>{'>'}{'\n\n'}
+<span className="sp-c-dim">{'// the guardrail that cut'}</span>{'\n'}
+<span className="sp-c-dim">{'// unplanned spend by 40%'}</span>
                 </pre>
               </div>
             </div>
           </div>
 
           <div className="sp-panel-caption">
-            <span>One screen · both sides of my brain</span>
+            <span>The work, and the code behind it</span>
             <span className="sp-dotpair" aria-hidden="true">
               <i className="sp-hot" /><i /><i />
             </span>
