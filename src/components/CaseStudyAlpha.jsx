@@ -12,7 +12,7 @@ import TextReveal from './TextReveal';
 const modelData = {
   alpha: {
     name: 'Alpha-Max',
-    color: '#3A1FD6', // Violet
+    color: '#A78BFA', // Violet
     badge: 'Momentum',
     stats: {
       return: '+184.2%',
@@ -38,7 +38,7 @@ const modelData = {
   },
   beta: {
     name: 'Beta-Gold',
-    color: '#0E7490', // Cyan
+    color: '#22D3EE', // Cyan
     badge: 'Conservative',
     stats: {
       return: '+128.6%',
@@ -64,7 +64,7 @@ const modelData = {
   },
   neural: {
     name: 'Neural-Net',
-    color: '#D6401B', // Orange
+    color: '#FB923C', // Orange
     badge: 'Adaptive AI',
     stats: {
       return: '+242.8%',
@@ -655,7 +655,7 @@ const CaseStudyAlpha = () => {
                       background: 'transparent',
                       border: 'none',
                       padding: '1rem 2rem',
-                      color: activeTab === tab ? '#fff' : 'rgba(255,255,255,0.4)',
+                      color: activeTab === tab ? '#0E0F13' : 'rgba(14, 15, 19, 0.52)',
                       fontSize: '0.95rem',
                       fontWeight: 600,
                       cursor: 'pointer',
@@ -868,7 +868,7 @@ const CaseStudyAlpha = () => {
               </div>
 
               <div className="table-wrap" style={{ marginTop: '3rem' }}>
-                <h3 style={{ marginBottom: '2rem', fontSize: '1.25rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#aaa' }}>Usability Improvements</h3>
+                <h3 style={{ marginBottom: '2rem', fontSize: '1.25rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#63666F' }}>Usability Improvements</h3>
                 <table className="comparison-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
                   <thead>
                     <tr style={{ borderBottom: '2px solid rgba(14, 15, 19, 0.10)', textAlign: 'left' }}>

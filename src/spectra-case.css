@@ -53,8 +53,17 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 30px 70px -30px rgba(14, 15, 19, 0.55);
 }
+/* Re-point the tokens inside it too — the page-level accent is a deep
+   indigo tuned for paper and goes muddy on this dark surface. */
+.case-study-page .performance-simulator {
+  --text-primary: #F5F6FA;
+  --text-secondary: rgba(245, 246, 250, 0.62);
+  --accent-primary: #8FA6FF;
+}
 .case-study-page .performance-simulator .cs-label,
 .case-study-page .performance-simulator p { color: rgba(255, 255, 255, 0.62); }
+.case-study-page .performance-simulator .stat-val { color: #F5F6FA; }
+.case-study-page .performance-simulator .stat-val.gain { color: #6EE7B7; }
 .aurora-study-page  { --cs-accent: #0B8F6B; --cs-accent-fill: #00E699; }
 .bitwise-study-page { --cs-accent: #0B8F6B; --cs-accent-fill: #10B981; }
 .alpha-study-page   { --cs-accent: #3A1FD6; --cs-accent-fill: #8B5CF6; }
@@ -141,7 +150,11 @@
 .case-study-page .cs-compact-card p,
 .case-study-page .cs-learning-card p,
 .case-study-page .cs-mini-list li { color: var(--cs-soft); }
+/* index.css:5453 forces this whole group to #ffffff for the dark
+   theme, so every selector in it needs answering here. */
 .case-study-page .cs-learning-card h4,
+.case-study-page .cs-process-card h4,
+.case-study-page .cs-validation-card h4,
 .case-study-page .cs-solution-head h3 { color: var(--cs-ink); }
 .case-study-page .cs-compact-eyebrow,
 .case-study-page .cs-process-number { color: var(--cs-accent); }
