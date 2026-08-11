@@ -526,7 +526,7 @@ const CaseStudyAlpha = () => {
   ];
 
   return (
-    <div className="case-study-page">
+    <div className="case-study-page alpha-study-page">
       <div className="cs-watermark">ARENA</div>
       
       {/* Back Button */}

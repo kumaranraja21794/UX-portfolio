@@ -21,7 +21,40 @@
   background: var(--cs-paper) !important;
   color: var(--cs-ink) !important;
   font-family: var(--sp-body, 'Manrope', sans-serif);
+
+  /* index.css redefines the whole token set on .case-study-page for
+     the old dark theme (--text-primary:#fff, --text-secondary:#a3a3a3,
+     --accent-primary:#fff). Anything reading those vars kept rendering
+     white on the light ground, which is most of the invisible text.
+     Re-point them rather than chasing each element.
+     --accent-primary is set inline on the Aurora/BitWise wrappers, and
+     inline wins, so this value only lands on Alpha. */
+  --bg-color: #F2F3EC;
+  --text-primary: #0E0F13;
+  --text-secondary: #63666F;
+  --accent-primary: var(--cs-accent);
+  --accent-secondary: #63666F;
 }
+
+/* .text-white, and the .bg-dark descendant colours, were written for
+   sections that are light now. */
+.case-study-page .text-white { color: var(--cs-ink); }
+.case-study-page .cs-section.bg-dark p,
+.case-study-page .cs-section.bg-dark .cs-content p,
+.case-study-page .cs-section.bg-dark .cs-label,
+.case-study-page .cs-section.bg-dark .process-info p { color: var(--cs-soft); }
+
+/* Alpha's performance simulator is a mockup of the product UI, not
+   page copy — it keeps its dark surface, the same way Aurora's phone
+   screens do, so its white interface text stays legible and it reads
+   as a screenshot rather than a section. */
+.case-study-page .performance-simulator {
+  background: #0E1118;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 70px -30px rgba(14, 15, 19, 0.55);
+}
+.case-study-page .performance-simulator .cs-label,
+.case-study-page .performance-simulator p { color: rgba(255, 255, 255, 0.62); }
 .aurora-study-page  { --cs-accent: #0B8F6B; --cs-accent-fill: #00E699; }
 .bitwise-study-page { --cs-accent: #0B8F6B; --cs-accent-fill: #10B981; }
 .alpha-study-page   { --cs-accent: #3A1FD6; --cs-accent-fill: #8B5CF6; }
