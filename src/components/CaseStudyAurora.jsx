@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  ArrowLeft, CheckCircle2, ShieldCheck, TrendingUp,
+  CheckCircle2, ShieldCheck, TrendingUp,
   CreditCard, Users, Layout, Target,
   Maximize2, Activity, ShieldAlert,
   Sparkles, Download, FileText, Lock,
@@ -140,46 +140,51 @@ const CaseStudyAurora = () => {
       <div style={{ position: 'fixed', top: 0, left: '20%', width: '600px', height: '600px', background: 'radial-gradient(circle, rgba(0, 230, 153, 0.08) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
       <div style={{ position: 'fixed', top: '40%', right: '10%', width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(6, 182, 212, 0.06) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
 
-      {/* Top Floating Navigation Bar */}
-      <div className="container" style={{ position: 'relative', zIndex: 100, paddingTop: '2rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Link to="/" className="back-link" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(14, 15, 19, 0.64)', textDecoration: 'none', background: 'rgba(14, 15, 19, 0.06)', padding: '0.6rem 1.2rem', borderRadius: '30px', border: '1px solid rgba(14, 15, 19, 0.10)', fontSize: '0.85rem', fontWeight: 600, backdropFilter: 'blur(10px)' }}>
-            <ArrowLeft size={16} />
-            <span>Back to Portfolio</span>
-          </Link>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(0, 230, 153, 0.1)', border: '1px solid rgba(0, 230, 153, 0.25)', padding: '0.4rem 1rem', borderRadius: '30px', color: '#0B8F6B', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em' }}>
-            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#00E699', display: 'inline-block', boxShadow: '0 0 10px #00E699' }} />
-            FEATURED CASE STUDY // FINTECH & UPI CIRCLE
-          </div>
-        </div>
-      </div>
-
-      {/* Hero Header Section */}
-      <header style={{ position: 'relative', zIndex: 10, padding: '4rem 0 3rem 0' }}>
+      {/* Hero — same shape as the Alpha and BitWise studies:
+          .cs-tag eyebrow, title with a serif subtitle line, lead,
+          then the meta strip. */}
+      <header className="cs-hero">
         <div className="container">
-          <motion.div 
+          <motion.div
+            className="cs-tag"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            Case Study — Fintech &amp; UPI Circle
+          </motion.div>
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
-              <span style={{ background: 'rgba(0, 230, 153, 0.15)', color: '#0B8F6B', padding: '0.35rem 0.85rem', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 800, border: '1px solid rgba(0, 230, 153, 0.3)' }}>
-                PRODUCT DESIGN & UX RESEARCH
-              </span>
-              <span style={{ color: 'rgba(14, 15, 19, 0.52)', fontSize: '0.85rem' }}>• 5 COMPREHENSIVE MOBILE SCREENS</span>
-            </div>
-
-            <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4.2rem)', fontWeight: 800, lineHeight: 1.1, margin: '0 0 1.5rem 0', fontFamily: 'var(--font-heading)', letterSpacing: '-0.02em' }}>
-              Aurora Fintech App <br />
-              <span style={{ background: 'linear-gradient(135deg, #ffffff 0%, rgba(14, 15, 19, 0.60) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                Streling Family UPI Circle & Financial Telemetry
-              </span>
+            <h1>
+              Aurora Fintech App: <br />
+              <span>Streling Family UPI Circle &amp; Financial Telemetry</span>
             </h1>
 
-            <p style={{ fontSize: '1.15rem', color: 'rgba(14, 15, 19, 0.62)', maxWidth: '780px', lineHeight: 1.7, margin: '0 0 3rem 0' }}>
-              Aurora Fintech App is a dark-void emerald mobile banking and allowance management platform. Designed around the National Payments Corporation of India (NPCI) UPI Circle specification, it enables parents to pool family funds, grant delegated allowances to teenagers (like Rohan, Age 16), enforce real-time spending caps, and manage bank accounts & debit cards seamlessly.
+            <p className="cs-lead">
+              A dark-void emerald mobile banking and allowance platform built around the NPCI
+              UPI Circle specification — parents pool family funds, delegate allowances to
+              teenagers, and enforce real-time spending caps without policing every purchase.
             </p>
+
+            <div className="cs-meta-strip">
+              <div className="cs-meta-strip-item">
+                <label>Role</label>
+                <span>Lead UX/UI Designer</span>
+              </div>
+              <div className="cs-meta-strip-divider" />
+              <div className="cs-meta-strip-item">
+                <label>Focus</label>
+                <span>Fintech &amp; Mobile UX</span>
+              </div>
+              <div className="cs-meta-strip-divider" />
+              <div className="cs-meta-strip-item">
+                <label>Outcome</label>
+                <span>40% Less Unplanned Spend</span>
+              </div>
+            </div>
           </motion.div>
 
           {/* Key Metrics Bento Strip */}
@@ -218,10 +223,10 @@ const CaseStudyAurora = () => {
         <div className="container">
 
           {/* Section 1: Interactive Device Frame & 5 Screen Showcase */}
-          <section style={{ marginBottom: '6rem' }}>
+          <section className="cs-section cs-section-tight">
             <div style={{ marginBottom: '2.5rem' }}>
-              <span style={{ color: '#0B8F6B', fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.15em' }}>01 / DESIGN SYSTEM & INTERFACE FLOW</span>
-              <TextReveal as="h2" mode="word" style={{ fontSize: '2.4rem', fontWeight: 800, color: '#0E0F13', marginTop: '0.25rem' }}>
+              <span className="cs-label">01 / DESIGN SYSTEM & INTERFACE FLOW</span>
+              <TextReveal as="h2" mode="word" style={{ fontWeight: 800, color: '#0E0F13', marginTop: '0.25rem' }}>
                 Complete 5-Screen Interface Architecture
               </TextReveal>
               <p style={{ color: 'rgba(14, 15, 19, 0.56)', fontSize: '1rem', margin: '0.5rem 0 0 0' }}>
@@ -325,10 +330,10 @@ const CaseStudyAurora = () => {
           </section>
 
           {/* Section 2: Live Interactive Approval Queue Sandbox */}
-          <section style={{ marginBottom: '6rem' }}>
+          <section className="cs-section cs-section-tight">
             <div style={{ marginBottom: '2.5rem' }}>
-              <span style={{ color: '#0B8F6B', fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.15em' }}>02 / INTERACTIVE APPROVAL ENGINE</span>
-              <TextReveal as="h2" mode="word" style={{ fontSize: '2.4rem', fontWeight: 800, color: '#0E0F13', marginTop: '0.25rem' }}>
+              <span className="cs-label">02 / INTERACTIVE APPROVAL ENGINE</span>
+              <TextReveal as="h2" mode="word" style={{ fontWeight: 800, color: '#0E0F13', marginTop: '0.25rem' }}>
                 UPI Circle Real-time Request Sandbox
               </TextReveal>
               <p style={{ color: 'rgba(14, 15, 19, 0.56)', fontSize: '1rem', margin: '0.5rem 0 0 0' }}>
@@ -462,10 +467,10 @@ const CaseStudyAurora = () => {
           </section>
 
           {/* Section 3: Information Architecture & Persona Matrix */}
-          <section style={{ marginBottom: '6rem' }}>
+          <section className="cs-section cs-section-tight">
             <div style={{ marginBottom: '2.5rem' }}>
-              <span style={{ color: '#0B8F6B', fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.15em' }}>03 / USER PERSONAS & ROLE SCHEMAS</span>
-              <TextReveal as="h2" mode="word" style={{ fontSize: '2.4rem', fontWeight: 800, color: '#0E0F13', marginTop: '0.25rem' }}>
+              <span className="cs-label">03 / USER PERSONAS & ROLE SCHEMAS</span>
+              <TextReveal as="h2" mode="word" style={{ fontWeight: 800, color: '#0E0F13', marginTop: '0.25rem' }}>
                 Role Hierarchy & Permission Model
               </TextReveal>
             </div>
@@ -524,10 +529,10 @@ const CaseStudyAurora = () => {
           </section>
 
           {/* Section 4: Design Tokens & Palette */}
-          <section style={{ marginBottom: '6rem' }}>
+          <section className="cs-section cs-section-tight">
             <div style={{ marginBottom: '2.5rem' }}>
-              <span style={{ color: '#0B8F6B', fontSize: '0.8rem', fontWeight: 800, letterSpacing: '0.15em' }}>04 / DESIGN SYSTEM</span>
-              <TextReveal as="h2" mode="word" style={{ fontSize: '2.4rem', fontWeight: 800, color: '#0E0F13', marginTop: '0.25rem' }}>
+              <span className="cs-label">04 / DESIGN SYSTEM</span>
+              <TextReveal as="h2" mode="word" style={{ fontWeight: 800, color: '#0E0F13', marginTop: '0.25rem' }}>
                 Color Tokens & Design Language
               </TextReveal>
             </div>
@@ -592,6 +597,19 @@ const CaseStudyAurora = () => {
 
         </div>
       </main>
+
+      {/* Closing CTA — same shape as the Alpha and BitWise studies */}
+      <section className="cs-closing">
+        <div className="container">
+          <div className="closing-content">
+            <TextReveal mode="char" as="h2">Building something people trust with money?</TextReveal>
+            <p>Aurora shows how far clear hierarchy and honest guardrails go when the stakes are someone&apos;s balance.</p>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', alignItems: 'center', marginTop: '2rem' }}>
+              <Link to="/" className="btn">Back to Portfolio</Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Fullscreen Lightbox Modal */}
       {zoomed && (

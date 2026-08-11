@@ -639,7 +639,7 @@ const CaseStudyAlpha = () => {
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <span className="cs-tag" style={{ color: '#3A1FD6', borderColor: '#8b5cf6' }}>Interactive Comparison</span>
-            <TextReveal mode="char" as="h2" style={{ fontSize: '3.5rem', marginTop: '1rem' }}>The Evolution of Arena.</TextReveal>
+            <TextReveal mode="char" as="h2" style={{ marginTop: '1rem' }}>The Evolution of Arena.</TextReveal>
             <p style={{ maxWidth: '700px', margin: '2rem auto', opacity: 0.7 }}>Interact with the slider below to see how we transformed the interface from a data-heavy technical view into a modern, decision-first experience.</p>
           </div>
 
@@ -784,7 +784,7 @@ const CaseStudyAlpha = () => {
         <div className="container cs-grid">
           <div className="cs-label" style={{ color: 'rgba(14, 15, 19, 0.56)' }}>Methodology</div>
           <div className="cs-content">
-            <TextReveal mode="char" as="h2" style={{ fontSize: '3rem', marginBottom: '2.5rem', letterSpacing: '-0.02em', color: '#0E0F13' }}>Compact process, faster story.</TextReveal>
+            <TextReveal mode="char" as="h2" style={{ marginBottom: '2.5rem', letterSpacing: '-0.02em', color: '#0E0F13' }}>Compact process, faster story.</TextReveal>
 
             <div className="cs-compact-grid cs-process-grid">
               {processSteps.map((step, index) => (
@@ -903,7 +903,7 @@ const CaseStudyAlpha = () => {
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <span className="cs-tag" style={{ background: 'rgba(14, 15, 19, 0.06)', color: '#0E0F13', border: '1px solid rgba(14, 15, 19, 0.10)' }}>The Takeaways</span>
-            <TextReveal mode="char" as="h2" style={{ fontSize: 'clamp(3rem, 5vw, 4.5rem)', letterSpacing: '-0.03em', marginTop: '1.5rem', color: '#0E0F13' }}>Post-Flight Learnings.</TextReveal>
+            <TextReveal mode="char" as="h2" style={{ letterSpacing: '-0.03em', marginTop: '1.5rem', color: '#0E0F13' }}>Post-Flight Learnings.</TextReveal>
           </div>
             
           <div className="cs-compact-grid">

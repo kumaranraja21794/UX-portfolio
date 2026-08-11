@@ -141,7 +141,7 @@ const CaseStudyBitwise = () => {
         <div className="container" style={{ textAlign: 'center' }}>
           <div className="section-header" style={{ marginBottom: '4rem' }}>
             <span className="cs-tag" style={{ color: '#0B8F6B', borderColor: '#10b981' }}>Interface Mockups</span>
-            <TextReveal mode="char" as="h2" style={{ fontSize: '3.5rem', marginTop: '1rem' }}>Original Portfolio Designs</TextReveal>
+            <TextReveal mode="char" as="h2" style={{ marginTop: '1rem' }}>Original Portfolio Designs</TextReveal>
             <p style={{ maxWidth: '700px', margin: '2rem auto', opacity: 0.7 }}>
               These high-fidelity screens from BitWise showcase the core architecture: Profile Settings, Buy/Swap Execution, Search & Listings, Asset Diligence Info, and price charts.
             </p>
@@ -328,7 +328,7 @@ const CaseStudyBitwise = () => {
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <span className="cs-tag" style={{ background: 'rgba(14, 15, 19, 0.06)', color: '#0E0F13', border: '1px solid rgba(14, 15, 19, 0.10)' }}>UX Insights</span>
-            <TextReveal mode="char" as="h2" style={{ fontSize: 'clamp(3rem, 5vw, 4.5rem)', letterSpacing: '-0.03em', marginTop: '1.5rem', color: '#0E0F13' }}>Key Takeaways.</TextReveal>
+            <TextReveal mode="char" as="h2" style={{ letterSpacing: '-0.03em', marginTop: '1.5rem', color: '#0E0F13' }}>Key Takeaways.</TextReveal>
           </div>
             
           <div className="cs-compact-grid">

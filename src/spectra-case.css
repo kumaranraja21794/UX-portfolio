@@ -68,6 +68,50 @@
 .bitwise-study-page { --cs-accent: #0B8F6B; --cs-accent-fill: #10B981; }
 .alpha-study-page   { --cs-accent: #3A1FD6; --cs-accent-fill: #8B5CF6; }
 
+/* =========================================================
+   One type scale and one section rhythm for every case study.
+   Alpha and BitWise already shared the .cs-hero / .cs-section /
+   .cs-closing spine but drifted on sizes (40 / 48 / 56px headings on
+   the same page); Aurora was built bespoke with none of those
+   classes. These rules set the scale centrally, and the inline
+   font sizes have been removed from the headings so it applies.
+   ========================================================= */
+.case-study-page h1,
+.case-study-page .cs-hero h1 {
+  font-size: clamp(2.3rem, 4.4vw, 3.5rem);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  font-weight: 800;
+}
+.case-study-page h2 {
+  font-size: clamp(1.85rem, 3.1vw, 2.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+}
+.case-study-page .cs-closing h2 {
+  font-size: clamp(2rem, 3.8vw, 3rem);
+}
+.case-study-page h3 { font-size: clamp(1.25rem, 2vw, 1.7rem); letter-spacing: -0.02em; }
+.case-study-page h4 { font-size: 1.15rem; letter-spacing: -0.015em; }
+
+/* shared hero rhythm — Alpha and BitWise get this from .cs-hero-grid,
+   Aurora's hero is a single column, so normalise the gaps centrally */
+.case-study-page .cs-hero h1 { margin: 0 0 1.4rem; }
+.case-study-page .cs-hero .cs-lead { margin-top: 0; max-width: 68ch; }
+.case-study-page .cs-hero .cs-meta-strip { margin-top: 2.6rem; }
+
+/* the eyebrow above every section heading, wherever it comes from */
+.case-study-page .cs-label,
+.case-study-page .cs-tag,
+.case-study-page .cs-compact-eyebrow {
+  font-family: var(--sp-mono, monospace);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
 /* ---- headings / body ---- */
 .case-study-page h1,
 .case-study-page h2,
