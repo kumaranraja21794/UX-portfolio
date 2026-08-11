@@ -95,20 +95,21 @@ body:has(.sp-page) { background-color: var(--sp-paper); }
   background-image: var(--sp-noise);
 }
 
-/* spectrum rail — fills as the page scrolls */
-.sp-rail {
-  position: fixed; top: 0; z-index: 40;
-  left: max(10px, calc((100vw - var(--sp-shell)) / 2 - 26px));
-  width: 3px; height: 100vh;
-  background: rgba(14, 15, 19, 0.08);
+/* Scroll progress — a bar across the bottom edge of the header.
+   It was a fixed vertical rail down the left gutter, but that gutter
+   is only reliable against the 1280px homepage shell; the case
+   studies use a 1100px container, so the rail cut through their
+   content. Anchored to .sp-nav it can't collide with anything. */
+.sp-progress {
+  position: absolute; left: 0; right: 0; bottom: -1px;
+  height: 3px; background: rgba(14, 15, 19, 0.06);
+  overflow: hidden;
 }
-.sp-rail-fill {
-  width: 100%; height: 0%;
-  background: linear-gradient(180deg, var(--sp-lime), var(--sp-coral) 55%, var(--sp-indigo));
-  box-shadow: 0 0 18px rgba(58, 31, 214, 0.35);
-  will-change: height;
+.sp-progress-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--sp-lime), var(--sp-coral) 55%, var(--sp-indigo));
+  will-change: width;
 }
-@media (max-width: 1180px) { .sp-rail { display: none; } }
 
 /* =========================================================
    Nav

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import { SpProgress } from './SpChrome';
 
 /* Chrome for the case-study routes. The legacy Header paints white
    text and a dark backdrop, which disappears on the light ground. */
@@ -17,6 +18,7 @@ export const SpCaseNav = () => (
         All work
       </Link>
     </div>
+    <SpProgress />
   </nav>
 );
 

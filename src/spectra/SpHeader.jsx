@@ -1,4 +1,5 @@
 import React from 'react';
+import { SpProgress } from './SpChrome';
 
 const links = [
   { label: 'Work', href: '#work' },
@@ -27,6 +28,7 @@ export const SpHeader = () => (
         <span className="sp-cta-short">Hire me</span>
       </a>
     </div>
+    <SpProgress />
   </nav>
 );
 
