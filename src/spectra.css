@@ -621,6 +621,27 @@ body:has(.sp-page) { background-color: var(--sp-paper); }
   border-bottom: none; z-index: auto;
 }
 
+/* Same leak, second rule: index.css also ships
+   `header .container { display:flex; justify-content:space-between;
+   max-width:1800px; padding:0 5vw }` for the old site header, and it
+   caught the case-study <header> too. The hero therefore ran far
+   wider than the back link above it, and its metric cards were
+   flexed into a narrow right-hand column instead of sitting in a row
+   underneath. (0,2,0) here outranks that rule's (0,1,1).
+
+   The base .container pads with --spacing-md, which is never defined
+   and so resolves to nothing, leaving content flush to the edges on
+   small screens — give it a real inline padding while we're here.
+   Applied to every .container on the page so they all share one
+   left/right edge. */
+.case-study-page .container {
+  max-width: 1100px;
+  padding-inline: clamp(20px, 4vw, 32px);
+}
+.case-study-page :where(header) .container {
+  display: block;
+}
+
 /* =========================================================
    Splash curtain
    ========================================================= */
