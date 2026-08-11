@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
   ArrowLeft, CheckCircle2, ShieldCheck, TrendingUp,
   CreditCard, Users, Layout, Target,
@@ -126,13 +126,12 @@ const designTokens = [
 ];
 
 const CaseStudyAurora = () => {
-  const [activeTab, setActiveTab] = useState(0);
-  const [isZoomed, setIsZoomed] = useState(false);
+  // holds the screen being enlarged, or null — the tab index it used to
+  // key off is gone now that every screen is on the page at once
+  const [zoomed, setZoomed] = useState(null);
 
   // Approval Request Simulation State
   const [requestStatus, setRequestStatus] = useState('PENDING'); // PENDING, APPROVED, DECLINED
-
-  const currentScreen = screensData[activeTab];
 
   return (
     <div className="case-study-page aurora-study-page" style={{ '--accent-primary': '#00E699', background: '#F2F3EC', color: '#0E0F13', minHeight: '100vh', fontFamily: 'var(--font-body)' }}>
@@ -226,141 +225,102 @@ const CaseStudyAurora = () => {
                 Complete 5-Screen Interface Architecture
               </TextReveal>
               <p style={{ color: 'rgba(14, 15, 19, 0.56)', fontSize: '1rem', margin: '0.5rem 0 0 0' }}>
-                Select any of the 5 designed screens below to inspect its visual structure, UX rationale, and micro-interactions.
+                All five designed screens, in the order a member meets them — each with its
+                visual structure, UX rationale, and micro-interactions.
               </p>
             </div>
 
-            {/* 5 Screen Interactive Tabs Bar */}
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '2.5rem' }}>
-              {screensData.map((screen, idx) => {
-                const isActive = activeTab === idx;
-                return (
-                  <button
-                    key={screen.id}
-                    onClick={() => setActiveTab(idx)}
-                    style={{
-                      padding: '0.85rem 1.4rem',
-                      borderRadius: '16px',
-                      border: isActive ? '1px solid #00E699' : '1px solid rgba(255,255,255,0.08)',
-                      background: isActive ? 'rgba(0, 230, 153, 0.12)' : '#111622',
-                      color: isActive ? '#00E699' : 'rgba(255,255,255,0.7)',
-                      fontWeight: 700,
-                      fontSize: '0.9rem',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.6rem',
-                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                      boxShadow: isActive ? '0 0 25px rgba(0, 230, 153, 0.15)' : 'none'
-                    }}
-                  >
-                    <Smartphone size={16} style={{ color: isActive ? '#00E699' : 'rgba(255,255,255,0.4)' }} />
-                    <span>{screen.title}</span>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Split View Container (3D Mobile Mockup + Deep UX Analysis) */}
-            <div style={{ background: '#F2F3EC', borderRadius: '32px', border: '1px solid rgba(14, 15, 19, 0.08)', padding: '3rem', display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: '3.5rem', alignItems: 'center' }}>
-              
-              {/* Phone Mockup Frame */}
-              <div style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
-                
-                {/* Dynamic Backdrop Glow */}
-                <div style={{ position: 'absolute', width: '290px', height: '580px', background: 'radial-gradient(circle, rgba(0, 230, 153, 0.22) 0%, transparent 70%)', filter: 'blur(45px)', opacity: 0.7 }} />
-
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentScreen.id}
-                    initial={{ opacity: 0, y: 20, scale: 0.96 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -20, scale: 0.96 }}
-                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                    style={{
-                      position: 'relative',
-                      maxWidth: '315px',
-                      width: '100%',
-                      borderRadius: '44px',
-                      padding: '12px',
-                      background: '#1A202C',
-                      boxShadow: '0 30px 80px rgba(0,0,0,0.9), 0 0 0 1px rgba(14, 15, 19, 0.14)',
-                      border: '2px solid rgba(0, 230, 153, 0.3)',
-                      cursor: 'pointer'
-                    }}
-                    onClick={() => setIsZoomed(true)}
-                  >
-                    {/* Device Inner Display */}
-                    <div style={{ borderRadius: '34px', overflow: 'hidden', position: 'relative', background: '#F2F3EC', aspectRatio: '9/19.5' }}>
-                      <img 
-                        src={currentScreen.img} 
-                        alt={currentScreen.title}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
-                      />
-
-                      {/* Lightbox Zoom Badge */}
-                      <div style={{ position: 'absolute', bottom: '16px', right: '16px', background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(10px)', borderRadius: '50%', padding: '10px', color: '#0B8F6B', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(0, 230, 153, 0.3)' }}>
-                        <Maximize2 size={16} />
-                      </div>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-
-              {/* Details Bento Column */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentScreen.id}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.4 }}
-                  style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}
+            {/* Every screen laid out in sequence. The rows alternate sides so a
+                long scroll keeps a rhythm instead of reading as one column. */}
+            <div className="aurora-screens">
+              {screensData.map((screen, idx) => (
+                <motion.article
+                  key={screen.id}
+                  className={`aurora-screen${idx % 2 ? ' aurora-screen--flip' : ''}`}
+                  initial={{ opacity: 0, y: 34 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-80px' }}
+                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                    <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#0B8F6B', letterSpacing: '0.1em' }}>
-                      {currentScreen.badge}
-                    </span>
-                    <span style={{ color: 'rgba(14, 15, 19, 0.60)' }}>|</span>
-                    <span style={{ fontSize: '0.85rem', color: 'rgba(14, 15, 19, 0.56)' }}>{currentScreen.subtitle}</span>
-                  </div>
+                  {/* Phone Mockup Frame */}
+                  <div className="aurora-screen-visual">
+                    <div style={{ position: 'absolute', width: '290px', height: '580px', background: 'radial-gradient(circle, rgba(0, 230, 153, 0.22) 0%, transparent 70%)', filter: 'blur(45px)', opacity: 0.7 }} />
 
-                  <h3 style={{ fontSize: '2rem', fontWeight: 800, color: '#0E0F13', margin: 0, fontFamily: 'var(--font-heading)' }}>
-                    {currentScreen.title}
-                  </h3>
+                    <button
+                      type="button"
+                      onClick={() => setZoomed(screen)}
+                      aria-label={`Enlarge ${screen.title}`}
+                      style={{
+                        position: 'relative',
+                        maxWidth: '315px',
+                        width: '100%',
+                        borderRadius: '44px',
+                        padding: '12px',
+                        background: '#1A202C',
+                        boxShadow: '0 30px 80px rgba(14, 15, 19, 0.35), 0 0 0 1px rgba(14, 15, 19, 0.14)',
+                        border: '2px solid rgba(0, 230, 153, 0.3)',
+                        cursor: 'zoom-in',
+                        display: 'block'
+                      }}
+                    >
+                      <div style={{ borderRadius: '34px', overflow: 'hidden', position: 'relative', background: '#F2F3EC', aspectRatio: '9/19.5' }}>
+                        <img
+                          src={screen.img}
+                          alt={screen.title}
+                          loading="lazy"
+                          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                        />
 
-                  <p style={{ fontSize: '1rem', color: 'rgba(14, 15, 19, 0.62)', lineHeight: 1.65, margin: 0 }}>
-                    {currentScreen.description}
-                  </p>
-
-                  {/* Micro Metrics Strip */}
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem', background: '#FFFFFF', padding: '1rem', borderRadius: '16px', border: '1px solid rgba(14, 15, 19, 0.06)' }}>
-                    {currentScreen.metrics.map((m, i) => (
-                      <div key={i} style={{ textAlign: 'center' }}>
-                        <div style={{ fontSize: '0.75rem', color: 'rgba(14, 15, 19, 0.52)', marginBottom: '0.2rem' }}>{m.label}</div>
-                        <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#0B8F6B' }}>{m.val}</div>
+                        <div style={{ position: 'absolute', bottom: '16px', right: '16px', background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(10px)', borderRadius: '50%', padding: '10px', color: '#00E699', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(0, 230, 153, 0.3)' }}>
+                          <Maximize2 size={16} />
+                        </div>
                       </div>
-                    ))}
+                    </button>
                   </div>
 
-                  {/* Key Highlights */}
-                  <div style={{ background: 'rgba(0, 230, 153, 0.03)', borderRadius: '20px', border: '1px solid rgba(0, 230, 153, 0.15)', padding: '1.5rem' }}>
-                    <h4 style={{ fontSize: '0.85rem', color: '#0B8F6B', margin: '0 0 1rem 0', fontWeight: 800, letterSpacing: '0.05em' }}>
-                      KEY DESIGN DECISIONS & INTERACTION HEURISTICS
-                    </h4>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                      {currentScreen.highlights.map((h, idx) => (
-                        <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', fontSize: '0.9rem', color: 'rgba(14, 15, 19, 0.74)', lineHeight: 1.5 }}>
-                          <CheckCircle2 size={18} style={{ color: '#0B8F6B', shrink: 0, marginTop: '2px' }} />
-                          <span>{h}</span>
+                  {/* Details Column */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+                      <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#0B8F6B', letterSpacing: '0.1em' }}>
+                        {screen.badge}
+                      </span>
+                      <span style={{ color: 'rgba(14, 15, 19, 0.30)' }}>|</span>
+                      <span style={{ fontSize: '0.85rem', color: 'rgba(14, 15, 19, 0.56)' }}>{screen.subtitle}</span>
+                    </div>
+
+                    <h3 style={{ fontSize: '2rem', fontWeight: 800, color: '#0E0F13', margin: 0, fontFamily: 'var(--font-heading)', letterSpacing: '-0.03em', lineHeight: 1.08 }}>
+                      {screen.title}
+                    </h3>
+
+                    <p style={{ fontSize: '1rem', color: 'rgba(14, 15, 19, 0.62)', lineHeight: 1.65, margin: 0 }}>
+                      {screen.description}
+                    </p>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem', background: '#FFFFFF', padding: '1rem', borderRadius: '16px', border: '1px solid rgba(14, 15, 19, 0.06)' }}>
+                      {screen.metrics.map((m, i) => (
+                        <div key={i} style={{ textAlign: 'center' }}>
+                          <div style={{ fontSize: '0.75rem', color: 'rgba(14, 15, 19, 0.52)', marginBottom: '0.2rem' }}>{m.label}</div>
+                          <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#0B8F6B' }}>{m.val}</div>
                         </div>
                       ))}
                     </div>
+
+                    <div style={{ background: 'rgba(0, 230, 153, 0.05)', borderRadius: '20px', border: '1px solid rgba(0, 230, 153, 0.18)', padding: '1.5rem' }}>
+                      <h4 style={{ fontSize: '0.85rem', color: '#0B8F6B', margin: '0 0 1rem 0', fontWeight: 800, letterSpacing: '0.05em' }}>
+                        KEY DESIGN DECISIONS &amp; INTERACTION HEURISTICS
+                      </h4>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                        {screen.highlights.map((h, i) => (
+                          <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', fontSize: '0.9rem', color: 'rgba(14, 15, 19, 0.74)', lineHeight: 1.5 }}>
+                            <CheckCircle2 size={18} style={{ color: '#0B8F6B', flexShrink: 0, marginTop: '2px' }} />
+                            <span>{h}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-
-                </motion.div>
-              </AnimatePresence>
-
+                </motion.article>
+              ))}
             </div>
           </section>
 
@@ -634,9 +594,9 @@ const CaseStudyAurora = () => {
       </main>
 
       {/* Fullscreen Lightbox Modal */}
-      {isZoomed && (
-        <div 
-          onClick={() => setIsZoomed(false)}
+      {zoomed && (
+        <div
+          onClick={() => setZoomed(null)}
           style={{ 
             position: 'fixed', 
             inset: 0, 
@@ -650,9 +610,9 @@ const CaseStudyAurora = () => {
             cursor: 'zoom-out' 
           }}
         >
-          <img 
-            src={currentScreen.img} 
-            alt={currentScreen.title}
+          <img
+            src={zoomed.img}
+            alt={zoomed.title}
             style={{ maxHeight: '90vh', maxWidth: '90vw', borderRadius: '24px', boxShadow: '0 0 60px rgba(0, 230, 153, 0.4)', border: '2px solid rgba(0, 230, 153, 0.5)' }} 
           />
         </div>

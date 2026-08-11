@@ -179,6 +179,28 @@
 /* the nav already offers "All work" — drop the in-page duplicate */
 .sp-case .back-link { display: none; }
 
+/* ---- Aurora: the five screens, stacked in sequence ---- */
+.aurora-screens { display: flex; flex-direction: column; gap: clamp(28px, 4vw, 56px); }
+.aurora-screen {
+  display: grid; grid-template-columns: 1fr 1.3fr;
+  gap: clamp(28px, 4vw, 56px); align-items: center;
+  background: var(--cs-paper, #F2F3EC);
+  border: 1px solid rgba(14, 15, 19, 0.08);
+  border-radius: 32px;
+  padding: clamp(24px, 3.4vw, 48px);
+}
+/* alternate sides so a long scroll keeps a rhythm; the DOM order is
+   unchanged, so the reading order still matches the numbered badges */
+.aurora-screen--flip > .aurora-screen-visual { order: 2; }
+.aurora-screen-visual {
+  display: flex; justify-content: center; position: relative;
+}
+.aurora-screen-visual button { padding: 12px; }
+@media (max-width: 900px) {
+  .aurora-screen { grid-template-columns: 1fr; }
+  .aurora-screen--flip > .aurora-screen-visual { order: 0; }
+}
+
 /* ---- imagery ---- */
 .case-study-page .cs-main-visual img,
 .case-study-page .cs-overlap-gallery img {
