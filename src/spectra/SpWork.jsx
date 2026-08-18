@@ -115,7 +115,7 @@ export const SpWork = () => {
           <h2 className="sp-sec-title">Money, markets &amp; the messy middle</h2>
         </div>
         <p className="sp-sec-note">
-          Eight shipped products. Each one started as a spreadsheet nobody could read.
+          Nine shipped products. Each one started as a spreadsheet nobody could read.
         </p>
       </div>
 

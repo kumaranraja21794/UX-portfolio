@@ -67,6 +67,83 @@
 .aurora-study-page  { --cs-accent: #0B8F6B; --cs-accent-fill: #00E699; }
 .bitwise-study-page { --cs-accent: #0B8F6B; --cs-accent-fill: #10B981; }
 .alpha-study-page   { --cs-accent: #3A1FD6; --cs-accent-fill: #8B5CF6; }
+/* Voya's product blue is #0EA5E9, which only reaches ~2.9:1 on paper,
+   so text uses the darker sky-700 and the fill keeps the brand value. */
+.voya-study-page    { --cs-accent: #0369A1; --cs-accent-fill: #0EA5E9; }
+
+/* ---- Voya ---- */
+.voya-metrics {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1.25rem; margin-top: 3rem;
+}
+.voya-metric {
+  background: var(--cs-card); border: 1px solid var(--cs-line);
+  border-radius: 20px; padding: 1.5rem;
+}
+.voya-metric-v {
+  font-family: var(--sp-display, sans-serif); font-size: 1.9rem; font-weight: 800;
+  letter-spacing: -0.03em; color: var(--cs-accent);
+}
+.voya-metric-l { font-size: 0.85rem; color: var(--cs-soft); margin-top: 0.3rem; line-height: 1.45; }
+
+.voya-device {
+  position: relative; display: block; padding: 0; border: none; background: none;
+  width: 100%; max-width: 320px; cursor: zoom-in;
+  border-radius: 34px; overflow: hidden;
+  box-shadow: 0 30px 70px -26px rgba(3, 61, 92, 0.45);
+}
+.voya-device img { width: 100%; display: block; }
+.voya-zoom {
+  position: absolute; right: 14px; bottom: 18px;
+  width: 34px; height: 34px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: rgba(6, 25, 38, 0.72); color: #7DD3FC;
+  border: 1px solid rgba(125, 211, 252, 0.35); backdrop-filter: blur(10px);
+}
+.voya-screen-glow {
+  position: absolute; width: 300px; height: 560px; pointer-events: none;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.20) 0%, transparent 70%);
+  filter: blur(45px);
+}
+
+.voya-screen-metrics {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;
+  background: var(--cs-card); padding: 1rem; border-radius: 16px;
+  border: 1px solid var(--cs-line);
+}
+.voya-sm-l { font-size: 0.72rem; color: var(--cs-soft); margin-bottom: 0.2rem; }
+.voya-sm-v { font-size: 0.9rem; font-weight: 800; color: var(--cs-accent); }
+
+.voya-notes {
+  background: rgba(14, 165, 233, 0.06); border: 1px solid rgba(14, 165, 233, 0.20);
+  border-radius: 20px; padding: 1.5rem;
+}
+.voya-notes h4 {
+  font-family: var(--sp-mono, monospace) !important;
+  font-size: 0.72rem !important; letter-spacing: 0.14em;
+  color: var(--cs-accent) !important; margin: 0 0 1rem; font-weight: 700;
+}
+
+.voya-tokens { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+.voya-token {
+  display: flex; align-items: flex-start; gap: 0.9rem;
+  background: var(--cs-card); border: 1px solid var(--cs-line);
+  border-radius: 18px; padding: 1.1rem;
+}
+.voya-swatch {
+  width: 40px; height: 40px; border-radius: 12px; flex: none;
+  border: 1px solid rgba(14, 15, 19, 0.10);
+}
+.voya-token-name { font-weight: 800; font-size: 0.95rem; }
+.voya-token-hex {
+  font-family: var(--sp-mono, monospace); font-size: 0.75rem;
+  color: var(--cs-accent); margin: 0.15rem 0 0.3rem;
+}
+.voya-token-role { font-size: 0.8rem; color: var(--cs-soft); line-height: 1.45; }
+
+@media (max-width: 900px) {
+  .voya-screen-metrics { grid-template-columns: 1fr; }
+}
 
 /* =========================================================
    One type scale and one section rhythm for every case study.
@@ -270,8 +347,8 @@
 .sp-case .back-link { display: none; }
 
 /* ---- Aurora: the five screens, stacked in sequence ---- */
-.aurora-screens { display: flex; flex-direction: column; gap: clamp(28px, 4vw, 56px); }
-.aurora-screen {
+.cs-screens { display: flex; flex-direction: column; gap: clamp(28px, 4vw, 56px); }
+.cs-screen {
   display: grid; grid-template-columns: 1fr 1.3fr;
   gap: clamp(28px, 4vw, 56px); align-items: center;
   background: var(--cs-paper, #F2F3EC);
@@ -281,14 +358,14 @@
 }
 /* alternate sides so a long scroll keeps a rhythm; the DOM order is
    unchanged, so the reading order still matches the numbered badges */
-.aurora-screen--flip > .aurora-screen-visual { order: 2; }
-.aurora-screen-visual {
+.cs-screen--flip > .cs-screen-visual { order: 2; }
+.cs-screen-visual {
   display: flex; justify-content: center; position: relative;
 }
-.aurora-screen-visual button { padding: 12px; }
+.cs-screen-visual button { padding: 12px; }
 @media (max-width: 900px) {
-  .aurora-screen { grid-template-columns: 1fr; }
-  .aurora-screen--flip > .aurora-screen-visual { order: 0; }
+  .cs-screen { grid-template-columns: 1fr; }
+  .cs-screen--flip > .cs-screen-visual { order: 0; }
 }
 
 /* ---- imagery ---- */

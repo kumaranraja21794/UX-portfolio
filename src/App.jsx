@@ -10,6 +10,7 @@ import SpCaseNav, { SpCaseFooter } from './spectra/SpCaseNav';
 import CaseStudyAlpha from './components/CaseStudyAlpha';
 import CaseStudyBitwise from './components/CaseStudyBitwise';
 import CaseStudyAurora from './components/CaseStudyAurora';
+import CaseStudyVoya from './components/CaseStudyVoya';
 import SpHome from './spectra/SpHome';
 import SpSplash from './spectra/SpSplash';
 import { shouldSkipSplash } from './spectra/splashPreference';
@@ -92,6 +93,7 @@ function App() {
           <Route path="/case-study/alpha-arena" element={<CaseStudyLayout><CaseStudyAlpha /></CaseStudyLayout>} />
           <Route path="/case-study/bitwise" element={<CaseStudyLayout><CaseStudyBitwise /></CaseStudyLayout>} />
           <Route path="/case-study/aurora-fintech" element={<CaseStudyLayout><CaseStudyAurora /></CaseStudyLayout>} />
+          <Route path="/case-study/voya" element={<CaseStudyLayout><CaseStudyVoya /></CaseStudyLayout>} />
         </Routes>
       </motion.div>
     </div>

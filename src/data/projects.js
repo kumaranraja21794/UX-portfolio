@@ -4,6 +4,21 @@
 
 export const projects = [
   {
+    id: 'voya',
+    title: 'Voya',
+    year: '2026',
+    domain: 'Travel · Mobile',
+    role: 'Product Designer & Developer',
+    shape: 'phone',
+    img: '/voya/trips.png',
+    wash: 'radial-gradient(95% 110% at 24% 0%, #7DD3FC, transparent 58%), linear-gradient(150deg, #0EA5E9, #075985)',
+    desc: 'A trip planner for people who travel together — an AI wizard drafts the itinerary, packing list and budget in one pass, then the whole crew shares one live map, one album and one running tab.',
+    impact: 'One shared sky',
+    impactColor: '#0369A1',
+    tags: ['React Native', 'Expo', 'AI Planning', 'Group Travel'],
+    link: '/case-study/voya',
+  },
+  {
     id: 'alpha-arena',
     title: 'Alpha Arena',
     year: '2025',

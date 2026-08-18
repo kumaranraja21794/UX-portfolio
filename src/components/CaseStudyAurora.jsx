@@ -237,18 +237,18 @@ const CaseStudyAurora = () => {
 
             {/* Every screen laid out in sequence. The rows alternate sides so a
                 long scroll keeps a rhythm instead of reading as one column. */}
-            <div className="aurora-screens">
+            <div className="cs-screens">
               {screensData.map((screen, idx) => (
                 <motion.article
                   key={screen.id}
-                  className={`aurora-screen${idx % 2 ? ' aurora-screen--flip' : ''}`}
+                  className={`cs-screen${idx % 2 ? ' cs-screen--flip' : ''}`}
                   initial={{ opacity: 0, y: 34 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-80px' }}
                   transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 >
                   {/* Phone Mockup Frame */}
-                  <div className="aurora-screen-visual">
+                  <div className="cs-screen-visual">
                     <div style={{ position: 'absolute', width: '290px', height: '580px', background: 'radial-gradient(circle, rgba(0, 230, 153, 0.22) 0%, transparent 70%)', filter: 'blur(45px)', opacity: 0.7 }} />
 
                     <button
