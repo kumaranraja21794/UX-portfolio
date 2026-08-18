@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+body{background:radial-gradient(1200px 700px at 50% -10%,#e0f2fe,#bae6fd 45%,#7dd3fc);font-family:'Plus Jakarta Sans',sans-serif;color:#0c4a6e;min-height:100vh}
+a{color:#0ea5e9;text-decoration:none}a:hover{color:#0284c7}
+.voya-scroll::-webkit-scrollbar{width:0;display:none}
+.voya-scroll{scrollbar-width:none}
+@keyframes screenIn{from{opacity:0;transform:translateY(14px) scale(.99)}to{opacity:1;transform:none}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes pulseDot{0%{box-shadow:0 0 0 0 rgba(14,165,233,.5)}70%{box-shadow:0 0 0 12px rgba(14,165,233,0)}100%{box-shadow:0 0 0 0 rgba(14,165,233,0)}}
+@keyframes polaroidIn{0%{opacity:0;transform:translateY(18px) scale(.9)}100%{opacity:1;transform:none}}
+@keyframes floatPin{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes dashFlow{to{stroke-dashoffset:-24}}
+@keyframes kenburns{0%{transform:scale(1)}100%{transform:scale(1.12)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes popIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes spinPulse{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(1.15) rotate(8deg)}}
+@keyframes rowIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+@keyframes cardRise{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes checkPop{0%{transform:scale(1)}45%{transform:scale(1.35)}100%{transform:scale(1)}}
+@keyframes fabFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes navPop{0%{transform:scale(1)}40%{transform:scale(1.32) translateY(-2px)}100%{transform:scale(1)}}
+@keyframes sheen{0%{transform:translateX(-120%) skewX(-20deg)}60%,100%{transform:translateX(320%) skewX(-20deg)}}
+@keyframes badgePop{0%{transform:scale(0) rotate(-12deg)}60%{transform:scale(1.2) rotate(4deg)}100%{transform:scale(1)}}
+@keyframes drift{0%{transform:translateX(0)}100%{transform:translateX(40px)}}
+@keyframes ringDraw{from{stroke-dashoffset:151}to{stroke-dashoffset:var(--ring-off,45)}}
+.v-btn{position:relative;overflow:hidden;transition:transform .14s cubic-bezier(.2,.8,.2,1),box-shadow .2s}
+.v-btn:active{transform:scale(.955)}
+.v-btn::after{content:"";position:absolute;top:0;bottom:0;left:0;width:40%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(-120%) skewX(-20deg);pointer-events:none}
+.v-btn:hover::after{animation:sheen 1.1s ease}
+.v-press{transition:transform .14s cubic-bezier(.2,.8,.2,1),box-shadow .2s,background .2s}
+.v-press:active{transform:scale(.96)}
+.v-lift{transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
+.v-lift:active{transform:scale(.98)}
+svg.ic{width:1em;height:1em;display:inline-block;vertical-align:-.15em;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+</style>
+<script src="image-slot.js"></script>
+</helmet>
+
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true"><symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></symbol><symbol id="i-sunrise" viewBox="0 0 24 24"><path d="M12 3v4M5.6 9.6l1.4 1.4M2 15h2.5M19.5 15H22M16.9 11l1.4-1.4M8 15a4 4 0 0 1 8 0M3 19h18"></path></symbol><symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.7 5.1 5.1 1.7-5.1 1.7L12 16.6l-1.7-5.1L5.2 9.8l5.1-1.7z"></path><path d="M18.5 14.5l.6 1.8 1.8.6-1.8.6-.6 1.8-.6-1.8-1.8-.6 1.8-.6z"></path></symbol><symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M15.6 8.4l-2 5.2-5.2 2 2-5.2z"></path></symbol><symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="8.5" cy="9.5" r="1.7"></circle><path d="m4 18 5-5 3 3 4-4 4 4"></path></symbol><symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="16" rx="2.5"></rect><path d="M3.5 9.5h17M8 3v4M16 3v4"></path></symbol><symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="m8.4 12.4 2.5 2.5 4.7-5.2"></path></symbol><symbol id="i-wallet" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2.5"></rect><path d="M3 10h18M16 15h2"></path></symbol><symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4 3 6.5v13.5L9 17.5l6 2.5 6-2.5V4l-6 2.5z"></path><path d="M9 4v13.5M15 6.5V20"></path></symbol><symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.6 7-12a7 7 0 1 0-14 0c0 5.4 7 12 7 12Z"></path><circle cx="12" cy="9" r="2.4"></circle></symbol><symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 1 1 12 0c0 5 2 6 2 6H4s2-1 2-6z"></path><path d="M10 20a2 2 0 0 0 4 0"></path></symbol><symbol id="i-id" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"></rect><circle cx="8.5" cy="11" r="2.1"></circle><path d="M5.4 16c.7-1.6 5.5-1.6 6.2 0M14 10h4M14 13.5h4"></path></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M6 4h10a2 2 0 0 1 2 2v14H8a2 2 0 0 1-2-2z"></path><path d="M9 4v16M11.5 9h3.5"></path></symbol><symbol id="i-stamp" viewBox="0 0 24 24"><path d="M9.5 9.2a2.6 2.6 0 1 1 5 0c0 1.4-1 1.9-1 3.3h-3c0-1.4-1-1.9-1-3.3z"></path><rect x="5" y="15.5" width="14" height="3.5" rx="1.2"></rect><path d="M8 15.5h8"></path></symbol><symbol id="i-backpack" viewBox="0 0 24 24"><path d="M7 9.5a5 5 0 0 1 10 0V19a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1z"></path><path d="M9.5 9.5V7.5a2.5 2.5 0 0 1 5 0v2M9 13.5h6"></path></symbol><symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.4A3.6 3.6 0 0 1 17 18z"></path></symbol><symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z"></path><circle cx="12" cy="13.5" r="3.4"></circle></symbol><symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L18.5 9.5a2 2 0 0 0-3-3L5 17z"></path><path d="M13.5 6.5l3 3"></path></symbol><symbol id="i-utensils" viewBox="0 0 24 24"><path d="M7 3v7a2 2 0 0 0 4 0V3M9 10v11M17 3c-1.6 0-2.6 2-2.6 5s1 4 2.6 4v9"></path></symbol><symbol id="i-landmark" viewBox="0 0 24 24"><path d="M4.5 9.5 12 4l7.5 5.5M6 9.5V17M10 9.5V17M14 9.5V17M18 9.5V17M4 20h16"></path></symbol><symbol id="i-car" viewBox="0 0 24 24"><path d="M5 11.5 6.4 7A2 2 0 0 1 8.3 5.5h7.4A2 2 0 0 1 17.6 7L19 11.5M4.5 11.5h15v5a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-1H8v1a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"></path><path d="M8 14h.01M16 14h.01"></path></symbol><symbol id="i-ticket" viewBox="0 0 24 24"><path d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2 2 2 0 0 0 0 4 2 2 0 0 1-2 2H6a2 2 0 0 1-2-2 2 2 0 0 0 0-4z"></path><path d="M14 6.5v2M14 12v2"></path></symbol><symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11.5 12 5l8 6.5M6 10.5V20h12v-9.5"></path></symbol><symbol id="i-link" viewBox="0 0 24 24"><path d="M9.5 14.5l5-5M8.5 11l-2 2a3 3 0 0 0 4.2 4.2l2-2M15.5 13l2-2a3 3 0 0 0-4.2-4.2l-2 2"></path></symbol><symbol id="i-maximize" viewBox="0 0 24 24"><path d="M8 4H4v4M16 4h4v4M8 20H4v-4M16 20h4v-4"></path></symbol><symbol id="i-share" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.2"></circle><circle cx="17" cy="6" r="2.2"></circle><circle cx="17" cy="18" r="2.2"></circle><path d="M8 11l7-4M8 13l7 4"></path></symbol><symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v10M8 11l4 4 4-4M5 19h14"></path></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"></circle><path d="m20 20-3.6-3.6"></path></symbol><symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M12 3v2.4M12 18.6V21M5.2 5.2 6.9 6.9M17.1 17.1l1.7 1.7M3 12h2.4M18.6 12H21M5.2 18.8 6.9 17.1M17.1 6.9l1.7-1.7"></path></symbol><symbol id="i-logout" viewBox="0 0 24 24"><path d="M14 5H6a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8M15 9l3 3-3 3M9 12h9"></path></symbol><symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 3 5 13h6l-1 8 8-10h-6z"></path></symbol><symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M19.5 4v3.7h-3.7"></path></symbol><symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.5A3.8 3.8 0 0 1 12 7a3.8 3.8 0 0 1 7-.5C19 15.6 12 20 12 20z"></path></symbol><symbol id="i-message" viewBox="0 0 24 24"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 3V6a1 1 0 0 1 1-1z"></path></symbol></svg>
+
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;gap:40px">
+
+  <div style="position:relative;width:392px;height:844px;background:#0b0d0c;border-radius:56px;padding:12px;box-shadow:0 50px 100px -30px rgba(12,74,110,.55),0 0 0 2px rgba(255,255,255,.4),inset 0 0 0 2px #1a1d1b;flex-shrink:0">
+    <div style="position:absolute;top:26px;left:50%;transform:translateX(-50%);width:108px;height:30px;background:#0b0d0c;border-radius:16px;z-index:60"></div>
+
+    <div style="position:relative;width:100%;height:100%;border-radius:44px;overflow:hidden;background:#f0f9ff;display:flex;flex-direction:column">
+
+      <!-- STATUS BAR -->
+      <div style="position:relative;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:15px 30px 6px;font-size:14px;font-weight:700;color:{{ statusColor }};flex-shrink:0">
+        <span>9:41</span>
+        <span style="display:flex;gap:7px;align-items:center;font-size:12px;letter-spacing:1px">▪▪▪ <span style="display:inline-block;width:24px;height:12px;border:1.6px solid currentColor;border-radius:3px;position:relative"><span style="position:absolute;inset:1.6px;right:5px;background:currentColor;border-radius:1px"></span></span></span>
+      </div>
+
+      <!-- CONTENT -->
+      <div class="voya-scroll" style="flex:1;overflow-y:auto;position:relative">
+
+        <!-- ==================== SPLASH ==================== -->
+        <sc-if value="{{ isSplash }}" hint-placeholder-val="{{ true }}">
+          <div style="position:absolute;inset:0;animation:fadeIn .5s ease both">
+            <div style="position:absolute;inset:0;overflow:hidden;margin:-44px 0 0"><div style="position:absolute;inset:0;animation:kenburns 18s ease-in-out infinite alternate"><image-slot id="v-splash" src="assets/splash.png" shape="rect" fit="cover" placeholder="Drop a dreamy travel photo"></image-slot></div></div>
+            <div style="position:absolute;inset:-44px 0 0;background:linear-gradient(180deg,rgba(8,47,73,.3) 0%,rgba(8,47,73,0) 35%,rgba(8,47,73,.85));pointer-events:none"></div>
+            <div style="position:absolute;top:20px;left:30px;display:flex;align-items:center;gap:9px;pointer-events:none">
+              <div style="width:34px;height:34px;border-radius:11px;background:#0ea5e9;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(14,165,233,.5)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.6 7-12a7 7 0 1 0-14 0c0 5.4 7 12 7 12Z"></path><circle cx="12" cy="9" r="2.4"></circle></svg></div>
+              <span style="color:#fff;font-size:22px;font-weight:800;letter-spacing:-.5px">Voya</span>
+            </div>
+            <div style="position:absolute;left:30px;right:30px;bottom:40px;color:#fff">
+              <div style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#7dd3fc">For people who travel together</div>
+              <div style="font-size:40px;font-weight:800;line-height:1.04;letter-spacing:-1.4px;margin-top:8px;text-wrap:pretty">Every trip,<br>one shared sky.</div>
+              <div style="font-size:15px;opacity:.9;margin-top:12px;line-height:1.5">Itineraries, packing, budgets and memories — planned by AI, shared with your crew.</div>
+              <button class="v-btn" onClick="{{ start }}" style="margin-top:24px;width:100%;border:none;background:#0ea5e9;color:#fff;font-size:17px;font-weight:800;font-family:inherit;padding:17px;border-radius:20px;cursor:pointer;box-shadow:0 14px 30px -8px rgba(14,165,233,.7);transition:transform .15s" style-active="transform:scale(.97)">Get started</button>
+              <div style="text-align:center;margin-top:16px;font-size:14px;opacity:.9">Already have an account? <span onClick="{{ skipToTrips }}" style="font-weight:800;color:#7dd3fc;cursor:pointer;text-decoration:underline">Log in</span></div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ==================== ONBOARDING ==================== -->
+        <sc-if value="{{ isOnb }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;animation:screenIn .4s ease both">
+            <div style="position:relative;flex:1;overflow:hidden;margin-top:-44px">
+              <sc-if value="{{ ob0 }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;inset:0;animation:fadeIn .5s ease both"><image-slot id="v-ob-1" src="assets/ob-1.png" shape="rect" fit="cover" placeholder=""></image-slot></div></sc-if>
+              <sc-if value="{{ ob1 }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:0;animation:fadeIn .5s ease both"><image-slot id="v-ob-2" src="assets/ob-2.png" shape="rect" fit="cover" placeholder=""></image-slot></div></sc-if>
+              <sc-if value="{{ ob2 }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:0;animation:fadeIn .5s ease both"><image-slot id="v-ob-3" src="assets/ob-3.png" shape="rect" fit="cover" placeholder=""></image-slot></div></sc-if>
+              <div style="position:absolute;top:56px;left:24px;font-size:34px;pointer-events:none;color:#fff"><svg class="ic"><use href="#{{ obIcon }}"></use></svg></div>
+              <div onClick="{{ obSkip }}" style="position:absolute;top:58px;right:20px;background:rgba(255,255,255,.28);backdrop-filter:blur(8px);color:#fff;font-size:13px;font-weight:700;padding:8px 16px;border-radius:20px;cursor:pointer">Skip</div>
+            </div>
+            <div style="background:#fff;border-radius:34px 34px 0 0;padding:26px 26px 28px;margin-top:-28px;position:relative;flex-shrink:0">
+              <div style="display:flex;gap:7px;margin-bottom:18px">
+                <span style="height:6px;border-radius:6px;transition:all .3s;width:{{ ob0w }};background:{{ ob0c }}"></span>
+                <span style="height:6px;border-radius:6px;transition:all .3s;width:{{ ob1w }};background:{{ ob1c }}"></span>
+                <span style="height:6px;border-radius:6px;transition:all .3s;width:{{ ob2w }};background:{{ ob2c }}"></span>
+              </div>
+              <div style="font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#0ea5e9;margin-bottom:8px">{{ obKicker }}</div>
+              <div style="font-size:29px;font-weight:800;letter-spacing:-1px;line-height:1.06;text-wrap:pretty">{{ obTitle }}</div>
+              <div style="font-size:14.5px;color:#567d99;line-height:1.55;margin-top:9px;min-height:64px">{{ obBody }}</div>
+              <div style="display:flex;align-items:center;gap:14px;margin-top:16px">
+                <button class="v-btn" onClick="{{ obBack }}" style="width:54px;height:54px;border-radius:18px;border:1.5px solid #d5ebf9;background:#fff;color:#0c4a6e;font-size:20px;cursor:pointer;flex-shrink:0">‹</button>
+                <button class="v-btn" onClick="{{ obNext }}" style="flex:1;border:none;background:#0ea5e9;color:#fff;font-size:16px;font-weight:800;font-family:inherit;padding:17px;border-radius:18px;cursor:pointer;box-shadow:0 12px 26px -8px rgba(14,165,233,.6);transition:transform .15s" style-active="transform:scale(.98)">{{ obCta }}</button>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ==================== SETUP ==================== -->
+        <sc-if value="{{ isSetup }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:8px 24px 30px;animation:screenIn .4s ease both">
+            <div style="font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#0ea5e9">Almost there</div>
+            <div style="font-size:28px;font-weight:800;letter-spacing:-1px;margin-top:6px">Make Voya yours</div>
+            <div style="font-size:14px;color:#567d99;margin-top:6px;line-height:1.5">This shapes your AI itineraries and checklists.</div>
+            <div style="font-size:14px;font-weight:800;margin:22px 0 10px">Who do you usually travel with?</div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <sc-for list="{{ typeChips }}" as="c" hint-placeholder-count="4"><span onClick="{{ c.on }}" style="font-size:13.5px;font-weight:700;padding:10px 16px;border-radius:20px;cursor:pointer;transition:all .2s;background:{{ c.bg }};color:{{ c.fg }};border:1.5px solid {{ c.bd }}">{{ c.label }}</span></sc-for>
+            </div>
+            <div style="font-size:14px;font-weight:800;margin:22px 0 10px">Where do you roam?</div>
+            <div style="display:flex;gap:8px">
+              <sc-for list="{{ scopeChips }}" as="c" hint-placeholder-count="3"><span onClick="{{ c.on }}" style="flex:1;text-align:center;font-size:13.5px;font-weight:700;padding:11px 0;border-radius:16px;cursor:pointer;transition:all .2s;background:{{ c.bg }};color:{{ c.fg }};border:1.5px solid {{ c.bd }}">{{ c.label }}</span></sc-for>
+            </div>
+            <div style="font-size:14px;font-weight:800;margin:22px 0 10px">What do you love? <span style="color:#6f8ba3;font-weight:600">Pick a few</span></div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <sc-for list="{{ prefChips }}" as="c" hint-placeholder-count="10"><span onClick="{{ c.on }}" style="font-size:13px;font-weight:700;padding:9px 14px;border-radius:20px;cursor:pointer;transition:all .2s;background:{{ c.bg }};color:{{ c.fg }};border:1.5px solid {{ c.bd }}">{{ c.label }}</span></sc-for>
+            </div>
+            <div style="font-size:14px;font-weight:800;margin:22px 0 10px">Travel documents <span style="color:#6f8ba3;font-weight:600">optional</span></div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid #dfeaf3;border-radius:16px;padding:13px 15px"><span style="font-size:18px"><svg class="ic"><use href="#i-book"></use></svg></span><div style="flex:1"><div style="font-size:14px;font-weight:700">Passport</div><div style="font-size:12px;color:#6f8ba3">P•••4921 · on file</div></div><span style="font-size:12px;font-weight:800;color:#0ea5e9;background:#e0f2fe;padding:5px 11px;border-radius:14px">✓ Ready</span></div>
+              <div style="display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid #dfeaf3;border-radius:16px;padding:13px 15px"><span style="font-size:18px"><svg class="ic"><use href="#i-calendar"></use></svg></span><div style="flex:1"><div style="font-size:14px;font-weight:700">Date of birth</div><div style="font-size:12px;color:#6f8ba3">Mar 14, 1996</div></div><span style="color:#b6cfe0">›</span></div>
+            </div>
+            <button class="v-btn" onClick="{{ setupDone }}" style="width:100%;border:none;background:#0ea5e9;color:#fff;font-size:16px;font-weight:800;font-family:inherit;padding:17px;border-radius:18px;cursor:pointer;margin-top:24px;box-shadow:0 12px 26px -8px rgba(14,165,233,.6);transition:transform .15s" style-active="transform:scale(.98)">Save &amp; continue</button>
+            <div onClick="{{ setupDone }}" style="text-align:center;margin-top:14px;font-size:14px;font-weight:700;color:#6f8ba3;cursor:pointer">Skip for now</div>
+          </div>
+        </sc-if>
+
+        <!-- ==================== TRIPS HOME ==================== -->
+        <sc-if value="{{ isTrips }}" hint-placeholder-val="{{ false }}">
+          <div class="voya-scroll" style="padding:6px 22px 128px;animation:screenIn .4s ease both">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+              <div><div style="font-size:14px;color:#567d99;font-weight:600">Good morning, Sara</div><div style="font-size:27px;font-weight:800;letter-spacing:-.8px;line-height:1;margin-top:3px">Where to next?</div></div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="position:relative;width:44px;height:44px;border-radius:50%;background:#fff;border:1px solid #e2eef7;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px -8px rgba(2,132,199,.3);cursor:pointer"><span style="font-size:17px"><svg class="ic"><use href="#i-bell"></use></svg></span><span style="position:absolute;top:0;right:0;width:16px;height:16px;border-radius:50%;background:#10b981;color:#fff;font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;border:2px solid #fff">3</span></div>
+                <div onClick="{{ onProfile }}" style="width:46px;height:46px;border-radius:50%;overflow:hidden;border:2px solid #fff;box-shadow:0 6px 14px rgba(2,132,199,.25);cursor:pointer"><image-slot id="v-home-ava" src="assets/av-sara.png" shape="rect" fit="cover" placeholder="me"></image-slot></div>
+              </div>
+            </div>
+            <div class="v-lift" onClick="{{ openWizard }}" style="display:flex;align-items:center;gap:11px;background:linear-gradient(135deg,#0c4a6e,#0369a1);border-radius:20px;padding:14px 16px;cursor:pointer;box-shadow:0 16px 30px -18px rgba(3,105,161,.9);margin-bottom:20px">
+              <span style="width:36px;height:36px;border-radius:12px;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;color:#fff"><svg class="ic"><use href="#i-sparkles"></use></svg></span>
+              <div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:800;color:#fff">Ask Voya AI to plan a trip</div><div style="font-size:12px;color:#9fd4f2">Itinerary, packing &amp; budget in seconds</div></div>
+              <span style="color:#7dd3fc;font-size:18px">›</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:11px"><div style="font-size:18px;font-weight:800;letter-spacing:-.4px">Up next</div><div style="font-size:12px;font-weight:700;color:#0ea5e9">✈️ 12 days to go</div></div>
+            <div class="v-lift" style="background:#fff;border:1px solid #e2eef7;border-radius:28px;padding:10px;box-shadow:0 20px 40px -22px rgba(3,105,161,.55);animation:cardRise .55s cubic-bezier(.2,.8,.2,1) both">
+              <div onClick="{{ openTrip }}" style="position:relative;height:214px;border-radius:20px;overflow:hidden;cursor:pointer">
+                <image-slot id="v-home-hero" src="assets/lisbon.png" shape="rect" fit="cover" placeholder="Lisbon"></image-slot>
+                <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,47,73,.05) 35%,rgba(8,47,73,.82));pointer-events:none"></div>
+                <div style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);backdrop-filter:blur(6px);color:#0284c7;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:6px 12px;border-radius:20px;pointer-events:none"><svg class="ic"><use href="#i-sun"></use></svg> 26°C · Sunny</div>
+                <div style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,.16);backdrop-filter:blur(6px);color:#fff;font-size:11px;font-weight:800;padding:6px 12px;border-radius:20px;pointer-events:none;border:1px solid rgba(255,255,255,.3)">Open →</div>
+                <div style="position:absolute;left:16px;right:16px;bottom:14px;color:#fff;pointer-events:none">
+                  <div style="font-size:26px;font-weight:800;letter-spacing:-.8px;line-height:1">Lisbon, Portugal</div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:7px">
+                    <div style="font-size:13px;opacity:.92;font-weight:600">Jul 28 – Aug 4 · 4 travellers</div>
+                    <div style="display:flex"><span style="width:28px;height:28px;border-radius:50%;overflow:hidden;border:2px solid #fff;display:inline-block"><image-slot id="v-th-a1" src="assets/av-leo.png" shape="rect" fit="cover" placeholder=""></image-slot></span><span style="width:28px;height:28px;border-radius:50%;overflow:hidden;border:2px solid #fff;display:inline-block;margin-left:-9px"><image-slot id="v-th-a2" src="assets/av-maya.png" shape="rect" fit="cover" placeholder=""></image-slot></span><span style="width:28px;height:28px;border-radius:50%;overflow:hidden;border:2px solid #fff;display:inline-block;margin-left:-9px"><image-slot id="v-th-a3" src="assets/av-noah.png" shape="rect" fit="cover" placeholder=""></image-slot></span></div>
+                  </div>
+                  <div style="height:6px;background:rgba(255,255,255,.28);border-radius:6px;margin-top:10px;overflow:hidden"><div style="width:72%;height:100%;background:#7dd3fc;border-radius:6px"></div></div>
+                  <div style="font-size:11px;opacity:.85;font-weight:600;margin-top:5px">Planning 72% · budget 62% · checklist {{ packDone }}/{{ packTotal }}</div>
+                </div>
+              </div>
+              <div style="padding:14px 6px 4px">
+                <div style="font-size:11px;font-weight:800;color:#6f8ba3;text-transform:uppercase;letter-spacing:.6px;margin-bottom:11px">Jump into Lisbon</div>
+                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:9px">
+                  <div class="v-press" onClick="{{ openTripItin }}" style="cursor:pointer;background:#f6fbfe;border:1px solid #e8f3fb;border-radius:16px;padding:11px 4px;display:flex;flex-direction:column;align-items:center;gap:6px"><span style="width:40px;height:40px;border-radius:13px;background:#eef4f9;display:flex;align-items:center;justify-content:center;font-size:18px;color:#0c4a6e"><svg class="ic"><use href="#i-calendar"></use></svg></span><span style="font-size:10.5px;font-weight:800;color:#0c4a6e">Itinerary</span></div>
+                  <div class="v-press" onClick="{{ openTripCheck }}" style="cursor:pointer;background:#f6fbfe;border:1px solid #e8f3fb;border-radius:16px;padding:11px 4px;display:flex;flex-direction:column;align-items:center;gap:6px"><span style="width:40px;height:40px;border-radius:13px;background:#eef4f9;display:flex;align-items:center;justify-content:center;font-size:18px;color:#0c4a6e"><svg class="ic"><use href="#i-check-circle"></use></svg></span><span style="font-size:10.5px;font-weight:800;color:#0c4a6e">Checklist</span></div>
+                  <div class="v-press" onClick="{{ openTripMoney }}" style="cursor:pointer;background:#f6fbfe;border:1px solid #e8f3fb;border-radius:16px;padding:11px 4px;display:flex;flex-direction:column;align-items:center;gap:6px"><span style="width:40px;height:40px;border-radius:13px;background:#eef4f9;display:flex;align-items:center;justify-content:center;font-size:18px;color:#0c4a6e"><svg class="ic"><use href="#i-wallet"></use></svg></span><span style="font-size:10.5px;font-weight:800;color:#0c4a6e">Budget</span></div>
+                  <div class="v-press" onClick="{{ openTripMap }}" style="cursor:pointer;background:#f6fbfe;border:1px solid #e8f3fb;border-radius:16px;padding:11px 4px;display:flex;flex-direction:column;align-items:center;gap:6px"><span style="width:40px;height:40px;border-radius:13px;background:#eef4f9;display:flex;align-items:center;justify-content:center;font-size:18px;color:#0c4a6e"><svg class="ic"><use href="#i-map"></use></svg></span><span style="font-size:10.5px;font-weight:800;color:#0c4a6e">Map</span></div>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin:24px 0 12px"><div style="font-size:18px;font-weight:800;letter-spacing:-.4px">More trips</div><div style="font-size:12px;font-weight:700;color:#9bb6cb">Ideas &amp; past</div></div>
+            <div class="voya-scroll" style="display:flex;gap:14px;overflow-x:auto;margin:0 -22px;padding:0 22px 4px">
+              <div class="v-lift" onClick="{{ toastTokyo }}" style="flex-shrink:0;width:195px;border-radius:22px;overflow:hidden;background:#fff;border:1px solid #e2eef7;box-shadow:0 12px 26px -18px rgba(2,132,199,.6);cursor:pointer">
+                <div style="position:relative;height:128px"><image-slot id="v-home-t2" src="assets/tokyo.png" shape="rect" fit="cover" placeholder="Tokyo"></image-slot><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 42%,rgba(8,47,73,.68));pointer-events:none"></div><span style="position:absolute;top:10px;left:10px;background:#0ea5e9;color:#fff;font-size:10px;font-weight:800;letter-spacing:.5px;padding:4px 9px;border-radius:12px">PLANNING</span><div style="position:absolute;left:12px;bottom:10px;color:#fff;pointer-events:none"><div style="font-size:18px;font-weight:800;line-height:1">Tokyo, Japan</div><div style="font-size:11px;opacity:.9;margin-top:2px">Sep 12 – 20 · 6 travellers</div></div></div>
+                <div style="padding:11px 13px"><div style="font-size:12px;color:#6f8ba3;font-weight:600">Idea · 18% planned</div><div style="height:5px;background:#dbeefc;border-radius:6px;margin-top:8px;overflow:hidden"><div style="width:18%;height:100%;background:#7dd3fc;border-radius:6px"></div></div></div>
+              </div>
+              <div class="v-lift" onClick="{{ onAlbumHome }}" style="flex-shrink:0;width:195px;border-radius:22px;overflow:hidden;background:#fff;border:1px solid #e2eef7;box-shadow:0 12px 26px -18px rgba(2,132,199,.6);cursor:pointer">
+                <div style="position:relative;height:128px"><image-slot id="v-home-t3" src="assets/bali.png" shape="rect" fit="cover" placeholder="Bali"></image-slot><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 42%,rgba(8,47,73,.68));pointer-events:none"></div><span style="position:absolute;top:10px;left:10px;background:rgba(255,255,255,.92);color:#567d99;font-size:10px;font-weight:800;letter-spacing:.5px;padding:4px 9px;border-radius:12px">PAST TRIP</span><div style="position:absolute;left:12px;bottom:10px;color:#fff;pointer-events:none"><div style="font-size:18px;font-weight:800;line-height:1">Bali, Indonesia</div><div style="font-size:11px;opacity:.9;margin-top:2px">May 2 – 12 · completed</div></div></div>
+                <div style="padding:11px 13px"><div style="font-size:12px;color:#6f8ba3;font-weight:600">124 photos in album</div><div style="font-size:12px;color:#0ea5e9;font-weight:700;margin-top:6px">View album →</div></div>
+              </div>
+              <div class="v-lift" onClick="{{ openWizard }}" style="flex-shrink:0;width:132px;border-radius:22px;border:2px dashed #bcdcef;background:#f4fbff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;cursor:pointer;color:#0284c7"><span style="width:50px;height:50px;border-radius:17px;background:#e0f2fe;display:flex;align-items:center;justify-content:center;font-size:24px">＋</span><div style="font-size:13px;font-weight:800;text-align:center;line-height:1.2">Plan a<br>new trip</div></div>
+            </div>
+          </div>
+          <button class="v-btn" onClick="{{ openWizard }}" style="position: absolute; left: 50%; transform: translateX(-50%); bottom: 110px; border: none; background: #0c4a6e; color: #fff; font-size: 15px; font-weight: 800; font-family: inherit; padding: 15px 26px; border-radius: 26px; cursor: pointer; box-shadow: 0 16px 32px -10px rgba(12,74,110,.7); display: none; align-items: center; gap: 8px; animation: floatY 3.5s ease-in-out infinite; z-index: 30"><span style="color:#7dd3fc;font-size:18px">＋</span> Plan a trip</button>
+        </sc-if>
+
+        <!-- ==================== NEW TRIP WIZARD ==================== -->
+        <sc-if value="{{ isWizard }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:6px 24px 30px;animation:screenIn .4s ease both">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+              <button class="v-btn" onClick="{{ wizBack }}" style="width:40px;height:40px;border-radius:13px;border:1.5px solid #dfeaf3;background:#fff;font-size:18px;cursor:pointer">‹</button>
+              <div style="flex:1"><div style="font-size:20px;font-weight:800;letter-spacing:-.5px">Plan a trip</div><div style="font-size:12px;color:#6f8ba3;font-weight:600">{{ wizStepLabel }}</div></div>
+            </div>
+            <div style="display:flex;gap:6px;margin-bottom:22px">
+              <span style="flex:1;height:5px;border-radius:5px;background:{{ ws1 }}"></span><span style="flex:1;height:5px;border-radius:5px;background:{{ ws2 }}"></span><span style="flex:1;height:5px;border-radius:5px;background:{{ ws3 }}"></span><span style="flex:1;height:5px;border-radius:5px;background:{{ ws4 }}"></span>
+            </div>
+
+            <!-- STEP 1: DETAILS -->
+            <sc-if value="{{ wiz1 }}" hint-placeholder-val="{{ true }}">
+              <div style="animation:fadeIn .3s ease both">
+                <div style="position:relative;height:140px;border-radius:22px;overflow:hidden;margin-bottom:18px"><image-slot id="v-wiz-cover" src="assets/lisbon.png" shape="rect" fit="cover" placeholder="Cover"></image-slot><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(8,47,73,.55));pointer-events:none"></div><div style="position:absolute;left:14px;bottom:12px;color:#fff;font-size:13px;font-weight:700;pointer-events:none">📍 Lisbon, Portugal</div></div>
+                <div style="display:flex;flex-direction:column;gap:14px">
+                  <div><div style="font-size:13px;font-weight:700;margin-bottom:7px">Destination</div><div style="background:#fff;border:1.5px solid #dfeaf3;border-radius:15px;padding:14px 16px;font-size:15px;font-weight:600">Lisbon, Portugal</div></div>
+                  <div style="display:flex;gap:12px"><div style="flex:1"><div style="font-size:13px;font-weight:700;margin-bottom:7px">Start</div><div style="background:#fff;border:1.5px solid #dfeaf3;border-radius:15px;padding:14px 16px;font-size:15px;font-weight:600">Jul 28</div></div><div style="flex:1"><div style="font-size:13px;font-weight:700;margin-bottom:7px">End</div><div style="background:#fff;border:1.5px solid #dfeaf3;border-radius:15px;padding:14px 16px;font-size:15px;font-weight:600">Aug 4</div></div></div>
+                  <div><div style="font-size:13px;font-weight:700;margin-bottom:7px">Budget per person</div><div style="background:#fff;border:1.5px solid #dfeaf3;border-radius:15px;padding:14px 16px;font-size:15px;font-weight:600">$2,000</div></div>
+                  <div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px"><span style="font-size:13px;font-weight:700">Invite your crew</span><span onClick="{{ openContacts }}" style="font-size:12px;font-weight:800;color:#0ea5e9;background:#e0f2fe;padding:6px 12px;border-radius:14px;cursor:pointer">📇 From contacts</span></div>
+                    <sc-if value="{{ hasCrew }}" hint-placeholder-val="{{ true }}">
+                      <div style="display:flex;flex-wrap:wrap;gap:8px">
+                        <sc-for list="{{ crewSel }}" as="c" hint-placeholder-count="2"><span style="display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;padding:6px 12px 6px 6px;border-radius:20px;background:#e0f2fe;color:#0284c7;border:1.5px solid #bae6fd"><span style="width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:800;background:{{ c.avBg }};background-size:cover;background-position:center">{{ c.initial }}</span>{{ c.label }}<span onClick="{{ c.remove }}" style="cursor:pointer;color:#6f8ba3;font-size:12px;padding:2px">✕</span></span></sc-for>
+                      </div>
+                    </sc-if>
+                    <sc-if value="{{ noCrew }}" hint-placeholder-val="{{ false }}">
+                      <div onClick="{{ openContacts }}" style="border:1.5px dashed #bae6fd;border-radius:16px;padding:14px;text-align:center;font-size:13.5px;font-weight:700;color:#0284c7;background:#f0f9ff;cursor:pointer">＋ Add travellers from your contacts</div>
+                    </sc-if>
+                  </div>
+                </div>
+                <button class="v-btn" onClick="{{ wizToItin }}" style="width:100%;border:none;background:#0ea5e9;color:#fff;font-size:16px;font-weight:800;font-family:inherit;padding:17px;border-radius:18px;cursor:pointer;margin-top:22px;box-shadow:0 12px 26px -8px rgba(14,165,233,.6)">Let AI plan it ✨</button>
+              </div>
+            </sc-if>
+
+            <!-- STEP 2: AI ITINERARY -->
+            <sc-if value="{{ wiz2 }}" hint-placeholder-val="{{ false }}">
+              <sc-if value="{{ building }}" hint-placeholder-val="{{ false }}">
+                <div style="text-align:center;padding:60px 10px 30px;animation:fadeIn .3s ease both">
+                  <div style="font-size:52px;animation:spinPulse 1.4s ease-in-out infinite"><svg class="ic"><use href="#i-sparkles"></use></svg></div>
+                  <div style="font-size:21px;font-weight:800;margin-top:18px">Drafting your itinerary…</div>
+                  <div style="font-size:14px;color:#567d99;margin-top:8px;line-height:1.6">Reading 4 traveller profiles<br>Matching Culture · Food · Beaches</div>
+                  <div style="height:10px;border-radius:10px;margin:26px 30px 0;background:linear-gradient(90deg,#d5ebf9 25%,#bae6fd 50%,#d5ebf9 75%);background-size:200% 100%;animation:shimmer 1.2s linear infinite"></div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ built }}" hint-placeholder-val="{{ false }}">
+                <div style="animation:fadeIn .35s ease both">
+                  <div style="display:flex;align-items:center;gap:10px;background:#e0f2fe;border:1px solid #bfe4fb;border-radius:16px;padding:12px 14px;margin-bottom:16px"><span style="font-size:18px"><svg class="ic"><use href="#i-sparkles"></use></svg></span><div style="font-size:13px;font-weight:700;color:#0284c7">Your 4-day journey — reorder, add or remove any stop</div></div>
+                  <div style="position:relative">
+                    <div style="position:absolute;left:15px;top:10px;bottom:24px;width:2px;background:linear-gradient(#0ea5e9,#bfe4fb);z-index:0"></div>
+                    <sc-for list="{{ wizAllDays }}" as="d" hint-placeholder-count="4">
+                      <div style="position:relative;padding-left:44px;margin-bottom:20px;animation:rowIn .35s ease both">
+                        <div style="position:absolute;left:0;top:2px;width:32px;height:32px;border-radius:50%;background:#0ea5e9;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;box-shadow:0 6px 14px -4px rgba(14,165,233,.6);z-index:1">{{ d.dayNo }}</div>
+                        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px"><div style="font-size:16px;font-weight:800;letter-spacing:-.3px">{{ d.label }} · {{ d.title }}</div></div>
+                        <div style="font-size:12px;color:#6f8ba3;font-weight:600;margin:-6px 0 10px">{{ d.sub }}</div>
+                        <div style="display:flex;flex-direction:column;gap:8px">
+                          <sc-for list="{{ d.acts }}" as="a" hint-placeholder-count="4">
+                            <div style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #e2eef7;border-radius:15px;padding:10px 12px">
+                              <div style="width:44px;flex-shrink:0;text-align:center;font-size:12px;font-weight:800;color:#0ea5e9">{{ a.t }}</div>
+                              <div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:700;text-wrap:pretty">{{ a.title }}</div><div style="font-size:12px;color:#6f8ba3">{{ a.sub }}</div></div>
+                              <div style="display:flex;gap:5px;flex-shrink:0">
+                                <span onClick="{{ a.up }}" style="width:27px;height:27px;border-radius:9px;border:1.5px solid #dfeaf3;background:#fff;color:#567d99;display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer">↑</span>
+                                <span onClick="{{ a.down }}" style="width:27px;height:27px;border-radius:9px;border:1.5px solid #dfeaf3;background:#fff;color:#567d99;display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer">↓</span>
+                                <span onClick="{{ a.del }}" style="width:27px;height:27px;border-radius:9px;border:1.5px solid #f5ded6;background:#fff;color:#e07a5f;display:flex;align-items:center;justify-content:center;font-size:11px;cursor:pointer">✕</span>
+                              </div>
+                            </div>
+                          </sc-for>
+                          <div onClick="{{ d.addTo }}" style="font-size:12.5px;font-weight:800;color:#0284c7;background:#eff9ff;border:1.5px dashed #bae6fd;border-radius:13px;padding:9px;text-align:center;cursor:pointer">＋ Add stop to {{ d.label }}</div>
+                        </div>
+                      </div>
+                    </sc-for>
+                  </div>
+                  <button class="v-btn" onClick="{{ wizToCheck }}" style="width:100%;border:none;background:#0ea5e9;color:#fff;font-size:16px;font-weight:800;font-family:inherit;padding:17px;border-radius:18px;cursor:pointer;margin-top:6px;box-shadow:0 12px 26px -8px rgba(14,165,233,.6)">Looks good — build checklist</button>
+                </div>
+              </sc-if>
+            </sc-if>
+
+            <!-- STEP 3: AI CHECKLIST -->
+            <sc-if value="{{ wiz3 }}" hint-placeholder-val="{{ false }}">
+              <sc-if value="{{ building }}" hint-placeholder-val="{{ false }}">
+                <div style="text-align:center;padding:60px 10px 30px;animation:fadeIn .3s ease both">
+                  <div style="font-size:52px;animation:spinPulse 1.4s ease-in-out infinite"><svg class="ic"><use href="#i-backpack"></use></svg></div>
+                  <div style="font-size:21px;font-weight:800;margin-top:18px">Packing for Lisbon…</div>
+                  <div style="font-size:14px;color:#567d99;margin-top:8px;line-height:1.6"><svg class="ic"><use href="#i-sun"></use></svg> 26°C sunshine all week<br>International trip — checking documents</div>
+                  <div style="height:10px;border-radius:10px;margin:26px 30px 0;background:linear-gradient(90deg,#d5ebf9 25%,#bae6fd 50%,#d5ebf9 75%);background-size:200% 100%;animation:shimmer 1.2s linear infinite"></div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ built }}" hint-placeholder-val="{{ false }}">
+                <div style="animation:fadeIn .35s ease both">
+                  <div style="display:flex;align-items:center;gap:10px;background:#e0f2fe;border:1px solid #bfe4fb;border-radius:16px;padding:12px 14px;margin-bottom:16px"><span style="font-size:18px"><svg class="ic"><use href="#i-sparkles"></use></svg></span><div style="font-size:13px;font-weight:700;color:#0284c7">{{ packTotal }} items tailored to Lisbon's forecast — tap to check off</div></div>
+                  <sc-for list="{{ packGroups }}" as="grp" hint-placeholder-count="4">
+                    <div style="margin-bottom:14px">
+                      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px"><span style="font-size:13px;font-weight:800;color:#6f8ba3;text-transform:uppercase;letter-spacing:.5px">{{ grp.cat }}</span><span style="font-size:11px;font-weight:700;color:#97b3c6">{{ grp.stat }}</span></div>
+                      <div style="background:#fff;border:1px solid #e2eef7;border-radius:18px;overflow:hidden">
+                        <sc-for list="{{ grp.items }}" as="it" hint-placeholder-count="3">
+                          <div onClick="{{ it.toggle }}" style="display:flex;align-items:center;gap:13px;padding:12px 15px;cursor:pointer;border-bottom:1px solid #eef5fb">
+                            <span style="width:24px;height:24px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;transition:all .2s;border:2px solid {{ it.tickBorder }};background:{{ it.tickBg }};animation:{{ it.tickAnim }}">{{ it.check }}</span>
+                            <span style="flex:1;font-size:14.5px;font-weight:600;transition:all .2s;color:{{ it.txtColor }};text-decoration:{{ it.deco }}">{{ it.label }}</span>
+                          </div>
+                        </sc-for>
+                      </div>
+                    </div>
+                  </sc-for>
+                  <button class="v-btn" onClick="{{ addPackItem }}" style="width:100%;background:#eff9ff;border:1.5px dashed #bae6fd;color:#0284c7;font-size:13.5px;font-weight:800;font-family:inherit;padding:13px;border-radius:15px;cursor:pointer">＋ Add item to checklist</button>
+                  <button class="v-btn" onClick="{{ wizToDone }}" style="width:100%;border:none;background:#0ea5e9;color:#fff;font-size:16px;font-weight:800;font-family:inherit;padding:17px;border-radius:18px;cursor:pointer;margin-top:12px;box-shadow:0 12px 26px -8px rgba(14,165,233,.6)">Finish setup</button>
+                </div>
+              </sc-if>
+            </sc-if>
+
+            <!-- STEP 4: DONE -->
+            <sc-if value="{{ wiz4 }}" hint-placeholder-val="{{ false }}">
+              <div style="text-align:center;padding:30px 6px;animation:fadeIn .35s ease both">
+                <div style="width:92px;height:92px;border-radius:50%;background:#0ea5e9;margin:0 auto;display:flex;align-items:center;justify-content:center;box-shadow:0 18px 40px -12px rgba(14,165,233,.8);animation:popIn .45s cubic-bezier(.2,.8,.2,1) both"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"></path></svg></div>
+                <div style="font-size:26px;font-weight:800;letter-spacing:-.8px;margin-top:20px">Lisbon is ready!</div>
+                <div style="font-size:14px;color:#567d99;margin-top:8px;line-height:1.6">Itinerary, checklist and budget are live.<br>Your crew has been invited.</div>
+                <div style="display:flex;gap:10px;margin-top:24px">
+                  <div style="flex:1;background:#fff;border:1px solid #e2eef7;border-radius:18px;padding:14px"><div style="font-size:20px;font-weight:800">7</div><div style="font-size:12px;color:#6f8ba3">days planned</div></div>
+                  <div style="flex:1;background:#fff;border:1px solid #e2eef7;border-radius:18px;padding:14px"><div style="font-size:20px;font-weight:800">{{ packTotal }}</div><div style="font-size:12px;color:#6f8ba3">checklist items</div></div>
+                  <div style="flex:1;background:#fff;border:1px solid #e2eef7;border-radius:18px;padding:14px"><div style="font-size:20px;font-weight:800">{{ wizTravellers }}</div><div style="font-size:12px;color:#6f8ba3">travellers</div></div>
+                </div>
+                <button class="v-btn" onClick="{{ openTrip }}" style="width:100%;border:none;background:#0ea5e9;color:#fff;font-size:16px;font-weight:800;font-family:inherit;padding:17px;border-radius:18px;cursor:pointer;margin-top:24px;box-shadow:0 12px 26px -8px rgba(14,165,233,.6)">Open trip →</button>
+                <div onClick="{{ onTrips }}" style="margin-top:14px;font-size:14px;font-weight:700;color:#6f8ba3;cursor:pointer">Back to trips</div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <!-- ==================== TRIP HUB ==================== -->
+        <sc-if value="{{ isTrip }}" hint-placeholder-val="{{ false }}">
+          <div style="animation:screenIn .4s ease both;padding-bottom:110px">
+            <div style="display:flex;align-items:center;gap:12px;padding:2px 20px 10px">
+              <button class="v-btn" onClick="{{ onTrips }}" style="width:40px;height:40px;border-radius:13px;border:1.5px solid #dfeaf3;background:#fff;font-size:18px;cursor:pointer;flex-shrink:0">‹</button>
+              <div style="flex:1"><div style="font-size:20px;font-weight:800;letter-spacing:-.5px;line-height:1">Lisbon</div><div style="font-size:12px;color:#6f8ba3;font-weight:600">Jul 28 – Aug 4 · 4 people</div></div>
+              <button class="v-btn" onClick="{{ openMembers }}" style="display:flex;border:none;background:none;cursor:pointer;padding:0"><span style="width:32px;height:32px;border-radius:50%;overflow:hidden;border:2px solid #fff;display:inline-block"><image-slot id="v-tb-a1" src="assets/av-leo.png" shape="rect" fit="cover" placeholder=""></image-slot></span><span style="width:32px;height:32px;border-radius:50%;overflow:hidden;border:2px solid #fff;display:inline-block;margin-left:-10px"><image-slot id="v-tb-a2" src="assets/av-maya.png" shape="rect" fit="cover" placeholder=""></image-slot></span><span style="width:32px;height:32px;border-radius:50%;background:#0c4a6e;color:#7dd3fc;border:2px solid #fff;margin-left:-10px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800">+2</span></button>
+            </div>
+            <div class="voya-scroll" style="display:flex;gap:8px;padding:2px 20px 12px;overflow-x:auto">
+              <sc-for list="{{ segItems }}" as="seg" hint-placeholder-count="6">
+                <span onClick="{{ seg.on }}" style="flex-shrink:0;font-size:13px;font-weight:700;padding:8px 15px;border-radius:20px;cursor:pointer;transition:all .2s;background:{{ seg.bg }};color:{{ seg.fg }}">{{ seg.label }}</span>
+              </sc-for>
+            </div>
+
+            <!-- OVERVIEW -->
+            <sc-if value="{{ ttOverview }}" hint-placeholder-val="{{ true }}">
+              <div style="padding:0 20px;animation:fadeIn .3s ease both">
+                <div style="position:relative;height:190px;border-radius:24px;overflow:hidden;box-shadow:0 20px 40px -22px rgba(3,105,161,.6)">
+                  <image-slot id="v-trip-hero" src="assets/lisbon.png" shape="rect" fit="cover" placeholder="Trip cover"></image-slot>
+                  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,47,73,.08) 30%,rgba(8,47,73,.8));pointer-events:none"></div>
+                  <div style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);backdrop-filter:blur(6px);color:#0284c7;font-size:11px;font-weight:800;padding:5px 11px;border-radius:20px;pointer-events:none"><svg class="ic"><use href="#i-sun"></use></svg> 26°C · Planning</div>
+                  <div style="position:absolute;top:12px;right:12px;background:#0ea5e9;color:#fff;font-size:12px;font-weight:800;padding:5px 11px;border-radius:20px;pointer-events:none">12 days to go</div>
+                  <div style="position:absolute;left:16px;bottom:14px;color:#fff;pointer-events:none"><div style="font-size:12px;opacity:.9;font-weight:600">Lisbon, Portugal</div><div style="font-size:22px;font-weight:800;letter-spacing:-.5px">Jul 28 – Aug 4, 2026</div></div>
+                </div>
+                <div style="background:#fff;border:1px solid #e2eef7;border-radius:20px;padding:15px;margin-top:14px;box-shadow:0 10px 22px -18px rgba(2,132,199,.6)">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="font-size:15px;font-weight:800">Your crew · 4</div><span onClick="{{ openMembers }}" style="font-size:12px;font-weight:800;color:#0ea5e9;background:#e0f2fe;padding:6px 13px;border-radius:14px;cursor:pointer">Manage</span></div>
+                  <div style="display:flex;align-items:center"><span style="width:38px;height:38px;border-radius:50%;overflow:hidden;border:2px solid #fff;display:inline-block"><image-slot id="v-ov-a1" src="assets/av-sara.png" shape="rect" fit="cover" placeholder=""></image-slot></span><span style="width:38px;height:38px;border-radius:50%;overflow:hidden;border:2px solid #fff;display:inline-block;margin-left:-10px"><image-slot id="v-ov-a2" src="assets/av-leo.png" shape="rect" fit="cover" placeholder=""></image-slot></span><span style="width:38px;height:38px;border-radius:50%;overflow:hidden;border:2px solid #fff;display:inline-block;margin-left:-10px"><image-slot id="v-ov-a3" src="assets/av-maya.png" shape="rect" fit="cover" placeholder=""></image-slot></span><span style="width:38px;height:38px;border-radius:50%;overflow:hidden;border:2px solid #fff;display:inline-block;margin-left:-10px"><image-slot id="v-ov-a4" src="assets/av-noah.png" shape="rect" fit="cover" placeholder=""></image-slot></span><span onClick="{{ openMembers }}" style="width:38px;height:38px;border-radius:50%;background:#e0f2fe;color:#0ea5e9;border:2px dashed #a7d8f0;margin-left:-10px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;cursor:pointer">＋</span></div>
+                  <div style="font-size:12px;color:#6f8ba3;margin-top:9px">You · Leo · Maya · Noah</div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+                  <div onClick="{{ ttToChecklist }}" style="cursor:pointer;background:#fff;border:1px solid #e2eef7;border-radius:20px;padding:15px;box-shadow:0 10px 22px -18px rgba(2,132,199,.6);display:flex;align-items:center;gap:11px"><div style="position:relative;width:46px;height:46px;flex-shrink:0"><svg width="46" height="46" viewBox="0 0 56 56"><circle cx="28" cy="28" r="24" fill="none" stroke="#e6f4fb" stroke-width="6"></circle><circle cx="28" cy="28" r="24" fill="none" stroke="#10b981" stroke-width="6" stroke-linecap="round" stroke-dasharray="{{ ringDash }}" transform="rotate(-90 28 28)"></circle></svg><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#0c4a6e">{{ packPct }}%</div></div><div style="min-width:0"><div style="font-size:14px;font-weight:800">Checklist</div><div style="font-size:11px;color:#6f8ba3">{{ packDone }}/{{ packTotal }} packed</div></div></div>
+                  <div onClick="{{ ttToExpenses }}" style="cursor:pointer;background:#fff;border:1px solid #e2eef7;border-radius:20px;padding:15px;box-shadow:0 10px 22px -18px rgba(2,132,199,.6)"><div style="font-size:14px;font-weight:800">Budget</div><div style="font-size:24px;font-weight:800;letter-spacing:-1px;margin-top:1px">62%</div><div style="font-size:11px;color:#6f8ba3">$1,240 / $2,000</div><div style="height:6px;background:#dbeefc;border-radius:6px;margin-top:8px;overflow:hidden"><div style="width:62%;height:100%;background:#0ea5e9;border-radius:6px"></div></div></div>
+                </div>
+                <div onClick="{{ ttToItinerary }}" style="cursor:pointer;background:#fff;border:1px solid #e2eef7;border-radius:20px;padding:14px;margin-top:12px;display:flex;gap:13px;align-items:center;box-shadow:0 10px 22px -18px rgba(2,132,199,.6)">
+                  <div style="width:66px;height:66px;border-radius:16px;overflow:hidden;flex-shrink:0"><image-slot id="v-ov-itin" src="assets/ph-2.png" shape="rect" fit="cover" placeholder=""></image-slot></div>
+                  <div style="flex:1"><div style="display:flex;align-items:center;gap:7px"><span style="font-size:16px"><svg class="ic"><use href="#i-calendar"></use></svg></span><span style="font-size:15px;font-weight:800">Itinerary</span><span style="font-size:10px;font-weight:800;color:#0284c7;background:#e0f2fe;padding:2px 7px;border-radius:8px">AI</span></div><div style="font-size:12px;color:#6f8ba3;margin-top:4px">7 days planned · shared with crew</div><div style="font-size:12px;color:#567d99;margin-top:2px">Day 1 · Tram 28 → Time Out → sunset</div></div>
+                  <span style="color:#b6cfe0">›</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+                  <div onClick="{{ ttToMap }}" style="cursor:pointer;position:relative;height:132px;border-radius:20px;overflow:hidden;border:1px solid #e2eef7;box-shadow:0 10px 22px -18px rgba(2,132,199,.6)"><image-slot id="v-ov-map" src="assets/map-soft.png" shape="rect" fit="cover" placeholder="Map"></image-slot><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(8,47,73,.72));pointer-events:none"></div><span style="position:absolute;top:9px;left:11px;font-size:20px;filter:drop-shadow(0 3px 5px rgba(0,0,0,.4))">📍</span><div style="position:absolute;left:12px;bottom:11px;color:#fff;pointer-events:none"><div style="font-size:14px;font-weight:800">Trip map</div><div style="font-size:11px;opacity:.9">3 stops · photos</div></div></div>
+                  <div onClick="{{ ttToAlbum }}" style="cursor:pointer;background:#fff;border:1px solid #e2eef7;border-radius:20px;padding:13px;box-shadow:0 10px 22px -18px rgba(2,132,199,.6)"><div style="display:flex;align-items:center;gap:6px"><span style="font-size:15px">☁️</span><span style="font-size:14px;font-weight:800">Album</span></div><div style="font-size:11px;color:#6f8ba3;margin:2px 0 9px">{{ albumCount }} photos synced</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:5px"><span style="height:38px;border-radius:9px;overflow:hidden;display:block"><image-slot id="v-ov-p1" src="assets/ph-1.png" shape="rect" fit="cover" placeholder=""></image-slot></span><span style="height:38px;border-radius:9px;overflow:hidden;display:block"><image-slot id="v-ov-p2" src="assets/ph-4.png" shape="rect" fit="cover" placeholder=""></image-slot></span><span style="height:38px;border-radius:9px;overflow:hidden;display:block"><image-slot id="v-ov-p3" src="assets/ph-6.png" shape="rect" fit="cover" placeholder=""></image-slot></span><span style="height:38px;border-radius:9px;overflow:hidden;display:block"><image-slot id="v-ov-p4" src="assets/ph-7.png" shape="rect" fit="cover" placeholder=""></image-slot></span></div></div>
+                </div>
+                <div style="background:#fff;border:1px solid #e2eef7;border-radius:20px;padding:15px;margin-top:12px;box-shadow:0 10px 22px -18px rgba(2,132,199,.6)">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div style="display:flex;gap:10px;align-items:center"><span style="font-size:19px"><svg class="ic"><use href="#i-id"></use></svg></span><span style="font-size:15px;font-weight:800">Passport &amp; visa</span></div><span style="font-size:11px;font-weight:800;color:#0284c7;background:#e0f2fe;padding:4px 10px;border-radius:12px">International</span></div>
+                  <div style="display:flex;align-items:center;gap:11px;padding:9px 0;border-bottom:1px solid #eef5fb"><span style="font-size:16px"><svg class="ic"><use href="#i-book"></use></svg></span><div style="flex:1"><div style="font-size:14px;font-weight:700">Passport</div><div style="font-size:12px;color:#6f8ba3">On file · P•••4921</div></div><span style="font-size:12px;font-weight:800;color:#10b981">✓ Ready</span></div>
+                  <div style="display:flex;align-items:center;gap:11px;padding:9px 0"><span style="font-size:16px"><svg class="ic"><use href="#i-stamp"></use></svg></span><div style="flex:1"><div style="font-size:14px;font-weight:700">Visa</div><div style="font-size:12px;color:#6f8ba3">Not required for PT · 90 days</div></div><span style="font-size:12px;font-weight:800;color:#10b981">✓ OK</span></div>
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- ITINERARY -->
+            <sc-if value="{{ ttItinerary }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:0 20px;animation:fadeIn .3s ease both">
+                <div class="voya-scroll" style="display:flex;gap:8px;margin-bottom:16px;overflow-x:auto">
+                  <div style="flex-shrink:0;width:48px;padding:9px 0;border-radius:15px;text-align:center;background:#fff;border:1px solid #dcecf9;color:#6f8ba3"><div style="font-size:10px;font-weight:700">MON</div><div style="font-size:16px;font-weight:800">28</div></div>
+                  <div style="flex-shrink:0;width:48px;padding:9px 0;border-radius:15px;text-align:center;background:#fff;border:1px solid #dcecf9;color:#6f8ba3"><div style="font-size:10px;font-weight:700">TUE</div><div style="font-size:16px;font-weight:800">29</div></div>
+                  <div style="flex-shrink:0;width:48px;padding:9px 0;border-radius:15px;text-align:center;background:#0ea5e9;color:#fff;box-shadow:0 8px 16px -6px rgba(14,165,233,.6)"><div style="font-size:10px;font-weight:700">WED</div><div style="font-size:16px;font-weight:800">30</div></div>
+                  <div style="flex-shrink:0;width:48px;padding:9px 0;border-radius:15px;text-align:center;background:#fff;border:1px solid #dcecf9;color:#6f8ba3"><div style="font-size:10px;font-weight:700">THU</div><div style="font-size:16px;font-weight:800">31</div></div>
+                  <div style="flex-shrink:0;width:48px;padding:9px 0;border-radius:15px;text-align:center;background:#fff;border:1px solid #dcecf9;color:#6f8ba3"><div style="font-size:10px;font-weight:700">FRI</div><div style="font-size:16px;font-weight:800">01</div></div>
+                  <div style="flex-shrink:0;width:48px;padding:9px 0;border-radius:15px;text-align:center;background:#fff;border:1px solid #dcecf9;color:#6f8ba3"><div style="font-size:10px;font-weight:700">SAT</div><div style="font-size:16px;font-weight:800">02</div></div>
+                </div>
+                <div style="position:relative;padding-left:2px">
+                  <div style="position:absolute;left:44px;top:8px;bottom:10px;width:2px;background:#d8eaf7"></div>
+                  <div style="display:flex;gap:14px;margin-bottom:16px;opacity:.6"><div style="width:38px;flex-shrink:0;text-align:right;font-size:12px;font-weight:700;color:#6f8ba3;margin-top:1px">8:30</div><div style="width:14px;height:14px;border-radius:50%;background:#7dd3fc;border:3px solid #f0f9ff;flex-shrink:0;margin-top:2px;z-index:2"></div><div style="flex:1"><div style="font-size:15px;font-weight:700;text-decoration:line-through">Pastéis de Belém</div><div style="font-size:12px;color:#6f8ba3">Breakfast · ✓ done</div></div></div>
+                  <div style="display:flex;gap:14px;margin-bottom:16px"><div style="width:38px;flex-shrink:0;text-align:right;font-size:11px;font-weight:800;color:#0ea5e9;margin-top:2px">NOW</div><div style="width:16px;height:16px;border-radius:50%;background:#0ea5e9;border:3px solid #f0f9ff;flex-shrink:0;margin-top:1px;z-index:2;animation:pulseDot 2s infinite"></div><div style="flex:1;background:#fff;border:1px solid #d5ebf9;border-radius:18px;padding:12px;box-shadow:0 12px 26px -18px rgba(2,132,199,.7)"><div style="height:96px;border-radius:12px;overflow:hidden;margin-bottom:10px"><image-slot id="v-plan-1" src="assets/ph-2.png" shape="rect" fit="cover" placeholder="Alfama"></image-slot></div><div style="font-size:16px;font-weight:800">Tram 28 &amp; Alfama walk</div><div style="font-size:12px;color:#6f8ba3;margin-top:2px">11:00 – 13:30 · Alfama · 4 going</div></div></div>
+                  <div style="display:flex;gap:14px;margin-bottom:16px"><div style="width:38px;flex-shrink:0;text-align:right;font-size:12px;font-weight:700;color:#6f8ba3;margin-top:1px">14:00</div><div style="width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid #7dd3fc;flex-shrink:0;margin-top:3px;z-index:2"></div><div style="flex:1"><div style="font-size:15px;font-weight:700">Lunch · Time Out Market</div><div style="font-size:12px;color:#6f8ba3">Food hall · ~$18pp</div></div></div>
+                  <div style="display:flex;gap:14px"><div style="width:38px;flex-shrink:0;text-align:right;font-size:12px;font-weight:700;color:#6f8ba3;margin-top:1px">18:30</div><div style="width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid #7dd3fc;flex-shrink:0;margin-top:3px;z-index:2"></div><div style="flex:1"><div style="font-size:15px;font-weight:700">Sunset · Miradouro da Senhora</div><div style="font-size:12px;color:#6f8ba3">Golden hour</div></div></div>
+                </div>
+                <button class="v-btn" onClick="{{ openAddActivity }}" style="width:100%;margin-top:18px;background:#eff9ff;border:1.5px dashed #bae6fd;color:#0284c7;font-size:14px;font-weight:800;font-family:inherit;padding:14px;border-radius:16px;cursor:pointer">＋ Add activity</button>
+              </div>
+            </sc-if>
+
+            <!-- CHECKLIST -->
+            <sc-if value="{{ ttChecklist }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:0 20px;animation:fadeIn .3s ease both">
+                <div style="display:flex;align-items:center;gap:14px;background:#0c4a6e;border-radius:20px;padding:16px;color:#fff;margin-bottom:16px">
+                  <div style="position:relative;width:56px;height:56px;flex-shrink:0"><svg width="56" height="56" viewBox="0 0 56 56"><circle cx="28" cy="28" r="24" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="6"></circle><circle cx="28" cy="28" r="24" fill="none" stroke="#7dd3fc" stroke-width="6" stroke-linecap="round" stroke-dasharray="{{ ringDash }}" transform="rotate(-90 28 28)"></circle></svg><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800">{{ packPct }}%</div></div>
+                  <div style="flex:1"><div style="font-size:16px;font-weight:800">Packing list</div><div style="font-size:13px;opacity:.8">{{ packDone }} of {{ packTotal }} packed · {{ packLeft }} to go</div></div>
+                </div>
+                <div style="background:#eff9ff;border:1px solid #d5ebf9;border-radius:16px;padding:13px;display:flex;gap:11px;align-items:center;margin-bottom:16px"><span style="font-size:20px"><svg class="ic"><use href="#i-sparkles"></use></svg></span><div style="flex:1;font-size:13px;color:#0c4a6e;font-weight:600">Voya AI added <b>sunscreen &amp; EU adapter</b> for Lisbon's forecast</div></div>
+                <sc-for list="{{ packGroups }}" as="grp" hint-placeholder-count="4">
+                  <div style="margin-bottom:16px">
+                    <div style="font-size:13px;font-weight:800;color:#6f8ba3;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">{{ grp.cat }}</div>
+                    <div style="background:#fff;border:1px solid #e2eef7;border-radius:18px;overflow:hidden">
+                      <sc-for list="{{ grp.items }}" as="it" hint-placeholder-count="3">
+                        <div onClick="{{ it.toggle }}" style="display:flex;align-items:center;gap:13px;padding:13px 15px;cursor:pointer;border-bottom:1px solid #eef5fb">
+                          <span style="width:24px;height:24px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;transition:all .2s;border:2px solid {{ it.tickBorder }};background:{{ it.tickBg }};animation:{{ it.tickAnim }}">{{ it.check }}</span>
+                          <span style="flex:1;font-size:15px;font-weight:600;transition:all .2s;color:{{ it.txtColor }};text-decoration:{{ it.deco }}">{{ it.label }}</span>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <!-- MAP -->
+            <sc-if value="{{ ttMap }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:0 20px;animation:fadeIn .3s ease both">
+                <div style="position:relative;height:400px;border-radius:26px;overflow:hidden;box-shadow:0 24px 46px -22px rgba(3,105,161,.55);background:#e4f3fb">
+                  <image-slot id="v-map" src="assets/map-soft.png" shape="rect" fit="cover" placeholder="Map"></image-slot>
+                  <div style="position:absolute;top:14px;left:14px;right:14px;display:flex;justify-content:space-between;align-items:flex-start;z-index:6;pointer-events:none">
+                    <div style="background:rgba(255,255,255,.85);backdrop-filter:blur(8px);border-radius:16px;padding:8px 13px;box-shadow:0 6px 16px -8px rgba(12,74,110,.4)"><div style="font-size:14px;font-weight:800;color:#0c4a6e;line-height:1">Lisbon trail</div><div style="font-size:11px;font-weight:600;color:#567d99;margin-top:3px">3 stops · tap a photo pile</div></div>
+                    <div style="position:relative;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.9);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -8px rgba(12,74,110,.4)"><span style="font-size:16px"><svg class="ic"><use href="#i-bell"></use></svg></span><span style="position:absolute;top:-3px;right:-3px;width:17px;height:17px;border-radius:50%;background:#10b981;color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;border:2px solid #fff">3</span></div>
+                  </div>
+                  <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2" viewBox="0 0 100 100" preserveAspectRatio="none"><polyline points="{{ routePts }}" fill="none" stroke="#0ea5e9" stroke-width="0.7" stroke-dasharray="2 2.4" stroke-linecap="round" opacity="0.75" style="animation:dashFlow 1s linear infinite"></polyline></svg>
+                  <sc-for list="{{ mapSpots }}" as="sp" hint-placeholder-count="3">
+                    <div onClick="{{ sp.open }}" style="position:absolute;z-index:4;left:{{ sp.left }};top:{{ sp.top }};transform:translate(-50%,-50%);cursor:pointer;animation:polaroidIn .55s {{ sp.delay }} both">
+                      <div style="display:flex;flex-direction:column;align-items:center;animation:floatPin 5.5s {{ sp.delay }} ease-in-out infinite">
+                        <div style="position:relative">
+                          <div style="position:absolute;top:2px;left:2px;right:2px;bottom:2px;background:#fff;border-radius:9px;transform:rotate(9deg);box-shadow:0 8px 16px -8px rgba(12,74,110,.45)"></div>
+                          <div style="position:relative;background:#fff;padding:5px 5px 6px;border-radius:9px;transform:{{ sp.rot }};box-shadow:0 16px 30px -12px rgba(12,74,110,.55)">
+                            <div style="width:88px;height:78px;border-radius:5px;background:{{ sp.cover }};background-size:cover;background-position:center"></div>
+                            <div style="text-align:center;font-size:9px;font-weight:800;color:#8aa6bb;letter-spacing:.5px;margin-top:3px">{{ sp.day }}</div>
+                            <div style="position:absolute;top:-9px;left:-9px;width:24px;height:24px;border-radius:50%;background:#0c4a6e;display:flex;align-items:center;justify-content:center;font-size:12px;border:2px solid #fff;box-shadow:0 4px 10px rgba(12,74,110,.4);color:#fff"><svg class="ic"><use href="#{{ sp.emoji }}"></use></svg></div>
+                            <div style="position:absolute;top:-9px;right:-9px;background:#10b981;color:#fff;font-size:10px;font-weight:800;padding:3px 7px;border-radius:11px;border:2px solid #fff;box-shadow:0 4px 10px rgba(16,185,129,.5);white-space:nowrap">{{ sp.count }} <svg class="ic"><use href="#i-camera"></use></svg></div>
+                          </div>
+                        </div>
+                        <div style="margin-top:7px;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);border-radius:12px;padding:4px 11px;font-size:11.5px;font-weight:800;color:#0c4a6e;white-space:nowrap;box-shadow:0 6px 14px -8px rgba(12,74,110,.4)">{{ sp.name }}</div>
+                      </div>
+                    </div>
+                  </sc-for>
+                  <sc-for list="{{ friendPins }}" as="f" hint-placeholder-count="3">
+                    <div onClick="{{ f.locate }}" style="position:absolute;transform:translate(-50%,-50%);cursor:pointer;z-index:5;top:{{ f.top }};left:{{ f.left }}">
+                      <span style="display:block;width:34px;height:34px;border-radius:50%;border:3px solid #fff;box-shadow:0 5px 14px rgba(12,74,110,.45);background-size:cover;background-position:center;background:{{ f.avBg }};opacity:{{ f.op }};animation:{{ f.anim }}"></span>
+                    </div>
+                  </sc-for>
+                  <div style="position:absolute;left:12px;bottom:12px;z-index:6;background:rgba(255,255,255,.9);backdrop-filter:blur(6px);border-radius:13px;padding:7px 12px;font-size:11px;font-weight:700;color:#0c4a6e;pointer-events:none"><svg class="ic"><use href="#i-camera"></use></svg> piles = photos · faces = live crew</div>
+                </div>
+                <div style="background:#fff;border:1px solid #e2eef7;border-radius:20px;padding:16px;margin-top:14px;box-shadow:0 10px 22px -18px rgba(2,132,199,.6)">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="font-size:15px;font-weight:800">Find your crew</div><span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;color:#0284c7;background:#e0f2fe;padding:5px 11px;border-radius:12px"><span style="width:7px;height:7px;border-radius:50%;background:#0ea5e9;animation:pulseDot 2s infinite"></span>LIVE</span></div>
+                  <div style="display:flex;flex-direction:column;gap:2px">
+                    <sc-for list="{{ friendRows }}" as="f" hint-placeholder-count="3">
+                      <div style="display:flex;align-items:center;gap:11px;padding:8px 0">
+                        <span style="width:36px;height:36px;border-radius:50%;flex-shrink:0;border:2px solid #fff;box-shadow:0 3px 8px rgba(12,74,110,.2);background-size:cover;background-position:center;background:{{ f.avBg }};opacity:{{ f.op }}"></span>
+                        <div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:700">{{ f.name }}</div><div style="font-size:12px;font-weight:600;color:{{ f.distColor }}">{{ f.spot }} · {{ f.dist }}</div></div>
+                        <span onClick="{{ f.locate }}" style="font-size:12px;font-weight:800;color:#0284c7;background:#e0f2fe;padding:7px 13px;border-radius:14px;cursor:pointer;flex-shrink:0">{{ f.btnLabel }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;margin:16px 0 12px"><div style="font-size:16px;font-weight:800">Route · 3 stops</div><div style="font-size:12px;color:#6f8ba3">tap for photos</div></div>
+                <div style="display:flex;flex-direction:column;gap:10px">
+                  <sc-for list="{{ placeRows }}" as="p" hint-placeholder-count="3">
+                    <div onClick="{{ p.open }}" style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #e2eef7;border-radius:16px;padding:11px;cursor:pointer">
+                      <span style="width:24px;height:24px;border-radius:50%;background:#0c4a6e;color:#7dd3fc;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0">{{ p.stop }}</span>
+                      <div style="width:48px;height:48px;border-radius:12px;flex-shrink:0;background:{{ p.thumb }};background-size:cover;background-position:center"></div>
+                      <div style="flex:1"><div style="font-size:15px;font-weight:700">{{ p.name }}</div><div style="font-size:12px;color:#6f8ba3">{{ p.meta }}</div></div>
+                      <span style="font-size:12px;font-weight:800;color:#0284c7;background:#e0f2fe;padding:5px 10px;border-radius:12px">{{ p.count }} photos</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- ALBUM -->
+            <sc-if value="{{ ttAlbum }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:0 20px;animation:fadeIn .3s ease both">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+                  <div><div style="font-size:16px;font-weight:800">Shared album</div><div style="font-size:12px;color:#6f8ba3">{{ albumCount }} photos · <svg class="ic"><use href="#i-cloud"></use></svg> synced 2 min ago</div></div>
+                  <div style="display:flex;gap:8px">
+                    <button class="v-btn" onClick="{{ openAddNote }}" style="border:1.5px solid #d5ebf9;background:#fff;color:#0284c7;font-size:12px;font-weight:800;font-family:inherit;padding:8px 13px;border-radius:14px;cursor:pointer">＋ Note</button>
+                    <button class="v-btn" onClick="{{ onCamera }}" style="border:none;background:#0ea5e9;color:#fff;font-size:12px;font-weight:800;font-family:inherit;padding:8px 13px;border-radius:14px;cursor:pointer"><svg class="ic"><use href="#i-camera"></use></svg> Camera</button>
+                  </div>
+                </div>
+                <sc-for list="{{ albumDays }}" as="d" hint-placeholder-count="3">
+                  <div style="margin-bottom:18px">
+                    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px"><div style="font-size:14px;font-weight:800">{{ d.day }}</div><div style="font-size:12px;color:#6f8ba3">{{ d.count }}</div></div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+                      <sc-for list="{{ d.photos }}" as="p" hint-placeholder-count="3">
+                        <div style="position:relative;border-radius:16px;overflow:hidden;grid-column:{{ p.span }};height:{{ p.h }}">
+                          <image-slot id="{{ p.sid }}" src="{{ p.src }}" shape="rect" fit="cover" placeholder=""></image-slot>
+                          <span onClick="{{ p.open }}" style="position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;background:rgba(10,25,18,.45);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;cursor:pointer"><svg class="ic"><use href="#i-maximize"></use></svg></span>
+                        </div>
+                      </sc-for>
+                    </div>
+                    <sc-if value="{{ d.note }}" hint-placeholder-val="{{ false }}">
+                      <div style="display:flex;gap:11px;background:#fffdf2;border:1px solid #f0e8c8;border-radius:16px;padding:13px;margin-top:9px"><span style="font-size:16px"><svg class="ic"><use href="#i-edit"></use></svg></span><div style="flex:1"><div style="font-size:13.5px;line-height:1.5;color:#4a4432">{{ d.note }}</div><div style="font-size:11px;color:#a89a70;margin-top:5px;font-weight:700">Sara · journal</div></div></div>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <!-- EXPENSES -->
+            <sc-if value="{{ ttExpenses }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:0 20px;animation:fadeIn .3s ease both">
+                <div style="background:#0c4a6e;border-radius:24px;padding:20px;color:#fff;position:relative;overflow:hidden;margin-bottom:16px">
+                  <div style="position:absolute;top:-30px;right:-20px;width:140px;height:140px;border-radius:50%;background:rgba(127,240,198,.1)"></div>
+                  <div style="font-size:12px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.5px">Total trip spend</div>
+                  <div style="font-size:38px;font-weight:800;letter-spacing:-1.5px;margin-top:2px">$1,240<span style="font-size:16px;opacity:.7">.50</span></div>
+                  <div style="display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:rgba(127,240,198,.16);border:1px solid rgba(127,240,198,.3);color:#7dd3fc;padding:6px 13px;border-radius:20px;font-size:13px;font-weight:700">You're owed $84.20</div>
+                </div>
+                <div style="background:#fff;border:1px solid #e2eef7;border-radius:20px;padding:16px;margin-bottom:14px;box-shadow:0 10px 22px -18px rgba(2,132,199,.6)">
+                  <div style="font-size:15px;font-weight:800;margin-bottom:13px">Where it went</div>
+                  <sc-for list="{{ spendCats }}" as="c" hint-placeholder-count="4">
+                    <div style="margin-bottom:11px">
+                      <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:5px"><span style="display:inline-flex;align-items:center;gap:6px"><svg class="ic"><use href="#{{ c.icon }}"></use></svg>{{ c.label }}</span><span>{{ c.amt }} <span style="color:#97b3c6">· {{ c.pct }}</span></span></div>
+                      <div style="height:8px;background:#eef6fc;border-radius:8px;overflow:hidden"><div style="height:100%;border-radius:8px;width:{{ c.w }};background:{{ c.color }}"></div></div>
+                    </div>
+                  </sc-for>
+                  <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;border-top:1px solid #f0f6f2;padding-top:11px;margin-top:2px"><span style="color:#6f8ba3">Daily average</span><span>$177 / day</span></div>
+                </div>
+                <div style="background:#fff;border:1px solid #e2eef7;border-radius:20px;padding:16px;margin-bottom:14px">
+                  <div style="font-size:15px;font-weight:800;margin-bottom:12px">Balances</div>
+                  <div style="display:flex;align-items:center;gap:11px;padding-bottom:11px;border-bottom:1px solid #eef5fb"><span style="width:34px;height:34px;border-radius:50%;overflow:hidden;flex-shrink:0;display:inline-block"><image-slot id="v-bal-1" src="assets/av-leo.png" shape="rect" fit="cover" placeholder=""></image-slot></span><div style="flex:1"><div style="font-size:14px;font-weight:700">Leo Park</div><div style="font-size:12px;color:#e07a5f;font-weight:700">you owe $24</div></div><span onClick="{{ settleLeo }}" style="font-size:12px;font-weight:800;color:#0284c7;background:#e0f2fe;padding:7px 13px;border-radius:14px;cursor:pointer">Settle</span></div>
+                  <div style="display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid #eef5fb"><span style="width:34px;height:34px;border-radius:50%;overflow:hidden;flex-shrink:0;display:inline-block"><image-slot id="v-bal-2" src="assets/av-maya.png" shape="rect" fit="cover" placeholder=""></image-slot></span><div style="flex:1"><div style="font-size:14px;font-weight:700">Maya Chen</div><div style="font-size:12px;color:#e07a5f;font-weight:700">you owe $15</div></div><span onClick="{{ settleMaya }}" style="font-size:12px;font-weight:800;color:#0284c7;background:#e0f2fe;padding:7px 13px;border-radius:14px;cursor:pointer">Settle</span></div>
+                  <div style="display:flex;align-items:center;gap:11px;padding-top:11px"><span style="width:34px;height:34px;border-radius:50%;overflow:hidden;flex-shrink:0;display:inline-block"><image-slot id="v-bal-3" src="assets/av-noah.png" shape="rect" fit="cover" placeholder=""></image-slot></span><div style="flex:1"><div style="font-size:14px;font-weight:700">Noah Silva</div><div style="font-size:12px;color:#0ea5e9;font-weight:700">owes you $123</div></div><span onClick="{{ remindNoah }}" style="font-size:12px;font-weight:800;color:#567d99;background:#eef6fc;padding:7px 13px;border-radius:14px;cursor:pointer">Remind</span></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px"><div style="font-size:16px;font-weight:800">Recent</div><div style="font-size:12px;color:#6f8ba3">split 4 ways</div></div>
+                <div style="display:flex;flex-direction:column;gap:10px">
+                  <sc-for list="{{ expenseItems }}" as="ex" hint-placeholder-count="4">
+                    <div style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #e2eef7;border-radius:18px;padding:12px;box-shadow:0 8px 20px -18px rgba(2,132,199,.6)">
+                      <div style="width:42px;height:42px;border-radius:12px;background:#eff9ff;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;color:#0c4a6e"><svg class="ic"><use href="#{{ ex.icon }}"></use></svg></div>
+                      <div style="flex:1"><div style="font-size:15px;font-weight:700">{{ ex.title }}</div><div style="font-size:12px;color:#6f8ba3">{{ ex.sub }}</div></div>
+                      <div style="text-align:right"><div style="font-size:15px;font-weight:800">{{ ex.amount }}</div><div style="font-size:11px;font-weight:700;color:{{ ex.noteColor }}">{{ ex.note }}</div></div>
+                    </div>
+                  </sc-for>
+                </div>
+                <button class="v-btn" onClick="{{ openAddExpense }}" style="width:100%;margin-top:16px;background:#0ea5e9;border:none;color:#fff;font-size:15px;font-weight:800;font-family:inherit;padding:15px;border-radius:16px;cursor:pointer;box-shadow:0 12px 26px -10px rgba(14,165,233,.6)">＋ Add expense</button>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <!-- ==================== MEMBERS ==================== -->
+        <sc-if value="{{ isMembers }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:6px 22px 120px;animation:screenIn .4s ease both">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px"><button class="v-btn" onClick="{{ openTripOverview }}" style="width:40px;height:40px;border-radius:13px;border:1.5px solid #dfeaf3;background:#fff;font-size:18px;cursor:pointer">‹</button><div><div style="font-size:20px;font-weight:800">Trip members</div><div style="font-size:12px;color:#6f8ba3;font-weight:600">Lisbon · 4 travellers</div></div></div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
+              <div style="display:flex;align-items:center;gap:13px;background:#fff;border:1px solid #e2eef7;border-radius:18px;padding:12px"><div style="width:46px;height:46px;border-radius:50%;overflow:hidden;flex-shrink:0"><image-slot id="v-mem-1" src="assets/av-sara.png" shape="rect" fit="cover" placeholder=""></image-slot></div><div style="flex:1"><div style="font-size:15px;font-weight:700">Sara Mendes <span style="font-size:11px;color:#0ea5e9;font-weight:700">· You</span></div><div style="font-size:12px;color:#6f8ba3">Organiser · pays deposits</div></div><span style="font-size:11px;font-weight:800;color:#0284c7;background:#e0f2fe;padding:5px 10px;border-radius:12px">Owner</span></div>
+              <div style="display:flex;align-items:center;gap:13px;background:#fff;border:1px solid #e2eef7;border-radius:18px;padding:12px"><div style="width:46px;height:46px;border-radius:50%;overflow:hidden;flex-shrink:0"><image-slot id="v-mem-2" src="assets/av-leo.png" shape="rect" fit="cover" placeholder=""></image-slot></div><div style="flex:1"><div style="font-size:15px;font-weight:700">Leo Park</div><div style="font-size:12px;color:#6f8ba3">Paid 3 expenses</div></div><span style="font-size:12px;font-weight:700;color:#e07a5f">you owe $24</span></div>
+              <div style="display:flex;align-items:center;gap:13px;background:#fff;border:1px solid #e2eef7;border-radius:18px;padding:12px"><div style="width:46px;height:46px;border-radius:50%;overflow:hidden;flex-shrink:0"><image-slot id="v-mem-3" src="assets/av-maya.png" shape="rect" fit="cover" placeholder=""></image-slot></div><div style="flex:1"><div style="font-size:15px;font-weight:700">Maya Chen</div><div style="font-size:12px;color:#6f8ba3">Paid 1 expense</div></div><span style="font-size:12px;font-weight:700;color:#e07a5f">you owe $15</span></div>
+              <div style="display:flex;align-items:center;gap:13px;background:#fff;border:1px solid #e2eef7;border-radius:18px;padding:12px"><div style="width:46px;height:46px;border-radius:50%;overflow:hidden;flex-shrink:0"><image-slot id="v-mem-4" src="assets/av-noah.png" shape="rect" fit="cover" placeholder=""></image-slot></div><div style="flex:1"><div style="font-size:15px;font-weight:700">Noah Silva</div><div style="font-size:12px;color:#6f8ba3">Joined 2 days ago</div></div></div>
+            </div>
+            <button class="v-btn" onClick="{{ toastInvite }}" style="width:100%;background:#eff9ff;border:1.5px dashed #bae6fd;color:#0284c7;font-size:14px;font-weight:800;font-family:inherit;padding:15px;border-radius:16px;cursor:pointer"><svg class="ic"><use href="#i-link"></use></svg> Invite by link</button>
+          </div>
+        </sc-if>
+
+        <!-- ==================== EXPENSES HOME ==================== -->
+        <sc-if value="{{ isExpHome }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:6px 22px 120px;animation:screenIn .4s ease both">
+            <div style="font-size:14px;color:#567d99;font-weight:600">All trips</div>
+            <div style="font-size:27px;font-weight:800;letter-spacing:-.8px;margin-bottom:16px">Expenses</div>
+            <div style="background:#0c4a6e;border-radius:24px;padding:20px;color:#fff;position:relative;overflow:hidden;margin-bottom:16px">
+              <div style="position:absolute;top:-30px;right:-20px;width:140px;height:140px;border-radius:50%;background:rgba(127,240,198,.1)"></div>
+              <div style="font-size:12px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.5px">Spend this year</div>
+              <div style="font-size:38px;font-weight:800;letter-spacing:-1.5px;margin-top:2px">$3,550<span style="font-size:16px;opacity:.7">.50</span></div>
+              <div style="display:inline-flex;gap:6px;margin-top:10px;background:rgba(127,240,198,.16);border:1px solid rgba(127,240,198,.3);color:#7dd3fc;padding:6px 13px;border-radius:20px;font-size:13px;font-weight:700">You're owed $84.20 overall</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div onClick="{{ openTripMoney }}" style="display:flex;gap:13px;align-items:center;background:#fff;border:1px solid #e2eef7;border-radius:20px;padding:13px;cursor:pointer;box-shadow:0 10px 24px -18px rgba(2,132,199,.6)">
+                <div style="width:56px;height:56px;border-radius:14px;overflow:hidden;flex-shrink:0"><image-slot id="v-eh-1" src="assets/lisbon.png" shape="rect" fit="cover" placeholder=""></image-slot></div>
+                <div style="flex:1"><div style="font-size:15px;font-weight:800">Lisbon</div><div style="font-size:12px;color:#6f8ba3">4 people · 62% of budget</div><div style="height:5px;background:#dbeefc;border-radius:6px;margin-top:7px;overflow:hidden"><div style="width:62%;height:100%;background:#0ea5e9;border-radius:6px"></div></div></div>
+                <div style="text-align:right"><div style="font-size:15px;font-weight:800">$1,240</div><div style="font-size:11px;font-weight:700;color:#0ea5e9">owed $84</div></div>
+              </div>
+              <div onClick="{{ toastTokyo }}" style="display:flex;gap:13px;align-items:center;background:#fff;border:1px solid #e2eef7;border-radius:20px;padding:13px;cursor:pointer;box-shadow:0 10px 24px -18px rgba(2,132,199,.6)">
+                <div style="width:56px;height:56px;border-radius:14px;overflow:hidden;flex-shrink:0"><image-slot id="v-eh-2" src="assets/tokyo.png" shape="rect" fit="cover" placeholder=""></image-slot></div>
+                <div style="flex:1"><div style="font-size:15px;font-weight:800">Tokyo</div><div style="font-size:12px;color:#6f8ba3">Planning · no spend yet</div></div>
+                <div style="text-align:right"><div style="font-size:15px;font-weight:800;color:#97b3c6">$0</div></div>
+              </div>
+              <div onClick="{{ toastSettled }}" style="display:flex;gap:13px;align-items:center;background:#fff;border:1px solid #e2eef7;border-radius:20px;padding:13px;cursor:pointer;box-shadow:0 10px 24px -18px rgba(2,132,199,.6)">
+                <div style="width:56px;height:56px;border-radius:14px;overflow:hidden;flex-shrink:0"><image-slot id="v-eh-3" src="assets/bali.png" shape="rect" fit="cover" placeholder=""></image-slot></div>
+                <div style="flex:1"><div style="font-size:15px;font-weight:800">Bali</div><div style="font-size:12px;color:#6f8ba3">May · 4 people</div></div>
+                <div style="text-align:right"><div style="font-size:15px;font-weight:800">$2,310</div><div style="font-size:11px;font-weight:700;color:#0ea5e9">✓ settled</div></div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ==================== ALBUM HOME ==================== -->
+        <sc-if value="{{ isAlbumHome }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:6px 22px 120px;animation:screenIn .4s ease both">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+              <div><div style="font-size:14px;color:#567d99;font-weight:600">Shared cloud · all trips</div><div style="font-size:27px;font-weight:800;letter-spacing:-.8px">Photos</div></div>
+              <button class="v-btn" onClick="{{ onCamera }}" style="width:44px;height:44px;border-radius:15px;border:none;background:#0ea5e9;color:#fff;font-size:19px;cursor:pointer;box-shadow:0 10px 20px -6px rgba(14,165,233,.6)"><svg class="ic"><use href="#i-camera"></use></svg></button>
+            </div>
+            <div style="display:flex;align-items:center;gap:11px;background:#eff9ff;border:1px solid #d5ebf9;border-radius:16px;padding:12px 14px;margin-bottom:18px"><span style="font-size:18px"><svg class="ic"><use href="#i-cloud"></use></svg></span><div style="flex:1;font-size:13px;font-weight:600;color:#0c4a6e">All 4 devices synced · 2 min ago</div><span style="width:9px;height:9px;border-radius:50%;background:#0ea5e9;animation:pulseDot 2s infinite"></span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px"><div style="font-size:16px;font-weight:800">Lisbon</div><div onClick="{{ openTripAlbum }}" style="font-size:13px;font-weight:700;color:#0ea5e9;cursor:pointer">Open album →</div></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:20px">
+              <div style="position:relative;grid-column:span 2;height:150px;border-radius:16px;overflow:hidden"><image-slot id="v-ah-l1" src="assets/ph-2.png" shape="rect" fit="cover" placeholder=""></image-slot><span onClick="{{ openPhL1 }}" style="position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;background:rgba(10,25,18,.45);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;cursor:pointer"><svg class="ic"><use href="#i-maximize"></use></svg></span></div>
+              <div style="position:relative;height:110px;border-radius:16px;overflow:hidden"><image-slot id="v-ah-l2" src="assets/ph-1.png" shape="rect" fit="cover" placeholder=""></image-slot><span onClick="{{ openPhL2 }}" style="position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;background:rgba(10,25,18,.45);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;cursor:pointer"><svg class="ic"><use href="#i-maximize"></use></svg></span></div>
+              <div style="position:relative;height:110px;border-radius:16px;overflow:hidden"><image-slot id="v-ah-l3" src="assets/ph-4.png" shape="rect" fit="cover" placeholder=""></image-slot><span onClick="{{ openPhL3 }}" style="position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;background:rgba(10,25,18,.45);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;cursor:pointer"><svg class="ic"><use href="#i-maximize"></use></svg></span></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px"><div style="font-size:16px;font-weight:800">Bali · May</div><div style="font-size:12px;color:#6f8ba3">124 photos</div></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+              <div style="position:relative;height:110px;border-radius:16px;overflow:hidden"><image-slot id="v-ah-b1" src="assets/ph-3.png" shape="rect" fit="cover" placeholder=""></image-slot><span onClick="{{ openPhB1 }}" style="position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;background:rgba(10,25,18,.45);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;cursor:pointer"><svg class="ic"><use href="#i-maximize"></use></svg></span></div>
+              <div style="position:relative;height:110px;border-radius:16px;overflow:hidden"><image-slot id="v-ah-b2" src="assets/ph-8.png" shape="rect" fit="cover" placeholder=""></image-slot><span onClick="{{ openPhB2 }}" style="position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;background:rgba(10,25,18,.45);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;cursor:pointer"><svg class="ic"><use href="#i-maximize"></use></svg></span></div>
+              <div style="position:relative;grid-column:span 2;height:140px;border-radius:16px;overflow:hidden"><image-slot id="v-ah-b3" src="assets/bali.png" shape="rect" fit="cover" placeholder=""></image-slot><span onClick="{{ openPhB3 }}" style="position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;background:rgba(10,25,18,.45);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;cursor:pointer"><svg class="ic"><use href="#i-maximize"></use></svg></span></div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ==================== CAMERA ==================== -->
+        <sc-if value="{{ isCamera }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:-44px 0 0;animation:fadeIn .3s ease both;background:#0b0d0c">
+            <div style="position:absolute;inset:0"><image-slot id="v-cam" src="assets/cam.png" shape="rect" fit="cover" placeholder="Viewfinder"></image-slot></div>
+            <div style="position:absolute;top:64px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:center">
+              <span onClick="{{ onTrips }}" style="width:38px;height:38px;border-radius:50%;background:rgba(10,25,18,.5);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;cursor:pointer">✕</span>
+              <span style="background:rgba(10,25,18,.5);backdrop-filter:blur(6px);color:#fff;font-size:12px;font-weight:700;padding:7px 14px;border-radius:16px;white-space:nowrap">Lisbon album · {{ shotsLabel }}</span>
+              <span style="width:38px;height:38px;border-radius:50%;background:rgba(10,25,18,.5);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px"><svg class="ic"><use href="#i-bolt"></use></svg></span>
+            </div>
+            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:190px;height:190px;border:1.5px solid rgba(255,255,255,.55);border-radius:24px;pointer-events:none">
+              <span style="position:absolute;top:-2px;left:-2px;width:22px;height:22px;border-top:3px solid #fff;border-left:3px solid #fff;border-radius:8px 0 0 0"></span>
+              <span style="position:absolute;bottom:-2px;right:-2px;width:22px;height:22px;border-bottom:3px solid #fff;border-right:3px solid #fff;border-radius:0 0 8px 0"></span>
+            </div>
+            <div style="position:absolute;left:0;right:0;bottom:36px;display:flex;align-items:center;justify-content:space-between;padding:0 44px">
+              <div onClick="{{ openTripAlbum }}" style="width:50px;height:50px;border-radius:14px;overflow:hidden;border:2px solid rgba(255,255,255,.8);cursor:pointer"><image-slot id="v-cam-thumb" src="assets/ph-2.png" shape="rect" fit="cover" placeholder=""></image-slot></div>
+              <div onClick="{{ shoot }}" style="width:78px;height:78px;border-radius:50%;border:5px solid #fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .12s" style-active="transform:scale(.9)"><div style="width:60px;height:60px;border-radius:50%;background:#fff"></div></div>
+              <div style="width:50px;height:50px;border-radius:50%;background:rgba(10,25,18,.5);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:19px"><svg class="ic"><use href="#i-refresh"></use></svg></div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ==================== PROFILE ==================== -->
+        <sc-if value="{{ isProfile }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:6px 22px 120px;animation:screenIn .4s ease both">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px"><div style="font-size:27px;font-weight:800;letter-spacing:-.8px">Profile</div><button class="v-btn" onClick="{{ openSettings }}" style="width:42px;height:42px;border-radius:13px;border:1.5px solid #dfeaf3;background:#fff;font-size:18px;cursor:pointer"><svg class="ic"><use href="#i-gear"></use></svg></button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;text-align:center">
+              <div style="width:96px;height:96px;border-radius:50%;overflow:hidden;border:3px solid #fff;box-shadow:0 12px 26px -10px rgba(2,132,199,.5)"><image-slot id="v-prof-ava" src="assets/av-sara.png" shape="rect" fit="cover" placeholder="You"></image-slot></div>
+              <div style="font-size:22px;font-weight:800;margin-top:12px">Sara Mendes</div>
+              <div style="font-size:14px;color:#567d99">@saramendes · Lisbon</div>
+            </div>
+            <div style="display:flex;background:#fff;border:1px solid #e2eef7;border-radius:20px;padding:16px 0;margin:18px 0;box-shadow:0 10px 24px -18px rgba(2,132,199,.6)">
+              <div style="flex:1;text-align:center;border-right:1px solid #eef6fc"><div style="font-size:22px;font-weight:800">12</div><div style="font-size:12px;color:#6f8ba3">Trips</div></div>
+              <div style="flex:1;text-align:center;border-right:1px solid #eef6fc"><div style="font-size:22px;font-weight:800">9</div><div style="font-size:12px;color:#6f8ba3">Countries</div></div>
+              <div style="flex:1;text-align:center"><div style="font-size:22px;font-weight:800">348</div><div style="font-size:12px;color:#6f8ba3">Photos</div></div>
+            </div>
+            <div style="font-size:15px;font-weight:800;margin-bottom:10px">Your travel style</div>
+            <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px">
+              <sc-for list="{{ profilePrefs }}" as="p" hint-placeholder-count="4"><span style="font-size:12.5px;font-weight:700;color:#0284c7;background:#e0f2fe;padding:7px 13px;border-radius:16px">{{ p }}</span></sc-for>
+            </div>
+            <div style="font-size:15px;font-weight:800;margin-bottom:10px">Past adventures</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:18px">
+              <div style="height:96px;border-radius:14px;overflow:hidden"><image-slot id="v-prof-p1" src="assets/ph-5.png" shape="rect" fit="cover" placeholder=""></image-slot></div>
+              <div style="height:96px;border-radius:14px;overflow:hidden"><image-slot id="v-prof-p2" src="assets/ph-6.png" shape="rect" fit="cover" placeholder=""></image-slot></div>
+              <div style="height:96px;border-radius:14px;overflow:hidden"><image-slot id="v-prof-p3" src="assets/ph-7.png" shape="rect" fit="cover" placeholder=""></image-slot></div>
+            </div>
+            <div style="display:flex;flex-direction:column;background:#fff;border:1px solid #e2eef7;border-radius:20px;overflow:hidden">
+              <div onClick="{{ openSettings }}" style="display:flex;align-items:center;gap:14px;padding:15px 16px;cursor:pointer;border-bottom:1px solid #f0f6f2"><span style="font-size:18px"><svg class="ic"><use href="#i-gear"></use></svg></span><span style="flex:1;font-size:15px;font-weight:600">Settings</span><span style="color:#b6cfe0">›</span></div>
+              <div style="display:flex;align-items:center;gap:14px;padding:15px 16px;border-bottom:1px solid #f0f6f2"><span style="font-size:18px"><svg class="ic"><use href="#i-wallet"></use></svg></span><span style="flex:1;font-size:15px;font-weight:600">Payment methods</span><span style="color:#b6cfe0">›</span></div>
+              <div onClick="{{ logout }}" style="display:flex;align-items:center;gap:14px;padding:15px 16px;cursor:pointer"><span style="font-size:18px"><svg class="ic"><use href="#i-logout"></use></svg></span><span style="flex:1;font-size:15px;font-weight:600;color:#e07a5f">Log out</span></div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ==================== SETTINGS ==================== -->
+        <sc-if value="{{ isSettings }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:6px 22px 30px;animation:screenIn .4s ease both">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px"><button class="v-btn" onClick="{{ onProfile }}" style="width:40px;height:40px;border-radius:13px;border:1.5px solid #dfeaf3;background:#fff;font-size:18px;cursor:pointer">‹</button><div style="font-size:22px;font-weight:800">Settings</div></div>
+            <div style="font-size:13px;font-weight:700;color:#6f8ba3;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Preferences</div>
+            <div style="background:#fff;border:1px solid #e2eef7;border-radius:18px;overflow:hidden;margin-bottom:20px">
+              <div style="display:flex;align-items:center;gap:12px;padding:15px 16px;border-bottom:1px solid #f0f6f2"><span style="flex:1;font-size:15px;font-weight:600">Push notifications</span><div style="width:44px;height:26px;border-radius:20px;background:#0ea5e9;position:relative"><div style="position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;background:#fff"></div></div></div>
+              <div style="display:flex;align-items:center;gap:12px;padding:15px 16px;border-bottom:1px solid #f0f6f2"><span style="flex:1;font-size:15px;font-weight:600">Currency</span><span style="font-size:14px;color:#6f8ba3;font-weight:600">USD $</span></div>
+              <div style="display:flex;align-items:center;gap:12px;padding:15px 16px"><span style="flex:1;font-size:15px;font-weight:600">Auto-sync photos</span><div style="width:44px;height:26px;border-radius:20px;background:#0ea5e9;position:relative"><div style="position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;background:#fff"></div></div></div>
+            </div>
+            <div style="font-size:13px;font-weight:700;color:#6f8ba3;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Account</div>
+            <div style="background:#fff;border:1px solid #e2eef7;border-radius:18px;overflow:hidden">
+              <div onClick="{{ openSetup }}" style="display:flex;align-items:center;gap:12px;padding:15px 16px;border-bottom:1px solid #f0f6f2;cursor:pointer"><span style="flex:1;font-size:15px;font-weight:600">Travel preferences</span><span style="color:#b6cfe0">›</span></div>
+              <div style="display:flex;align-items:center;gap:12px;padding:15px 16px;border-bottom:1px solid #f0f6f2"><span style="flex:1;font-size:15px;font-weight:600">Privacy</span><span style="color:#b6cfe0">›</span></div>
+              <div style="display:flex;align-items:center;gap:12px;padding:15px 16px"><span style="flex:1;font-size:15px;font-weight:600">Help &amp; support</span><span style="color:#b6cfe0">›</span></div>
+            </div>
+          </div>
+        </sc-if>
+
+      </div>
+
+      <!-- PHOTO DETAIL OVERLAY -->
+      <sc-if value="{{ hasPhoto }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;inset:0;z-index:80;background:rgba(6,18,13,.94);display:flex;flex-direction:column;animation:fadeIn .25s ease both">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:58px 20px 12px">
+            <span onClick="{{ closePhoto }}" style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;cursor:pointer">✕</span>
+            <span style="color:#fff;font-size:13px;font-weight:700">{{ photoCap }}</span>
+            <span style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px"><svg class="ic"><use href="#i-share"></use></svg></span>
+          </div>
+          <div style="flex:1;display:flex;align-items:center;padding:16px;animation:popIn .3s ease both"><div style="width:100%;aspect-ratio:4/5;border-radius:20px;box-shadow:0 30px 60px -20px rgba(0,0,0,.8);background-image:{{ photoBg }};background-size:cover;background-position:center"></div></div>
+          <div style="display:flex;justify-content:center;gap:26px;padding:0 20px 40px">
+            <span style="color:#fff;font-size:22px;cursor:pointer"><svg class="ic"><use href="#i-heart"></use></svg></span><span style="color:#fff;font-size:20px;cursor:pointer"><svg class="ic"><use href="#i-message"></use></svg></span><span style="color:#fff;font-size:20px;cursor:pointer"><svg class="ic"><use href="#i-download"></use></svg></span>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ADD EXPENSE MODAL -->
+      <sc-if value="{{ mAddExp }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;inset:0;z-index:70;display:flex;flex-direction:column;justify-content:flex-end;animation:fadeIn .2s ease both">
+          <div onClick="{{ closeModal }}" style="position:absolute;inset:0;background:rgba(8,47,73,.4)"></div>
+          <div style="position:relative;background:#f0f9ff;border-radius:30px 30px 0 0;padding:22px 22px 28px;animation:popIn .3s cubic-bezier(.2,.8,.2,1) both">
+            <div style="width:40px;height:5px;border-radius:5px;background:#cfe3f2;margin:0 auto 16px"></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div style="font-size:20px;font-weight:800">Add expense</div><div style="font-size:20px;font-weight:800;color:#0c4a6e">{{ expTotalLabel }}</div></div>
+            <div class="voya-scroll" style="max-height:440px;overflow-y:auto;margin:0 -4px;padding:0 4px">
+              <div style="background:#fff;border:1.5px solid #dfeaf3;border-radius:14px;padding:13px 15px;font-size:15px;font-weight:600;margin-bottom:12px"><svg class="ic"><use href="#i-utensils"></use></svg> Dinner — Cervejaria</div>
+
+              <div style="font-size:12px;font-weight:800;color:#6f8ba3;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Paid by</div>
+              <div style="display:flex;gap:7px;margin-bottom:16px">
+                <sc-for list="{{ expPaidChips }}" as="c" hint-placeholder-count="4"><span onClick="{{ c.on }}" style="flex:1;text-align:center;font-size:13px;font-weight:700;padding:9px 0;border-radius:13px;cursor:pointer;transition:all .2s;background:{{ c.bg }};color:{{ c.fg }};border:1.5px solid {{ c.bd }}">{{ c.label }}</span></sc-for>
+              </div>
+
+              <div style="font-size:12px;font-weight:800;color:#6f8ba3;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">How to split</div>
+              <div style="display:flex;gap:7px;margin-bottom:14px">
+                <sc-for list="{{ expModeChips }}" as="c" hint-placeholder-count="3"><span onClick="{{ c.on }}" style="flex:1;text-align:center;font-size:13px;font-weight:700;padding:10px 0;border-radius:13px;cursor:pointer;transition:all .2s;background:{{ c.bg }};color:{{ c.fg }};border:1.5px solid {{ c.bd }}">{{ c.label }}</span></sc-for>
+              </div>
+
+              <!-- EQUAL -->
+              <sc-if value="{{ expModeEqual }}" hint-placeholder-val="{{ true }}">
+                <div style="animation:fadeIn .25s ease both">
+                  <div style="display:flex;gap:7px;margin-bottom:14px">
+                    <sc-for list="{{ expAmtChips }}" as="c" hint-placeholder-count="4"><span onClick="{{ c.on }}" style="flex:1;text-align:center;font-size:13px;font-weight:700;padding:9px 0;border-radius:13px;cursor:pointer;transition:all .2s;background:{{ c.bg }};color:{{ c.fg }};border:1.5px solid {{ c.bd }}">{{ c.label }}</span></sc-for>
+                  </div>
+                  <div style="background:#eff9ff;border:1px solid #d5ebf9;border-radius:14px;padding:14px;text-align:center;font-size:14px;font-weight:700;color:#0c4a6e">Everyone pays <span style="color:#0284c7">{{ expEqualEach }}</span> each · 4 people</div>
+                </div>
+              </sc-if>
+
+              <!-- SELECTED -->
+              <sc-if value="{{ expModeSelected }}" hint-placeholder-val="{{ false }}">
+                <div style="animation:fadeIn .25s ease both">
+                  <div style="display:flex;gap:7px;margin-bottom:14px">
+                    <sc-for list="{{ expAmtChips }}" as="c" hint-placeholder-count="4"><span onClick="{{ c.on }}" style="flex:1;text-align:center;font-size:13px;font-weight:700;padding:9px 0;border-radius:13px;cursor:pointer;transition:all .2s;background:{{ c.bg }};color:{{ c.fg }};border:1.5px solid {{ c.bd }}">{{ c.label }}</span></sc-for>
+                  </div>
+                  <div style="font-size:12px;color:#6f8ba3;margin-bottom:8px">Tick only who shares this — e.g. just the 2 who drank, or the 3 non-veg.</div>
+                  <div style="background:#fff;border:1px solid #e2eef7;border-radius:16px;overflow:hidden">
+                    <sc-for list="{{ expSelRows }}" as="m" hint-placeholder-count="4">
+                      <div onClick="{{ m.toggle }}" style="display:flex;align-items:center;gap:12px;padding:11px 14px;cursor:pointer;border-bottom:1px solid #eef5fb">
+                        <span style="width:34px;height:34px;border-radius:50%;flex-shrink:0;background:{{ m.avBg }};background-size:cover;background-position:center"></span>
+                        <span style="flex:1;font-size:14.5px;font-weight:700;color:{{ m.nameColor }}">{{ m.name }}</span>
+                        <span style="font-size:14px;font-weight:800;color:#0c4a6e">{{ m.share }}</span>
+                        <span style="width:24px;height:24px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;border:2px solid {{ m.tickBd }};background:{{ m.tickBg }}">{{ m.check }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+
+              <!-- BY ITEM -->
+              <sc-if value="{{ expModeItem }}" hint-placeholder-val="{{ false }}">
+                <div style="animation:fadeIn .25s ease both">
+                  <div style="font-size:12px;color:#6f8ba3;margin-bottom:10px">Assign each item to who shared it. Totals add up per person below.</div>
+                  <div style="display:flex;flex-direction:column;gap:10px">
+                    <sc-for list="{{ expItemRows }}" as="it" hint-placeholder-count="3">
+                      <div style="background:#fff;border:1px solid #e2eef7;border-radius:16px;padding:12px 13px">
+                        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px"><span style="font-size:14.5px;font-weight:700">{{ it.label }}</span><span style="font-size:14px;font-weight:800">{{ it.amt }} <span style="font-size:11px;color:#97b3c6;font-weight:700">· {{ it.per }}</span></span></div>
+                        <div style="display:flex;gap:6px">
+                          <sc-for list="{{ it.people }}" as="p" hint-placeholder-count="4"><span onClick="{{ p.toggle }}" style="flex:1;text-align:center;font-size:12px;font-weight:700;padding:7px 0;border-radius:11px;cursor:pointer;transition:all .2s;background:{{ p.bg }};color:{{ p.fg }};border:1.5px solid {{ p.bd }}">{{ p.name }}</span></sc-for>
+                        </div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+
+              <!-- PER-PERSON BREAKDOWN -->
+              <div style="background:#0c4a6e;border-radius:16px;padding:14px 16px;margin-top:16px;color:#fff">
+                <div style="font-size:12px;font-weight:800;color:#7dd3fc;text-transform:uppercase;letter-spacing:.5px;margin-bottom:11px">Each person pays</div>
+                <div style="display:flex;flex-direction:column;gap:9px">
+                  <sc-for list="{{ expBreakdown }}" as="b" hint-placeholder-count="4">
+                    <div style="display:flex;align-items:center;gap:10px;opacity:{{ b.muted }}">
+                      <span style="width:26px;height:26px;border-radius:50%;flex-shrink:0;background:{{ b.avBg }};background-size:cover;background-position:center"></span>
+                      <span style="flex:1;font-size:13.5px;font-weight:700">{{ b.name }}</span>
+                      <span style="font-size:15px;font-weight:800">{{ b.amt }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+            <button class="v-btn" onClick="{{ saveExpense }}" style="width:100%;background:#0ea5e9;border:none;color:#fff;font-size:16px;font-weight:800;font-family:inherit;padding:16px;border-radius:16px;cursor:pointer;margin-top:14px">Save expense</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ADD ACTIVITY MODAL -->
+      <sc-if value="{{ mAddAct }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;inset:0;z-index:70;display:flex;flex-direction:column;justify-content:flex-end;animation:fadeIn .2s ease both">
+          <div onClick="{{ closeModal }}" style="position:absolute;inset:0;background:rgba(8,47,73,.4)"></div>
+          <div style="position:relative;background:#f0f9ff;border-radius:30px 30px 0 0;padding:22px 22px 28px;animation:popIn .3s cubic-bezier(.2,.8,.2,1) both">
+            <div style="width:40px;height:5px;border-radius:5px;background:#cfe3f2;margin:0 auto 16px"></div>
+            <div style="font-size:20px;font-weight:800;margin-bottom:16px">Add activity</div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
+              <div style="background:#fff;border:1.5px solid #dfeaf3;border-radius:14px;padding:13px 15px;font-size:15px;color:#6f8ba3">Activity name</div>
+              <div style="display:flex;gap:10px"><div style="flex:1;background:#fff;border:1.5px solid #dfeaf3;border-radius:14px;padding:13px 15px;font-size:15px;font-weight:600">📅 Wed 30</div><div style="flex:1;background:#fff;border:1.5px solid #dfeaf3;border-radius:14px;padding:13px 15px;font-size:15px;font-weight:600">🕐 14:00</div></div>
+              <div style="background:#fff;border:1.5px solid #dfeaf3;border-radius:14px;padding:13px 15px;font-size:15px;color:#6f8ba3">📍 Add location</div>
+            </div>
+            <button class="v-btn" onClick="{{ saveActivity }}" style="width:100%;background:#0ea5e9;border:none;color:#fff;font-size:16px;font-weight:800;font-family:inherit;padding:16px;border-radius:16px;cursor:pointer">Add to itinerary</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ADD NOTE MODAL -->
+      <sc-if value="{{ mAddNote }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;inset:0;z-index:70;display:flex;flex-direction:column;justify-content:flex-end;animation:fadeIn .2s ease both">
+          <div onClick="{{ closeModal }}" style="position:absolute;inset:0;background:rgba(8,47,73,.4)"></div>
+          <div style="position:relative;background:#f0f9ff;border-radius:30px 30px 0 0;padding:22px 22px 28px;animation:popIn .3s cubic-bezier(.2,.8,.2,1) both">
+            <div style="width:40px;height:5px;border-radius:5px;background:#cfe3f2;margin:0 auto 16px"></div>
+            <div style="font-size:20px;font-weight:800;margin-bottom:6px">Journal note</div>
+            <div style="font-size:13px;color:#6f8ba3;margin-bottom:14px">Saved into today's album, visible to your crew.</div>
+            <div style="background:#fffdf2;border:1.5px solid #f0e8c8;border-radius:16px;padding:15px;font-size:14.5px;line-height:1.6;color:#8a8062;min-height:90px;margin-bottom:16px">The light on the tiles this evening… ✍️</div>
+            <button class="v-btn" onClick="{{ saveNote }}" style="width:100%;background:#0ea5e9;border:none;color:#fff;font-size:16px;font-weight:800;font-family:inherit;padding:16px;border-radius:16px;cursor:pointer">Save note</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- QUICK ADD EXPENSE FAB -->
+      <sc-if value="{{ showQuickExp }}" hint-placeholder-val="{{ false }}">
+        <div class="v-press" onClick="{{ openAddExpense }}" style="position:absolute;right:18px;bottom:106px;z-index:55;width:56px;height:56px;border-radius:50%;background:linear-gradient(145deg,#38bdf8,#0284c7);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 14px 30px -6px rgba(2,132,199,.75);animation:fabFloat 3.2s ease-in-out infinite">
+          <span style="font-size:20px;line-height:1;font-weight:800">＋</span><span style="font-size:8px;font-weight:800;letter-spacing:.5px;margin-top:1px">EXPENSE</span>
+        </div>
+      </sc-if>
+
+      <!-- CONTACTS PICKER -->
+      <sc-if value="{{ mContacts }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;inset:0;z-index:70;display:flex;flex-direction:column;justify-content:flex-end;animation:fadeIn .2s ease both">
+          <div onClick="{{ closeModal }}" style="position:absolute;inset:0;background:rgba(8,47,73,.4)"></div>
+          <div style="position:relative;background:#f0f9ff;border-radius:30px 30px 0 0;padding:22px 22px 28px;animation:popIn .3s cubic-bezier(.2,.8,.2,1) both">
+            <div style="width:40px;height:5px;border-radius:5px;background:#cfe3f2;margin:0 auto 16px"></div>
+            <div style="font-size:20px;font-weight:800;margin-bottom:4px">Pick from contacts</div>
+            <div style="font-size:13px;color:#6f8ba3;margin-bottom:14px">They'll get an invite to the Lisbon trip.</div>
+            <div style="display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid #dfeaf3;border-radius:14px;padding:11px 14px;margin-bottom:12px"><span style="color:#9bb6cb"><svg class="ic"><use href="#i-search"></use></svg></span><span style="font-size:14px;color:#a0b9cc">Search contacts…</span></div>
+            <div class="voya-scroll" style="display:flex;flex-direction:column;gap:8px;max-height:280px;overflow-y:auto;margin-bottom:16px">
+              <sc-for list="{{ contactRows }}" as="c" hint-placeholder-count="5">
+                <div onClick="{{ c.on }}" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #e2eef7;border-radius:16px;padding:11px 13px;cursor:pointer">
+                  <span style="width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:800;background:{{ c.avBg }};background-size:cover;background-position:center">{{ c.initial }}</span>
+                  <div style="flex:1"><div style="font-size:14.5px;font-weight:700">{{ c.name }}</div><div style="font-size:12px;color:#6f8ba3">{{ c.phone }}</div></div>
+                  <span style="width:24px;height:24px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;transition:all .2s;border:2px solid {{ c.markBd }};background:{{ c.markBg }}">{{ c.mark }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <button class="v-btn" onClick="{{ closeModal }}" style="width:100%;background:#0ea5e9;border:none;color:#fff;font-size:16px;font-weight:800;font-family:inherit;padding:16px;border-radius:16px;cursor:pointer">Done · {{ crewCount }} selected</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- PLACE PHOTOS SHEET -->
+      <sc-if value="{{ hasPlace }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;inset:0;z-index:65;display:flex;flex-direction:column;justify-content:flex-end;animation:fadeIn .2s ease both">
+          <div onClick="{{ closePlace }}" style="position:absolute;inset:0;background:rgba(8,47,73,.4)"></div>
+          <div style="position:relative;background:#f0f9ff;border-radius:30px 30px 0 0;padding:22px 22px 28px;animation:popIn .3s cubic-bezier(.2,.8,.2,1) both">
+            <div style="width:40px;height:5px;border-radius:5px;background:#cfe3f2;margin:0 auto 16px"></div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px"><span style="width:26px;height:26px;border-radius:50%;background:#0c4a6e;color:#7dd3fc;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center">{{ placeStop }}</span><div style="font-size:20px;font-weight:800">{{ placeName }}</div></div>
+            <div style="font-size:13px;color:#6f8ba3;margin-bottom:14px">{{ placeMeta }} · {{ placeCount }} photos taken here</div>
+            <div class="voya-scroll" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;max-height:250px;overflow-y:auto;margin-bottom:16px">
+              <sc-for list="{{ placePhotos }}" as="p" hint-placeholder-count="6">
+                <div onClick="{{ p.open }}" style="height:92px;border-radius:13px;cursor:pointer;background:{{ p.bg }};background-size:cover;background-position:center"></div>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:10px">
+              <button class="v-btn" onClick="{{ openAddExpense }}" style="flex:1;background:#fff;border:1.5px solid #d5ebf9;color:#0284c7;font-size:14px;font-weight:800;font-family:inherit;padding:14px;border-radius:16px;cursor:pointer">＋ Expense here</button>
+              <button class="v-btn" onClick="{{ closePlace }}" style="flex:1;background:#0ea5e9;border:none;color:#fff;font-size:14px;font-weight:800;font-family:inherit;padding:14px;border-radius:16px;cursor:pointer">Done</button>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- TOAST -->
+      <sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:50%;transform:translateX(-50%);bottom:122px;z-index:90;background:#0c4a6e;color:#fff;font-size:13.5px;font-weight:700;padding:12px 20px;border-radius:20px;box-shadow:0 16px 34px -10px rgba(12,74,110,.7);white-space:nowrap;animation:popIn .3s cubic-bezier(.2,.8,.2,1) both">{{ toastMsg }}</div>
+      </sc-if>
+
+      <!-- TAB BAR -->
+      <sc-if value="{{ showNav }}" hint-placeholder-val="{{ false }}">
+        <div style="position:relative;z-index:50;display:flex;align-items:center;justify-content:space-around;background:rgba(255,255,255,.92);backdrop-filter:blur(18px);border-top:1px solid #dcecf9;padding:10px 14px 26px;flex-shrink:0">
+          <div class="v-press" onClick="{{ onTrips }}" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;width:52px"><span style="display:flex;justify-content:center;width:44px;padding:5px 0;border-radius:14px;background:{{ pTrips }};transition:background .3s,transform .3s"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{{ cTrips }}" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.4 12 4l9 7.4V20a1 1 0 0 1-1 1h-4.5v-6h-7v6H4a1 1 0 0 1-1-1z"></path></svg></span><span style="font-size:10px;font-weight:700;color:{{ cTrips }}">Trips</span></div>
+          <div class="v-press" onClick="{{ onExpHome }}" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;width:52px"><span style="display:flex;justify-content:center;width:44px;padding:5px 0;border-radius:14px;background:{{ pExp }};transition:background .3s,transform .3s"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{{ cExp }}" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2.5"></rect><path d="M3 10h18M16 15h2"></path></svg></span><span style="font-size:10px;font-weight:700;color:{{ cExp }}">Expenses</span></div>
+          <div class="v-press" onClick="{{ onCamera }}" style="cursor:pointer;margin-top:-24px"><div style="width:56px;height:56px;border-radius:20px;background:linear-gradient(145deg,#38bdf8,#0ea5e9);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 24px -6px rgba(14,165,233,.7);animation:fabFloat 3.5s ease-in-out infinite"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z"></path><circle cx="12" cy="13.5" r="3.4"></circle></svg></div></div>
+          <div class="v-press" onClick="{{ onAlbumHome }}" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;width:52px"><span style="display:flex;justify-content:center;width:44px;padding:5px 0;border-radius:14px;background:{{ pAlbum }};transition:background .3s,transform .3s"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{{ cAlbum }}" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="1.8"></circle><path d="m4 18 5-5 3 3 4-4 4 4"></path></svg></span><span style="font-size:10px;font-weight:700;color:{{ cAlbum }}">Album</span></div>
+          <div class="v-press" onClick="{{ onProfile }}" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;width:52px"><span style="display:flex;justify-content:center;width:44px;padding:5px 0;border-radius:14px;background:{{ pProfile }};transition:background .3s,transform .3s"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{{ cProfile }}" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.7"></circle><path d="M5 20a7 7 0 0 1 14 0"></path></svg></span><span style="font-size:10px;font-weight:700;color:{{ cProfile }}">Profile</span></div>
+        </div>
+      </sc-if>
+
+    </div>
+  </div>
+
+  <div style="max-width:230px;color:#0c4a6e;opacity:.75;font-size:13px;line-height:1.6">
+    <div style="font-weight:800;font-size:15px;margin-bottom:6px">Voya — clickable</div>
+    Same flow as your original: onboarding → setup → trips. "＋ Plan a trip" runs the 4-step AI wizard. Tabs: Trips · Expenses · Camera · Album · Profile. Open Lisbon for Overview / Itinerary / Checklist / Map / Album / Expenses. Tap ⤢ on photos, shutter in camera. Drop your own images over any photo.
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    screen: 'splash', ob: 0, tripTab: 'overview', modal: null, photo: null, toast: null, shots: 0,
+    wizStep: 1, building: false,
+    setupType: 'Friends group', setupScope: 'International',
+    setupPrefs: ['Culture', 'Food', 'Beaches'],
+    crew: ['Leo Park', 'Maya Chen'],
+    place: null, wizDaySel: 0,
+    contacts: [
+      { n: 'Leo Park', ph: '+351 912 044 331', av: 'assets/av-leo.png' },
+      { n: 'Maya Chen', ph: '+1 415 220 8712', av: 'assets/av-maya.png' },
+      { n: 'Noah Silva', ph: '+55 11 9330 4102', av: 'assets/av-noah.png' },
+      { n: 'Ana Costa', ph: '+351 968 771 240', c: '#e0a05f' },
+      { n: 'Ravi Kumar', ph: '+91 98220 55671', c: '#6bb5e0' },
+    ],
+    wizDays: [
+      { label: 'Day 1', title: 'Arrival & Alfama', sub: 'Jul 28', acts: [
+        { t: '09:40', title: 'Land at LIS · transfer', sub: 'Aerobus to Baixa · 40 min' },
+        { t: '12:00', title: 'Check-in · Alfama loft', sub: 'Drop bags, freshen up' },
+        { t: '14:00', title: 'Tram 28 loop', sub: 'Martim Moniz → Campo Ourique' },
+        { t: '18:30', title: 'Sunset · Miradouro da Senhora', sub: 'Golden hour' },
+        { t: '20:30', title: 'Dinner · Cervejaria Ramiro', sub: 'Garlic prawns · ~$28pp' },
+      ]},
+      { label: 'Day 2', title: 'Belém & museums', sub: 'Jul 29', acts: [
+        { t: '09:00', title: 'Pastéis de Belém', sub: 'Warm custard tarts' },
+        { t: '10:30', title: 'Belém Tower & monastery', sub: 'Pre-booked tickets' },
+        { t: '14:00', title: 'MAAT museum', sub: 'Riverside architecture' },
+        { t: '19:00', title: 'Fado night · Alfama', sub: 'Reserve by 17:00' },
+      ]},
+      { label: 'Day 3', title: 'Cascais day trip', sub: 'Jul 30', acts: [
+        { t: '09:15', title: 'Train from Cais do Sodré', sub: '40 min coastal line' },
+        { t: '10:30', title: 'Beach · Praia da Rainha', sub: 'Bring sunscreen' },
+        { t: '13:00', title: 'Seafood lunch · Mar do Inferno', sub: '~$24pp' },
+        { t: '15:30', title: 'Boca do Inferno cliffs', sub: 'Photo stop' },
+      ]},
+      { label: 'Day 4', title: 'Sintra palaces', sub: 'Jul 31', acts: [
+        { t: '08:30', title: 'Early train to Sintra', sub: 'Beat the queues' },
+        { t: '10:00', title: 'Pena Palace', sub: 'Timed entry 10:00' },
+        { t: '13:30', title: 'Lunch in the old town', sub: 'Travesseiros!' },
+        { t: '15:00', title: 'Quinta da Regaleira', sub: 'Initiation well' },
+      ]},
+    ],
+    pack: [
+      { id: 'p1', cat: 'Documents', label: 'Passport', done: true },
+      { id: 'p2', cat: 'Documents', label: 'Flight tickets', done: true },
+      { id: 'p3', cat: 'Documents', label: 'Travel insurance', done: false },
+      { id: 'p4', cat: 'Documents', label: 'Hotel confirmation', done: true },
+      { id: 'p5', cat: 'Clothing', label: 'T-shirts ×5', done: true },
+      { id: 'p6', cat: 'Clothing', label: 'Light jacket', done: false },
+      { id: 'p7', cat: 'Clothing', label: 'Swimwear', done: true },
+      { id: 'p8', cat: 'Clothing', label: 'Walking shoes', done: true },
+      { id: 'p9', cat: 'Tech', label: 'Phone charger', done: true },
+      { id: 'p10', cat: 'Tech', label: 'Power bank', done: false },
+      { id: 'p11', cat: 'Tech', label: 'EU adapter', done: false },
+      { id: 'p12', cat: 'Essentials', label: 'Sunscreen', done: true },
+      { id: 'p13', cat: 'Essentials', label: 'Sunglasses', done: false },
+      { id: 'p14', cat: 'Essentials', label: 'Toiletries', done: false },
+    ],
+    expenses: [
+      { id: 'e1', icon: 'i-utensils', title: 'Dinner — Cervejaria', sub: 'Leo paid · split 4', amount: '$96', note: 'you owe $24', noteColor: '#e07a5f' },
+      { id: 'e2', icon: 'i-car', title: 'Airport taxi', sub: 'You paid · split 4', amount: '$48', note: 'you get $36', noteColor: '#0ea5e9' },
+      { id: 'e3', icon: 'i-ticket', title: 'Castle tickets', sub: 'Maya paid · split 3', amount: '$45', note: 'you owe $15', noteColor: '#e07a5f' },
+      { id: 'e4', icon: 'i-home', title: 'Airbnb — 3 nights', sub: 'You paid · split 4', amount: '$620', note: 'you get $465', noteColor: '#0ea5e9' },
+    ],
+    expMode: 'equal', expAmount: 96, expPaidBy: 'You',
+    expSel: ['You', 'Leo', 'Maya', 'Noah'],
+    expItems: [
+      { id: 'i1', label: '🍽️ Shared mains', amt: 56, ppl: ['You', 'Leo', 'Maya', 'Noah'] },
+      { id: 'i2', label: '🍖 Meat platter', amt: 30, ppl: ['Leo', 'Maya', 'Noah'] },
+      { id: 'i3', label: '🍷 Wine', amt: 40, ppl: ['Leo', 'Noah'] },
+    ],
+  };
+  members = [
+    { name: 'You', av: 'assets/av-sara.png' },
+    { name: 'Leo', av: 'assets/av-leo.png' },
+    { name: 'Maya', av: 'assets/av-maya.png' },
+    { name: 'Noah', av: 'assets/av-noah.png' },
+  ];
+
+  go(screen) { this.setState({ screen, modal: null, photo: null, place: null }); }
+  moveActAt(di, i, dir) {
+    this.setState(st => {
+      const days = st.wizDays.map(d => ({ ...d, acts: [...d.acts] }));
+      const acts = days[di].acts;
+      const j = i + dir;
+      if (j < 0 || j >= acts.length) return null;
+      const tmp = acts[i]; acts[i] = acts[j]; acts[j] = tmp;
+      return { wizDays: days };
+    });
+  }
+  delActAt(di, i) {
+    this.setState(st => ({ wizDays: st.wizDays.map((d, k) => k === di ? { ...d, acts: d.acts.filter((_, x) => x !== i) } : d) }));
+    this.showToast('Removed from ' + this.state.wizDays[di].label);
+  }
+  addActAt(di) {
+    this.setState(st => ({ wizDays: st.wizDays.map((d, k) => k === di ? { ...d, acts: [...d.acts, { t: '17:00', title: 'New activity', sub: 'Tap to edit · reorder or remove anytime' }] } : d) }));
+    this.showToast('Added to ' + this.state.wizDays[di].label);
+  }
+  toggleExpSel(name) {
+    this.setState(st => {
+      const has = st.expSel.includes(name);
+      if (has && st.expSel.length === 1) return null;
+      return { expSel: has ? st.expSel.filter(n => n !== name) : [...st.expSel, name] };
+    });
+  }
+  toggleItemPerson(itemId, name) {
+    this.setState(st => ({
+      expItems: st.expItems.map(it => {
+        if (it.id !== itemId) return it;
+        const has = it.ppl.includes(name);
+        if (has && it.ppl.length === 1) return it;
+        return { ...it, ppl: has ? it.ppl.filter(n => n !== name) : [...it.ppl, name] };
+      }),
+    }));
+  }
+  expShares() {
+    const s = this.state;
+    const per = {}; this.members.forEach(m => per[m.name] = 0);
+    if (s.expMode === 'item') {
+      s.expItems.forEach(it => { const c = it.ppl.length || 1; it.ppl.forEach(n => per[n] += it.amt / c); });
+    } else {
+      const inc = s.expMode === 'equal' ? this.members.map(m => m.name) : s.expSel;
+      const c = inc.length || 1;
+      inc.forEach(n => per[n] += s.expAmount / c);
+    }
+    return per;
+  }
+  addPackItem() {
+    const id = 'px' + Date.now();
+    this.setState(st => ({ pack: [...st.pack, { id, cat: 'My additions', label: 'New item', done: false }] }));
+    this.showToast('Added to checklist ✓');
+  }
+  tt(tripTab) { this.setState({ tripTab }); }
+  openTripAt(tab) { this.setState({ screen: 'trip', tripTab: tab, modal: null }); }
+  toggle(id) { this.setState(st => ({ pack: st.pack.map(p => p.id === id ? { ...p, done: !p.done } : p) })); }
+  showToast(msg) {
+    clearTimeout(this._tt);
+    this.setState({ toast: msg });
+    this._tt = setTimeout(() => this.setState({ toast: null }), 2000);
+  }
+  build(next) {
+    this.setState({ wizStep: next, building: true });
+    clearTimeout(this._bt);
+    this._bt = setTimeout(() => this.setState({ building: false }), 2200);
+  }
+  togglePref(p) {
+    this.setState(st => ({ setupPrefs: st.setupPrefs.includes(p) ? st.setupPrefs.filter(x => x !== p) : [...st.setupPrefs, p] }));
+  }
+  toggleCrew(n) {
+    this.setState(st => ({ crew: st.crew.includes(n) ? st.crew.filter(x => x !== n) : [...st.crew, n] }));
+  }
+
+  renderVals() {
+    const s = this.state;
+    const packTotal = s.pack.length;
+    const packDone = s.pack.filter(p => p.done).length;
+    const packPct = Math.round(packDone / packTotal * 100);
+    const ringCirc = 2 * Math.PI * 24;
+    const ringDash = `${(packPct / 100 * ringCirc).toFixed(1)} ${ringCirc.toFixed(1)}`;
+
+    const cats = [];
+    s.pack.forEach(p => { if (!cats.includes(p.cat)) cats.push(p.cat); });
+    const packGroups = cats.map(cat => {
+      const list = s.pack.filter(p => p.cat === cat);
+      return {
+      cat,
+      stat: list.filter(i => i.done).length + '/' + list.length + ' packed',
+      items: list.map(it => ({
+        ...it,
+        check: it.done ? '✓' : '',
+        tickBg: it.done ? '#0ea5e9' : '#fff',
+        tickBorder: it.done ? '#0ea5e9' : '#c3dcec',
+        tickAnim: it.done ? 'checkPop .34s ease' : 'none',
+        deco: 'none',
+        txtColor: '#0c4a6e',
+        toggle: () => this.toggle(it.id),
+      })),
+      };
+    });
+
+    const chip = (label, active, on) => ({
+      label, on,
+      bg: active ? '#0ea5e9' : '#fff',
+      fg: active ? '#fff' : '#567d99',
+      bd: active ? '#0ea5e9' : '#dfeaf3',
+    });
+    const typeChips = ['Solo', 'Couple', 'Family', 'Friends group'].map(t => chip(t, s.setupType === t, () => this.setState({ setupType: t })));
+    const scopeChips = ['Domestic', 'International', 'Both'].map(t => chip(t, s.setupScope === t, () => this.setState({ setupScope: t })));
+    const prefChips = ['Adventure', 'Culture', 'Food', 'Nature', 'Beaches', 'Cities', 'Budget', 'Luxury', 'Nightlife', 'Wellness'].map(t => chip(t, s.setupPrefs.includes(t), () => this.togglePref(t)));
+
+    const contactRows = s.contacts.map(c => {
+      const active = s.crew.includes(c.n);
+      return { name: c.n, phone: c.ph, initial: c.av ? '' : c.n[0], avBg: c.av ? `url(${c.av})` : c.c, mark: active ? '✓' : '', markBg: active ? '#0ea5e9' : '#fff', markBd: active ? '#0ea5e9' : '#c3dcec', on: () => this.toggleCrew(c.n) };
+    });
+    const crewSel = s.crew.map(n => {
+      const c = s.contacts.find(x => x.n === n) || {};
+      return { label: n, avBg: c.av ? `url(${c.av})` : (c.c || '#7dd3fc'), initial: c.av ? '' : n[0], remove: () => this.toggleCrew(n) };
+    });
+    const wizAllDays = s.wizDays.map((d, di) => ({
+      label: d.label, title: d.title, sub: d.sub,
+      dayNo: di + 1, last: di === s.wizDays.length - 1,
+      addTo: () => this.addActAt(di),
+      acts: d.acts.map((a, i) => ({ ...a, up: () => this.moveActAt(di, i, -1), down: () => this.moveActAt(di, i, 1), del: () => this.delActAt(di, i) })),
+    }));
+    const placesData = [
+      { stop: 1, name: 'Time Out Market', meta: 'Food hall · Day 1', emoji: 'i-utensils', day: 'Day 1', x: 25, y: 60, rot: -6, photos: ['assets/ph-2.png', 'assets/ph-1.png', 'assets/ph-6.png', 'assets/ph-4.png', 'assets/ph-3.png', 'assets/ph-5.png'] },
+      { stop: 2, name: 'São Jorge Castle', meta: 'Landmark · Day 2', emoji: 'i-landmark', day: 'Day 2', x: 57, y: 27, rot: 5, photos: ['assets/ph-4.png', 'assets/ph-6.png', 'assets/ph-1.png', 'assets/ph-8.png'] },
+      { stop: 3, name: 'Miradouro da Senhora', meta: 'Viewpoint · Day 2', emoji: 'i-sunrise', day: 'Day 2', x: 74, y: 67, rot: -4, photos: ['assets/ph-7.png', 'assets/ph-2.png', 'assets/ph-5.png', 'assets/ph-8.png', 'assets/ph-3.png', 'assets/ph-1.png', 'assets/ph-6.png', 'assets/ph-4.png'] },
+    ];
+    const placeRows = placesData.map((p, i) => ({ stop: p.stop, name: p.name, meta: p.meta, count: p.photos.length, thumb: `url(${p.photos[0]})`, open: () => this.setState({ place: i }) }));
+    const mapSpots = placesData.map((p, i) => ({
+      name: p.name, stop: p.stop, emoji: p.emoji, day: p.day, count: p.photos.length,
+      cover: `url(${p.photos[0]})`, back: `url(${p.photos[1] || p.photos[0]})`,
+      left: p.x + '%', top: p.y + '%', rot: `rotate(${p.rot}deg)`, delay: (i * 0.5) + 's',
+      open: () => this.setState({ place: i }),
+    }));
+    const routePts = placesData.map(p => `${p.x},${p.y}`).join(' ');
+    const pl = s.place != null ? placesData[s.place] : null;
+    const friendsData = [
+      { n: 'Leo Park', av: 'assets/av-leo.png', spot: 'Near São Jorge Castle', dist: '400 m away · updated 2 min ago', ok: true, top: '46%', left: '68%' },
+      { n: 'Maya Chen', av: 'assets/av-maya.png', spot: 'Time Out Market', dist: '1.2 km away · just now', ok: true, top: '26%', left: '22%' },
+      { n: 'Noah Silva', av: 'assets/av-noah.png', spot: 'Last seen · Miradouro', dist: 'No signal for 24 min', ok: false, top: '68%', left: '46%' },
+    ];
+    const mkFriend = f => ({
+      name: f.n, spot: f.spot, dist: f.dist, avBg: `url(${f.av})`,
+      top: f.top, left: f.left, op: f.ok ? '1' : '.55',
+      anim: f.ok ? 'pulseDot 2s infinite' : 'none',
+      distColor: f.ok ? '#0ea5e9' : '#e07a5f',
+      btnLabel: f.ok ? 'Locate' : 'Ping',
+      locate: () => this.showToast(f.ok ? `${f.n.split(' ')[0]} is ${f.dist.split(' ·')[0].replace(' away', '')} away — ${f.spot} 📍` : `Pinged ${f.n.split(' ')[0]} — waiting for location…`),
+    });
+    const friendPins = friendsData.map(mkFriend);
+
+    const segDefs = [['overview', 'Overview'], ['itinerary', 'Itinerary'], ['checklist', 'Checklist'], ['map', 'Map'], ['album', 'Album'], ['expenses', 'Expenses']];
+    const segItems = segDefs.map(([key, label]) => ({
+      key, label, on: () => this.tt(key),
+      bg: s.tripTab === key ? '#0ea5e9' : '#fff',
+      fg: s.tripTab === key ? '#fff' : '#567d99',
+    }));
+
+    const obData = [
+      { emoji: 'i-sun', kicker: 'For people who travel together', title: 'Every trip, one shared sky.', body: 'Voya is the breezy companion for people who wander together — plans, packing and memories, always in sync.', cta: 'Next' },
+      { emoji: 'i-compass', kicker: 'AI does the busywork', title: 'Smart checklists & itineraries.', body: 'The moment a trip is set, AI drafts a packing list and a day-by-day plan for the whole crew.', cta: 'Next' },
+      { emoji: 'i-image', kicker: 'Money & memories, sorted', title: 'Split costs. Share every shot.', body: 'Track who paid what and settle in a tap — while every photo lands in one shared cloud album.', cta: 'Set me up' },
+    ];
+    const ob = obData[s.ob];
+
+    const mkPhoto = (sid, src, cap, span, h) => ({
+      sid, src, span, h: h + 'px',
+      open: () => this.setState({ photo: { src, cap } }),
+    });
+    const albumDays = [
+      {
+        day: 'Day 1 · Arrival', count: '3 photos',
+        photos: [mkPhoto('v-alb-11', 'assets/ph-2.png', 'Day 1 · Sunset over the Tejo', 'span 2', 150), mkPhoto('v-alb-12', 'assets/ph-1.png', 'Day 1 · Blue hour', 'auto', 110), mkPhoto('v-alb-13', 'assets/ph-6.png', 'Day 1 · First walk', 'auto', 110)],
+        note: 'Landed at golden hour. First pastel de nata within 40 minutes — record intact. 🥐',
+      },
+      {
+        day: 'Day 2 · Alfama', count: '3 photos',
+        photos: [mkPhoto('v-alb-21', 'assets/ph-4.png', 'Day 2 · Night streets', 'auto', 120), mkPhoto('v-alb-22', 'assets/ph-3.png', 'Day 2 · Green hills', 'auto', 120), mkPhoto('v-alb-23', 'assets/ph-5.png', 'Day 2 · Rooftops at dusk', 'span 2', 140)],
+        note: null,
+      },
+      {
+        day: 'Day 3 · Coast', count: '2 photos',
+        photos: [mkPhoto('v-alb-31', 'assets/ph-7.png', 'Day 3 · Cascais gold', 'auto', 130), mkPhoto('v-alb-32', 'assets/ph-8.png', 'Day 3 · Emerald cove', 'auto', 130)],
+        note: 'Noah swears the water was "not that cold". It was that cold. 🥶',
+      },
+    ];
+    const albumCount = albumDays.reduce((a, d) => a + d.photos.length, 0) + s.shots;
+
+    const openPh = (src, cap) => () => this.setState({ photo: { src, cap } });
+
+    const tabActive = { trips: 'trips', expensesHome: 'expensesHome', albumHome: 'albumHome', profile: 'profile' }[s.screen];
+    const tc = k => tabActive === k ? '#0ea5e9' : '#9bb6cb';
+    const tpill = k => tabActive === k ? '#e0f2fe' : 'transparent';
+
+    return {
+      isSplash: s.screen === 'splash',
+      isOnb: s.screen === 'onb',
+      isSetup: s.screen === 'setup',
+      isTrips: s.screen === 'trips',
+      isWizard: s.screen === 'wizard',
+      isTrip: s.screen === 'trip',
+      isMembers: s.screen === 'members',
+      isExpHome: s.screen === 'expensesHome',
+      isAlbumHome: s.screen === 'albumHome',
+      isCamera: s.screen === 'camera',
+      isProfile: s.screen === 'profile',
+      isSettings: s.screen === 'settings',
+      showNav: ['trips', 'expensesHome', 'albumHome', 'profile', 'trip', 'members'].includes(s.screen),
+      statusColor: ['splash', 'onb', 'camera'].includes(s.screen) ? '#ffffff' : '#0c4a6e',
+
+      ttOverview: s.tripTab === 'overview', ttItinerary: s.tripTab === 'itinerary', ttChecklist: s.tripTab === 'checklist',
+      ttMap: s.tripTab === 'map', ttAlbum: s.tripTab === 'album', ttExpenses: s.tripTab === 'expenses',
+      mAddExp: s.modal === 'addExp', mAddAct: s.modal === 'addAct', mAddNote: s.modal === 'addNote',
+      ...(() => {
+        const per = this.expShares();
+        const money = n => '$' + (Math.round(n * 100) / 100).toFixed(2).replace(/\.00$/, '');
+        const total = s.expMode === 'item' ? s.expItems.reduce((a, it) => a + it.amt, 0) : s.expAmount;
+        const modeChips = [['equal', 'Equally'], ['selected', 'Only some'], ['item', 'By item']].map(([k, label]) => ({
+          label, on: () => this.setState({ expMode: k }),
+          bg: s.expMode === k ? '#0ea5e9' : '#fff', fg: s.expMode === k ? '#fff' : '#567d99', bd: s.expMode === k ? '#0ea5e9' : '#dfeaf3',
+        }));
+        const amtChips = [60, 96, 120, 180].map(v => ({ label: '$' + v, on: () => this.setState({ expAmount: v }), bg: s.expAmount === v ? '#0c4a6e' : '#fff', fg: s.expAmount === v ? '#fff' : '#567d99', bd: s.expAmount === v ? '#0c4a6e' : '#dfeaf3' }));
+        const paidChips = this.members.map(m => ({ label: m.name, on: () => this.setState({ expPaidBy: m.name }), bg: s.expPaidBy === m.name ? '#0c4a6e' : '#fff', fg: s.expPaidBy === m.name ? '#fff' : '#567d99', bd: s.expPaidBy === m.name ? '#0c4a6e' : '#dfeaf3' }));
+        const selRows = this.members.map(m => {
+          const on = s.expSel.includes(m.name);
+          return { name: m.name, avBg: `url(${m.av})`, share: on ? money(per[m.name]) : '—',
+            tickBg: on ? '#0ea5e9' : '#fff', tickBd: on ? '#0ea5e9' : '#c3dcec', check: on ? '✓' : '',
+            nameColor: on ? '#0c4a6e' : '#97b3c6', toggle: () => this.toggleExpSel(m.name) };
+        });
+        const itemRows = s.expItems.map(it => ({
+          id: it.id, label: it.label, amt: '$' + it.amt, per: money(it.amt / (it.ppl.length || 1)) + ' each',
+          people: this.members.map(m => {
+            const on = it.ppl.includes(m.name);
+            return { name: m.name, on, bg: on ? '#e0f2fe' : '#fff', fg: on ? '#0284c7' : '#a7bfb5', bd: on ? '#bae6fd' : '#dcecf9', toggle: () => this.toggleItemPerson(it.id, m.name) };
+          }),
+        }));
+        const breakdown = this.members.map(m => ({ name: m.name, avBg: `url(${m.av})`, amt: money(per[m.name]), muted: per[m.name] === 0 ? '.4' : '1' }));
+        return {
+          expMode: s.expMode, expModeEqual: s.expMode === 'equal', expModeSelected: s.expMode === 'selected', expModeItem: s.expMode === 'item',
+          expTotalLabel: money(total), expModeChips: modeChips, expAmtChips: amtChips, expPaidChips: paidChips,
+          expSelRows: selRows, expItemRows: itemRows, expBreakdown: breakdown,
+          expEqualEach: money(total / this.members.length),
+        };
+      })(),
+
+      ob0: s.ob === 0, ob1: s.ob === 1, ob2: s.ob === 2,
+      obIcon: ob.emoji, obKicker: ob.kicker, obTitle: ob.title, obBody: ob.body, obCta: ob.cta,
+      ob0w: s.ob === 0 ? '26px' : '8px', ob1w: s.ob === 1 ? '26px' : '8px', ob2w: s.ob === 2 ? '26px' : '8px',
+      ob0c: s.ob >= 0 ? '#0ea5e9' : '#cfe3f2', ob1c: s.ob >= 1 ? '#0ea5e9' : '#cfe3f2', ob2c: s.ob >= 2 ? '#0ea5e9' : '#cfe3f2',
+
+      wiz1: s.wizStep === 1, wiz2: s.wizStep === 2, wiz3: s.wizStep === 3, wiz4: s.wizStep === 4,
+      building: s.building, built: !s.building,
+      wizStepLabel: ['Step 1 of 4 · Details', 'Step 2 of 4 · AI itinerary', 'Step 3 of 4 · AI checklist', 'Step 4 of 4 · Done'][s.wizStep - 1],
+      ws1: s.wizStep >= 1 ? '#0ea5e9' : '#d8eaf7', ws2: s.wizStep >= 2 ? '#0ea5e9' : '#d8eaf7',
+      ws3: s.wizStep >= 3 ? '#0ea5e9' : '#d8eaf7', ws4: s.wizStep >= 4 ? '#0ea5e9' : '#d8eaf7',
+
+      packDone, packTotal, packPct, packLeft: packTotal - packDone, ringDash, packPctW: packPct + '%',
+      packGroups, expenseItems: s.expenses, segItems,
+      typeChips, scopeChips, prefChips,
+      contactRows, crewSel, hasCrew: s.crew.length > 0, noCrew: s.crew.length === 0, crewCount: s.crew.length,
+      mContacts: s.modal === 'contacts',
+      openContacts: () => this.setState({ modal: 'contacts' }),
+      wizAllDays, addPackItem: () => this.addPackItem(),
+      wizTravellers: s.crew.length + 1,
+      spendCats: [
+        { icon: 'i-home', label: 'Stay', amt: '$620', pct: '50%', w: '50%', color: '#0c4a6e' },
+        { icon: 'i-utensils', label: 'Food & drinks', amt: '$326', pct: '26%', w: '26%', color: '#0ea5e9' },
+        { icon: 'i-car', label: 'Transport', amt: '$154', pct: '12%', w: '12%', color: '#7dd3fc' },
+        { icon: 'i-ticket', label: 'Activities', amt: '$140', pct: '11%', w: '11%', color: '#bfe4fb' },
+      ],
+      placeRows, hasPlace: !!pl, mapSpots, routePts,
+      placeStop: pl ? pl.stop : '', placeName: pl ? pl.name : '', placeMeta: pl ? pl.meta : '', placeCount: pl ? pl.photos.length : 0,
+      placePhotos: pl ? pl.photos.map((src, j) => ({ bg: `url(${src})`, open: () => this.setState({ photo: { src, cap: pl.name + ' · photo ' + (j + 1) } }) })) : [],
+      openPlace1: () => this.setState({ place: 0 }), openPlace2: () => this.setState({ place: 1 }), openPlace3: () => this.setState({ place: 2 }),
+      closePlace: () => this.setState({ place: null }),
+      friendPins, friendRows: friendPins,
+      showQuickExp: ['trip', 'expensesHome'].includes(s.screen),
+      settleLeo: () => this.showToast('Settled $24 with Leo ✓'),
+      settleMaya: () => this.showToast('Settled $15 with Maya ✓'),
+      remindNoah: () => this.showToast('Reminder sent to Noah 💸'),
+      profilePrefs: s.setupPrefs.length ? s.setupPrefs : ['Culture', 'Food', 'Beaches'],
+      albumDays, albumCount, shots: s.shots,
+      shotsLabel: s.shots + (s.shots === 1 ? ' photo' : ' photos'),
+
+      hasPhoto: !!s.photo, photoBg: s.photo ? `url(${s.photo.src})` : 'none', photoCap: s.photo ? s.photo.cap : '',
+      hasToast: !!s.toast, toastMsg: s.toast || '',
+
+      cTrips: tc('trips'), cExp: tc('expensesHome'), cAlbum: tc('albumHome'), cProfile: tc('profile'),
+      pTrips: tpill('trips'), pExp: tpill('expensesHome'), pAlbum: tpill('albumHome'), pProfile: tpill('profile'),
+
+      start: () => this.go('onb'),
+      skipToTrips: () => this.go('trips'),
+      obNext: () => { if (s.ob < 2) this.setState({ ob: s.ob + 1 }); else this.go('setup'); },
+      obBack: () => { if (s.ob > 0) this.setState({ ob: s.ob - 1 }); else this.go('splash'); },
+      obSkip: () => this.go('setup'),
+      setupDone: () => this.go('trips'),
+      openSetup: () => this.go('setup'),
+      logout: () => this.setState({ screen: 'splash', ob: 0 }),
+
+      onTrips: () => this.go('trips'),
+      onExpHome: () => this.go('expensesHome'),
+      onAlbumHome: () => this.go('albumHome'),
+      onProfile: () => this.go('profile'),
+      onCamera: () => this.go('camera'),
+      openSettings: () => this.go('settings'),
+      openMembers: () => this.go('members'),
+
+      openWizard: () => this.setState({ screen: 'wizard', wizStep: 1, building: false }),
+      wizBack: () => { if (s.wizStep > 1) this.setState({ wizStep: s.wizStep - 1, building: false }); else this.go('trips'); },
+      wizToItin: () => this.build(2),
+      wizToCheck: () => this.build(3),
+      wizToDone: () => this.setState({ wizStep: 4, building: false }),
+
+      openTrip: () => this.openTripAt('overview'),
+      openTripOverview: () => this.openTripAt('overview'),
+      openTripMoney: () => this.openTripAt('expenses'),
+      openTripAlbum: () => this.openTripAt('album'),
+      openTripItin: () => this.openTripAt('itinerary'),
+      openTripCheck: () => this.openTripAt('checklist'),
+      openTripMap: () => this.openTripAt('map'),
+      ttToChecklist: () => this.tt('checklist'),
+      ttToAlbum: () => this.tt('album'),
+      ttToItinerary: () => this.tt('itinerary'),
+      ttToExpenses: () => this.tt('expenses'),
+      ttToMap: () => this.tt('map'),
+
+      openAddExpense: () => this.setState({ modal: 'addExp' }),
+      openAddActivity: () => this.setState({ modal: 'addAct' }),
+      openAddNote: () => this.setState({ modal: 'addNote' }),
+      closeModal: () => this.setState({ modal: null }),
+      saveExpense: () => {
+        const msg = s.expMode === 'equal' ? 'Expense added · split equally' : s.expMode === 'selected' ? `Expense added · split among ${s.expSel.length}` : 'Expense added · split by item';
+        this.setState({ modal: null }); this.showToast(msg);
+      },
+      saveActivity: () => {
+        if (s.screen === 'wizard') {
+          const di = s.wizDaySel;
+          this.setState(st => ({ modal: null, wizDays: st.wizDays.map((d, i) => i === di ? { ...d, acts: [...d.acts, { t: '17:00', title: 'New activity', sub: 'Added by you — reorder or remove anytime' }] } : d) }));
+          this.showToast('Added to ' + s.wizDays[di].label);
+        } else { this.setState({ modal: null }); this.showToast('Added to Day 3 itinerary'); }
+      },
+      saveNote: () => { this.setState({ modal: null }); this.showToast('Note saved to shared album 📝'); },
+
+      shoot: () => { this.setState({ shots: s.shots + 1 }); this.showToast('Saved to Lisbon shared album ✓'); },
+      closePhoto: () => this.setState({ photo: null }),
+      openPhL1: openPh('assets/ph-2.png', 'Lisbon · Sunset over the Tejo'),
+      openPhL2: openPh('assets/ph-1.png', 'Lisbon · Blue hour'),
+      openPhL3: openPh('assets/ph-4.png', 'Lisbon · Night streets'),
+      openPhB1: openPh('assets/ph-3.png', 'Bali · Green hills'),
+      openPhB2: openPh('assets/ph-8.png', 'Bali · Emerald cove'),
+      openPhB3: openPh('assets/bali.png', 'Bali · Rice terrace dawn'),
+
+      toastTokyo: () => this.showToast('This prototype focuses on the Lisbon trip'),
+      toastSettled: () => this.showToast('Bali is settled — nothing owed 🎉'),
+      toastInvite: () => this.showToast('Invite link copied 🔗'),
+    };
+  }
+}
+</script>
+
+<script>
+/* capture harness: ?path=Label|Label|... clicks each label in turn so
+   headless Chrome can screenshot any screen deterministically. */
+(function(){
+  var q = new URLSearchParams(location.search).get('path');
+  if(!q) return;
+  var steps = q.split('|').map(function(s){return s.trim()}).filter(Boolean);
+  function visible(e){ return e.offsetParent !== null || e.getClientRects().length; }
+  function clickLabel(lbl){
+    var all = [].slice.call(document.querySelectorAll('button,[onclick],[role="button"],.v-press,.v-lift,a,div,span'));
+    var hit = all.filter(function(e){
+      if(!visible(e)) return false;
+      var t = (e.textContent||'').trim();
+      return t === lbl || (t.length < 40 && t.indexOf(lbl) === 0);
+    });
+    hit.sort(function(a,b){return (a.textContent||'').length - (b.textContent||'').length});
+    if(hit[0]) hit[0].click();
+    return !!hit[0];
+  }
+  var i = 0;
+  (function next(){
+    if(i >= steps.length){ document.documentElement.setAttribute('data-ready','1'); return; }
+    clickLabel(steps[i++]);
+    setTimeout(next, 700);
+  })();
+})();
+</script>
+</body>
+</html>
