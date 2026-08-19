@@ -86,17 +86,37 @@
 }
 .voya-metric-l { font-size: 0.85rem; color: var(--cs-soft); margin-top: 0.3rem; line-height: 1.45; }
 
-/* The PNGs are the app screen only — no device bezel, no page
-   background, and their corners are already transparent and rounded.
-   So no border-radius/overflow here: that would clip a second frame
-   around an image that is already shaped. The shadow is drawn from
-   the alpha instead, so it follows the rounded corners. */
+/* Device frame. The PNGs are the app screen only — square corners, no
+   bezel, no page background — so the bezel is drawn here and the
+   screenshot is inset inside it. Keeping the frame in CSS means one
+   device treatment for every screen, crisp at any size, and it can't
+   trap a slice of whatever the screenshot was captured against.
+   The status bar and Dynamic Island are already in the screenshot, so
+   the frame deliberately adds no notch of its own. */
 .voya-device {
-  position: relative; display: block; padding: 0; border: none; background: none;
-  width: 100%; max-width: 320px; cursor: zoom-in;
-  filter: drop-shadow(0 26px 42px rgba(3, 61, 92, 0.30));
+  position: relative; display: block; width: 100%; max-width: 320px;
+  cursor: zoom-in; border: none;
+  padding: 11px;
+  border-radius: 46px;
+  background: linear-gradient(158deg, #3A414B 0%, #12161C 42%, #0A0D11 70%, #2B313A 100%);
+  box-shadow:
+    0 34px 70px -26px rgba(3, 61, 92, 0.50),
+    0 4px 10px rgba(14, 15, 19, 0.20),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.14);
 }
-.voya-device img { width: 100%; display: block; }
+.voya-device img {
+  width: 100%; display: block;
+  border-radius: 36px;              /* frame radius minus the padding */
+  background: #0B0D10;
+}
+/* side buttons, so the frame reads as a device rather than a rounded box */
+.voya-device::before,
+.voya-device::after {
+  content: ""; position: absolute; left: -2px; width: 2px;
+  border-radius: 2px 0 0 2px; background: linear-gradient(180deg, #2C333C, #171C22);
+}
+.voya-device::before { top: 22%; height: 7%; }
+.voya-device::after { top: 33%; height: 11%; }
 .voya-zoom {
   /* clear of the app's own tab bar at the foot of the screen */
   position: absolute; right: 14px; bottom: 12%;

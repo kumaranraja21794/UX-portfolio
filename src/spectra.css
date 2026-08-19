@@ -442,12 +442,15 @@ body:has(.sp-page) { background-color: var(--sp-paper); }
 }
 .sp-card:hover .sp-phone,
 .sp-feat:hover .sp-phone { transform: translate(-50%, calc(-50% - 9px)); }
-/* Screens captured with rounded, transparent corners: the drawn bezel
-   ring squares them off again, so shadow from the alpha instead. */
+/* Screens captured as the bare app screen (square corners, no bezel)
+   get a fuller device frame than the 4px ring above: the ring reads as
+   a hairline, this reads as a phone. */
 .sp-phone--flat {
-  border-radius: 0;
-  box-shadow: none;
-  filter: drop-shadow(0 22px 38px rgba(14, 15, 19, 0.40));
+  border-radius: 30px;
+  box-shadow:
+    0 0 0 9px #14181E,
+    0 0 0 10px rgba(255, 255, 255, 0.16),
+    0 26px 52px -16px rgba(14, 15, 19, 0.55);
 }
 
 .sp-card-body {
