@@ -13,7 +13,13 @@ const Visual = ({ p }) =>
   p.shape === 'phone' ? (
     <>
       <div className="sp-card-wash" style={{ background: p.wash }} />
-      <img className="sp-phone" src={p.img} alt={`${p.title} interface`} loading="lazy" />
+      {/* pre-rounded screenshots opt out of the drawn-on bezel */}
+      <img
+        className={`sp-phone${p.preRounded ? ' sp-phone--flat' : ''}`}
+        src={p.img}
+        alt={`${p.title} interface`}
+        loading="lazy"
+      />
     </>
   ) : (
     <img className="sp-fill-img" src={p.img} alt={`${p.title} interface`} loading="lazy" />

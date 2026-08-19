@@ -11,6 +11,8 @@ export const projects = [
     role: 'Product Designer & Developer',
     shape: 'phone',
     img: '/voya/trips.png',
+    // captured with transparent rounded corners, so it needs no drawn bezel
+    preRounded: true,
     wash: 'radial-gradient(95% 110% at 24% 0%, #7DD3FC, transparent 58%), linear-gradient(150deg, #0EA5E9, #075985)',
     desc: 'A trip planner for people who travel together — an AI wizard drafts the itinerary, packing list and budget in one pass, then the whole crew shares one live map, one album and one running tab.',
     impact: 'One shared sky',

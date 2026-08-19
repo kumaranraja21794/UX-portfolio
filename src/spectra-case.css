@@ -86,15 +86,20 @@
 }
 .voya-metric-l { font-size: 0.85rem; color: var(--cs-soft); margin-top: 0.3rem; line-height: 1.45; }
 
+/* The PNGs are the app screen only — no device bezel, no page
+   background, and their corners are already transparent and rounded.
+   So no border-radius/overflow here: that would clip a second frame
+   around an image that is already shaped. The shadow is drawn from
+   the alpha instead, so it follows the rounded corners. */
 .voya-device {
   position: relative; display: block; padding: 0; border: none; background: none;
   width: 100%; max-width: 320px; cursor: zoom-in;
-  border-radius: 34px; overflow: hidden;
-  box-shadow: 0 30px 70px -26px rgba(3, 61, 92, 0.45);
+  filter: drop-shadow(0 26px 42px rgba(3, 61, 92, 0.30));
 }
 .voya-device img { width: 100%; display: block; }
 .voya-zoom {
-  position: absolute; right: 14px; bottom: 18px;
+  /* clear of the app's own tab bar at the foot of the screen */
+  position: absolute; right: 14px; bottom: 12%;
   width: 34px; height: 34px; border-radius: 50%;
   display: grid; place-items: center;
   background: rgba(6, 25, 38, 0.72); color: #7DD3FC;
